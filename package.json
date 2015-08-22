@@ -1,0 +1,25 @@
+{
+  "name": "welunch",
+  "version": "1.0.0",
+  "description": "Get lunch with professionals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanjmg/project-3.git"
+  },
+  "keywords": [
+    "Lunch",
+    "business",
+    "professionals",
+    "club"
+  ],
+  "author": "Evan Gillogley, Francesca Tabor, Anvar Turobov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evanjmg/project-3/issues"
+  },
+  "homepage": "https://github.com/evanjmg/project-3#readme"
+}
