@@ -1,13 +1,14 @@
 var express        = require('express');
+var app            = express();
 var mongoose       = require('mongoose');
-var passport       = require('passport')
+var passport       = require('passport');
 var layouts        = require('express-ejs-layouts');
-var MongoStore     = require('connect-mongo')(session);
 var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
 var bodyParser     = require('body-parser');
-var cookieParser   = require('cookie-parser')
+var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
+var MongoStore     = require('connect-mongo')(session);
 // var flash          = require('connect-flash'); how do we do flashes in ajax?
 
 // MODELS 
@@ -28,6 +29,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 
 // SESSIONS
+ require('./config/passport')(passport);
 app.use(session({
   secret:'secret',
   maxAge: new Date(Date.now() + 3600000),
@@ -36,14 +38,13 @@ app.use(session({
 
 
 // AUTHENTICATION
-require('./config/passport')(passport);
+
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use(flash());
 
 // SASS Middleware
-var srcPath = './
-public/sass';
+var srcPath = './public/sass';
 var destPath = './public/styles';
 
 app.use('/', sassMiddleware({
