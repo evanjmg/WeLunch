@@ -2,8 +2,6 @@ var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../models/user');
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 
-var LINKEDIN_API_KEY = "--insert-linkedin-api-key-here--";
-var LINKEDIN_SECRET_KEY = "--insert-linkedin-secret-key-here--";
 
 module.exports = function(passport){
 	passport.serializeUser(function(user, done) {
@@ -16,15 +14,17 @@ module.exports = function(passport){
 	});
 
 	passport.use('linkedin', new LinkedInStrategy({
-		consumerKey: LINKEDIN_API_KEY,
-		consumerSecret: LINKEDIN_SECRET_KEY,
+		consumerKey: process.env.LINKEDIN_API_KEY,
+		consumerSecret: process.env.LINKEDIN_SECRET_KEY,
 		callbackURL: "http://127.0.0.1:8000/api/users/auth/linkedin/callback",
 		scope: ['r_emailaddress', 'r_basicprofile'],
-		profileFields   : ['name', 'emails', ]
-	}, function(token, tokenSecret, profile, done) {
+		profileFields   : ['name', 'emails' ]
+	}, 
+
+	function(token, tokenSecret, profile, done) {
 		console.log(profile)
 		process.nextTick(function() {
-		}),
+		}), 
 
 		User.findOne({ 'linkedin.id' : person.id }, function(err, user) {
 			if (err) return done(err);
@@ -33,12 +33,12 @@ module.exports = function(passport){
 			} else {
 
 				var newUser = new User();
-
 				newUser.linkedin.id           	= person.id;
 				newUser.linkedin.access_token 	= access_token;
 				newUser.name   									= person.firstName + ' ' + person.lastName;
 				newUser.avatar   								= person.pictureUrl;
-				newUser.emailaddress 						= person.emailaddress[0].value;
+				newUser.local.email    = email;
+				newUser.local.password = newUser.encrypt(password);
 
 				newUser.save(function(err) {
 					if (err) throw err;
@@ -47,4 +47,54 @@ module.exports = function(passport){
 			}
 		});
 	}));
-}
+  
+  passport.use('local-signup', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  }, function(req, email, password, callback) {
+    process.nextTick(function() {
+
+      // Find a user with this e-mail
+      User.findOne({ 'local.email' :  email }, function(err, user) {
+        if (err) return callback(err);
+
+        // If there already is a user with this email 
+        if (user) {
+          return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
+        } else {
+        // There is no email registered with this email
+
+          // Create a new user
+          var newUser            = new User();
+          newUser.local.email    = email;
+          newUser.local.password = newUser.encrypt(password);
+
+          newUser.save(function(err) {
+            if (err) throw err;
+            return callback(null, newUser);
+          });
+        }
+      });
+    });
+  }));
+
+  passport.use('local-login', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  }, function(req, email, password, callback) {
+    // Search for a user with this email
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+      if (err) return callback(err);
+     
+     // If no user is found
+      if (!user) return callback(null, false, req.flash('loginMessage', 'No user found.'));
+
+      // Wrong password
+      if (!user.validPassword(password))           return callback(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+
+      return callback(null, user);
+    });
+  }));
+ }
