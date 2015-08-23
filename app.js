@@ -1,11 +1,13 @@
 var express        = require('express');
 var app            = express();
+var bodyParser     = require('body-parser');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
 var layouts        = require('express-ejs-layouts');
 var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
-var bodyParser     = require('body-parser');
+var ejs            = require('ejs')
+
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
 var MongoStore     = require('connect-mongo')(session);
@@ -18,13 +20,19 @@ var Event = require('./models/event');
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
     mongoose.connect(databaseURL);
 
+
 //  VIEWS
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(layouts);
-app.set('views', './views');
-app.engine('ejs', require('ejs').renderFile);
+app.set('views', __dirname + '/views')
+app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
+
+
+
+
+
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 
