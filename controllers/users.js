@@ -1,14 +1,16 @@
 var passport = require("passport");
 
 var express = require('express');
-var router = express();
+var router = express.Router();
 var User = require('../models/user');
 var Event = require('../models/event');
-module.exports = router;
+// app.set('views', __dirname + '/views')
+// app.engine('ejs', ejs.renderFile);
+// app.set('view engine', 'ejs');
 
 // GET - NEW USER - SIGN UP 
 router.get('/signup', function (req, res){
-  res.render('./users/new')
+  res.render('./users/new.ejs');
 });
 
 // POST - NEW USER - SIGN UP
@@ -29,3 +31,5 @@ router.get('/auth/linkedin',
   passport.authenticate('linkedin'), 
   function(req, res){
 });
+
+module.exports = router;
