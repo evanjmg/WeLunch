@@ -45,7 +45,6 @@ app.use(session({
 }));
 
 
-
 // AUTHENTICATION
 
 app.use(passport.initialize());
