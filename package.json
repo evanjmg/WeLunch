@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/evanjmg/project-3#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.13.3",
     "connect-mongo": "^0.8.2",
     "cookie-parser": "^1.3.5",
