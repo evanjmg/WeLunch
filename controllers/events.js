@@ -6,7 +6,7 @@ var User = require('../models/user');
 var Event = require('../models/event');
 module.exports = router;
 
-// GET - NEW EVENT 
+// POST - NEW EVENT 
 router.post('/', function (req, res){
   Event.create(req.body, function (err){
     if (err) console.log(err);

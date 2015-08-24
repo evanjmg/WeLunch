@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 
 
 
-app.use(express.static(__dirname + '/public'));
+
 app.use(morgan('dev'));
 
 // SESSIONS
@@ -52,16 +52,16 @@ app.use(passport.session());
 // app.use(flash());
 
 // SASS Middleware
-var srcPath = './public/sass';
-var destPath = './public/styles';
+var srcPath = './scss';
+var destPath = './public/css';
 
-app.use('/', sassMiddleware({
+app.use('/css', sassMiddleware({
   src: srcPath,
   dest: destPath,
   debug: true,
   outputStyle: 'expanded'
 }));
-
+app.use(express.static(__dirname + '/public'));
 // CONTROLLERS
 app.use(require('./controllers'));
 // PORT

@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
     password: String
   },
   linkedin: {
-    _id: String,
+    id: String,
     name:String,
     avatar: String,
     access_token: String,

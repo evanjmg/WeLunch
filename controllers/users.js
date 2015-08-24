@@ -26,15 +26,17 @@ router.post('/', function (req, res) {
 router.get('/login', function (req, res){
 	res.render('./users/login');
 });
-router.get('/auth/linkedin',
-	passport.authenticate('linkedin'), 
-	function(req, res){
-	});
 router.get('/auth/linkedin/callback', 
-	passport.authenticate('linkedin'),
-	function(req, res) {
+  passport.authenticate('linkedin', { failureRedirect: '/api/users/signup', successRedirect: '/' }),
+  function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
   });
+
+router.get('/auth/linkedin',
+	passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }), 
+	function(req, res){
+	});
+
 
 module.exports = router;

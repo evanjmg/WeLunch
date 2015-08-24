@@ -1,0 +1,43 @@
+$navy: #051C2B;
+$green: #20D9B1; 
+$blue:#00AAE6;
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.orbit-container {
+  // opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  position:relative;
+}
+// .background-container {
+//   background-color: #051C2B;
+// }
+
+div.overlay {
+  width: 50%;
+     margin: 0 auto;
+  margin-top: 25%;
+}
+.orbit-slides-container {
+  background-color: $navy;
+  z-index: -1;
+  width: 100%;
+  height: 100% !important;
+
+}
+.orbit-container .orbit-slides-container>* .orbit-caption {
+  background-color:  rgba(5, 28, 43, 0.55);
+}
+div.title {
+  font-size: 6em;
+  color:white;
+}
+  li {
+    z-index: -1;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+
+  }

@@ -5,7 +5,7 @@ var LinkedInStrategy = require('passport-linkedin').Strategy;
 
 module.exports = function(passport){
 	passport.serializeUser(function(user, done) {
-		done(null, user.id);
+		done(null, user);
 	});
 	passport.deserializeUser(function(id, callback) {
 		User.findById(id, function(err, user) {
@@ -16,7 +16,7 @@ module.exports = function(passport){
 	passport.use('linkedin', new LinkedInStrategy({
 		consumerKey: process.env.LINKEDIN_API_KEY,
 		consumerSecret: process.env.LINKEDIN_SECRET_KEY,
-		callbackURL: "http://127.0.0.1:8000/api/users/auth/linkedin/callback",
+		callbackURL: "/api/users/auth/linkedin/callback",
 		scope: ['r_emailaddress', 'r_basicprofile'],
 		profileFields   : ['name', 'emails' ]
 	}, 
@@ -26,22 +26,22 @@ module.exports = function(passport){
 		process.nextTick(function() {
 		}), 
 
-		User.findOne({ 'linkedin.id' : person.id }, function(err, user) {
+		User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
 			if (err) return done(err);
 			if (user) {
 				return done(null, user);
 			} else {
 
 				var newUser = new User();
-				newUser.linkedin.id           	= person.id;
-				newUser.linkedin.access_token 	= access_token;
-				newUser.name   									= person.firstName + ' ' + person.lastName;
-				newUser.avatar   								= person.pictureUrl;
-				newUser.local.email    = email;
-				newUser.local.password = newUser.encrypt(password);
-
+				// newUser.linkedin.id           	= profile.id;
+				newUser.linkedin.access_token 	= token;
+				// newUser.name   									= profile.displayName;
+				// newUser.avatar   								= profile.pictureUrl;
+				newUser.local.email    = profile.emails[0].value;
+        console.log(profile.emails[0])
 				newUser.save(function(err) {
-					if (err) throw err;
+          console.log('saved!')
+					if (err) throw (err);
 					return done(null, newUser);
 				});
 			}
