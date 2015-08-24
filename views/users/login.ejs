@@ -7,9 +7,10 @@
     ), url('/images/landing-slider/drinks.jpg') no-repeat center center fixed;background-size : cover;">
   <div class="overlay">
   <div class="title">WeLunch</div>
-  <a class="btn btn-block btn-social btn-linkedin button">
-    <i class="fa fa-linkedin"></i> <a href="/auth/linkedin">Sign in with Linkedin</a>
+  <a href="/auth/linkedin" class="btn btn-block btn-social btn-linkedin button">
+    <i class="fa fa-linkedin"></i> Login with Linkedin
   </a>
+  <a href="#" class="link-to-local-sign-up">Login with Email</a>
   </div>
     <div class="orbit-caption" style="text-align:center;font-size: 1.5em;">Discover New Opportunities</div>
     
@@ -21,8 +22,8 @@
   <div class="overlay">
   <div class="title">WeLunch</div>
   <a class="btn btn-block btn-social btn-linkedin button">
-    <i class="fa fa-linkedin"></i> Sign in with Linkedin
-  </a>
+    <i class="fa fa-linkedin"></i> Login with Linkedin
+  </a>  <a href="#" class="link-to-local-sign-up">Login with Email</a>
   </div>
     <div class="orbit-caption" style="text-align:center;font-size: 1.5em;">Meet Industry Professionals</div>
   </li>
@@ -33,11 +34,41 @@
  
   <div class="overlay">
   <div class="title">WeLunch</div>
-  <a class="btn btn-block btn-social btn-linkedin button">
-    <i class="fa fa-linkedin"></i> Sign in with Linkedin
-  </a>
-  </div>
+  <a href="/api/users/auth/linkedin" class="btn btn-block btn-social btn-linkedin button">
+    <i class="fa fa-linkedin"></i> Login with Linkedin
+  </a><a href="#" class="link-to-local-sign-up">Login with Email</a>
+  </div>  
    <div class="orbit-caption" style="text-align:center;font-size: 1.5em;"> Join Professional Lunch Clubs</div>
   </li>
 </ul>
+</div>
+
+<div class="local-login">
+<h2>Login</h2>
+
+<a href="/api/users/auth/linkedin">Linkedin</a>
+
+<form method="post" action="/signup">
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input class="form-control" type="text" name="first_name" id="first_name">
+  </div>
+
+  <div class="form-group">
+    <label for="last_name">Last Name</label>
+    <input class="form-control" type="text" name="last_name" id="last_name">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" name="email" id="email">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input class="form-control" type="password" name="password" id="password">
+  </div>
+  
+  <input class="btn btn-default" type="submit">
+</form>
 </div>

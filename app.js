@@ -15,8 +15,11 @@ var MongoStore     = require('connect-mongo')(session);
 
 
 // MODELS 
-var User  = require('./models/user');
+// var Invite = require('./models/invite');
 var Event = require('./models/event');
+var User  = require('./models/user');
+
+
 
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);

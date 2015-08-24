@@ -9,11 +9,17 @@ module.exports = router;
 // POST - NEW EVENT 
 router.post('/', function (req, res){
   Event.create(req.body, function (err){
-    if (err) console.log(err);
-    res.send({status: 201 })
+    if (err) res.send(err)
+    res.send({status: 201 });
   })
 });
-
+// INDEX - EVENTs
+router.get('/', function (req, res) {
+  Event.find(function (err,events) {
+    if(err) res.send(err);
+    res.json(events);
+  } )
+})
 
 router.get('/', function(req, res) {
   Event.find({}, function(err, events) {

@@ -1,4 +1,5 @@
-
+// $('')
+// window.location.href = 
 // slider 
 // $(document).foundation({
 //   orbit: {
@@ -12,4 +13,4 @@
 // });
 // $(document).foundation();
 
-
+// $('.

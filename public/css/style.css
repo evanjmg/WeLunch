@@ -16,9 +16,30 @@ div.overlay {
 
 .orbit-slides-container {
   background-color: #051C2B;
-  z-index: -1;
   width: 100%;
   height: 100% !important;
+}
+
+.orbit-timer {
+  left: -10000px;
+  top: auto;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.link-to-local-sign-up {
+  display: block;
+  color: white;
+  background-color: #1dc39f;
+  padding: 10px;
+  width: 210px;
+  margin: auto;
+}
+
+.fa-linkedin {
+  padding-top: 7px;
 }
 
 .orbit-container .orbit-slides-container > * .orbit-caption {
@@ -31,7 +52,6 @@ div.title {
 }
 
 li {
-  z-index: -1;
   text-align: center;
   width: 100%;
   height: 100%;
