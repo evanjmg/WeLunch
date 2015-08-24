@@ -12,12 +12,18 @@ authenticatedUser = function (req,res,next) {
 
 //** GET - ALL USERS ************************
 
-router.get('/', authenticatedUser, function (req, res) {
+router.get('/',  function (req, res) {
   User.find(function(err, users) {
     if (err) console.log(err);
     res.json (users)
   })
 });
+//** GET - NEW USER - SIGN UP ************************
+
+router.get('/signup', function (req, res){
+  res.render('./users/signup.ejs');
+});
+
 
 
 //** GET - NEW USER - SIGN UP ************************
@@ -47,7 +53,6 @@ router.put('/:id', authenticatedUser, function (req,res) {
     res.redirect('/api/users/'+ user.id);
   })
 }); 
-
 
 
 //** POST - NEW USER - SIGN UP ************************

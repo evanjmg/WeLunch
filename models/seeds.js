@@ -11,6 +11,8 @@ Event1 = Event.create({ title: "Teaparty", location: 'Frankies Awesome house', m
 
 //Users examples
 
+db.create
+
 module.exports = {
   User1 = User.create({ name: "Francesca Tabor", email: 'francesca.tabor@gmail.com', password: 'password1'});
 }
