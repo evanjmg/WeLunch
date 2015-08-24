@@ -1,6 +1,6 @@
 var passport = require("passport");
 var express = require('express');
-var router = express();
+var router = express.Router();
 
 var User = require('../models/user');
 var Event = require('../models/event');
@@ -10,9 +10,11 @@ module.exports = router;
 router.post('/', function (req, res){
   Event.create(req.body, function (err){
     if (err) res.send(err)
-    res.send({status: 201 });
+      res.send({status: 201 });
   })
 });
+
+
 // INDEX - EVENTs
 router.get('/', function (req, res) {
   Event.find(function (err,events) {
@@ -20,6 +22,7 @@ router.get('/', function (req, res) {
     res.json(events);
   } )
 })
+
 
 router.get('/', function(req, res) {
   Event.find({}, function(err, events) {
@@ -30,8 +33,23 @@ router.get('/', function(req, res) {
   });
 });
 
-// CREATE
+router.get('/showpage', function (req,res) {
+res.render('show_event.ejs')
+})
+// GET - EVENT SHOW
+router.get('/:id', function (req, res) {
+  Event.findById(req.params.id, function (err, user) {
+    if (err) res.send(err);
+      if(event){
+        return res.json(event);
+      } else{
+        res.json({ message: 'Event not found' });
+      }
+    });
+});
 
+
+// POST - EVENT CREATE
 router.post(function(req, res) {
  Event.create(req.body, function (err,event) {
   if (err) res.send(err);
@@ -40,7 +58,21 @@ router.post(function(req, res) {
 });
 
 
-// UPDATE
+// GET - NEW
+router.get('/new', function (req,res) {
+  res.render('create_event.ejs');
+});
+
+router.get('/events', function (req,res) {
+  res.render('');
+});
+
+/*//  NEW - PRODUCT
+router.get('/new', authenticatedUser, function (req, res){
+  res.render('./products/new', { products: products});
+})*/
+
+// PUT - EVENT UPDATE
 router.put('/:id', function(req, res){
   Event.findByIdAndUpdate(req.params.id,req.body, function (err, event) {
     res.json({ message: "Event has been successfuly updated", event: event})
