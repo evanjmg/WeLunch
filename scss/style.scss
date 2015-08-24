@@ -41,3 +41,10 @@ div.title {
     background-size: cover;
 
   }
+
+
+@media (max-width: 600px) {
+  div.title {
+    font-size: 3.3em;
+  }
+}

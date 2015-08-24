@@ -3,13 +3,11 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
 var layouts        = require('express-ejs-layouts');
 var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
 var ejs            = require('ejs');
-var flash 				 = require('connect-flash');
-
-// how do we do flashes in ajax?
 
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
@@ -25,6 +23,7 @@ mongoose.connect(databaseURL);
 
 
 //  VIEWS
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(layouts);
@@ -43,13 +42,12 @@ app.use(session({
 	maxAge: new Date(Date.now() + 3600000),
 	store: new MongoStore({mongooseConnection:mongoose.connection})
 }));
-app.use(cookieParser());
+
 
 
 // AUTHENTICATION
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 
 // SASS Middleware
@@ -63,6 +61,7 @@ app.use('/css', sassMiddleware({
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static(__dirname + '/public'));
 
 // CONTROLLERS
