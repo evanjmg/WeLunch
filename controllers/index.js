@@ -5,7 +5,7 @@ router.use('/api/events', require('./events'));
 var passport = require("passport");
 
 router.get('/', function (req, res) {  
-  res.redirect('/api/users/signup');
+  res.redirect('/api/users/login');
 });
 
 module.exports = router;
