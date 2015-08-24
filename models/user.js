@@ -15,31 +15,11 @@ var userSchema = new mongoose.Schema({
     avatar: String,
     access_token: String,
   },
+  created_at: {type: Date, default: Date.now},
+  updated_at: {type: Date, default: Date.now},
 })
 
 var User = mongoose.model('User', userSchema);
-
-
-//********** Hash the Password for Security.
-
-userSchema.pre('save', function(next) {
-  var user = this;
-  var SALT_FACTOR = 5;
-
-  if (!user.isModified('password')) return next();
-
-  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
-    if (err) return next(err);
-
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-
 module.exports = User;
 
 

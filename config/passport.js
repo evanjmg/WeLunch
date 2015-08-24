@@ -82,7 +82,7 @@ passport.use('local-login', new LocalStrategy({
   	consumerSecret: process.env.LINKEDIN_SECRET_KEY,
   	callbackURL: "/api/users/auth/linkedin/callback",
   	scope: ['r_emailaddress', 'r_basicprofile'],
-  	profileFields   : ['name', 'location', 'industry', 'avatar']
+  	profileFields   : ['id', 'first-name', 'last-name', 'location', 'industry', 'picture-url']
   }, 
 
   function(token, tokenSecret, profile, done) {
@@ -99,10 +99,10 @@ passport.use('local-login', new LocalStrategy({
   			var newUser = new User();
   			newUser.linkedin.id           	= profile.id;
   			newUser.linkedin.access_token 	= token;
-  			newUser.linkedin.name   				= profile.name.first-name + ' ' + profile.name.last-name;
+  			newUser.linkedin.name   				= profile.first-name + ' ' + profile.last-name;
   			newUser.linkedin.location				= profile.location;
   			newUser.linkedin.industry				= profile.industry;
-  			newUser.linkedin.avatar 				= profile._json.picture.data.url;
+  			newUser.linkedin.avatar 				= profile.picture-url;
   			newUser.local.email 						= profile.email;
   			newUser.local.password 					= newUser.encrypt(password);
 
