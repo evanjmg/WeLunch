@@ -1,100 +1,123 @@
-var LocalStrategy   = require('passport-local').Strategy;
-var User            = require('../models/user');
-var LinkedInStrategy = require('passport-linkedin').Strategy;
+var passport 					= require('passport');
+var LocalStrategy   	= require('passport-local').Strategy;
+var LinkedInStrategy 	= require('passport-linkedin').Strategy;
+var User            	= require('../models/user');
 
+
+
+// ============ PASSPORT SESSION SETUP
 
 module.exports = function(passport){
+
 	passport.serializeUser(function(user, done) {
-		done(null, user);
+
+		console.log(user.id);
+		done(null, user.id);
 	});
+
 	passport.deserializeUser(function(id, callback) {
 		User.findById(id, function(err, user) {
 			callback(err, user);
 		});
 	});
 
-	passport.use('linkedin', new LinkedInStrategy({
-		consumerKey: process.env.LINKEDIN_API_KEY,
-		consumerSecret: process.env.LINKEDIN_SECRET_KEY,
-		callbackURL: "/api/users/auth/linkedin/callback",
-		scope: ['r_emailaddress', 'r_basicprofile'],
-		profileFields   : ['name', 'emails' ]
-	}, 
+// ============ LOCAL SIGNUP
 
-	function(token, tokenSecret, profile, done) {
-		console.log(profile)
-		process.nextTick(function() {
-		}), 
+passport.use('local-signup', new LocalStrategy({
+    // by default, local strategy uses username and password, we will override with email
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true 
+  },
+  function(req, email, password, done) {
+  	process.nextTick(function() {
 
-		User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
-			if (err) return done(err);
-			if (user) {
-				return done(null, user);
-			} else {
+  		User.findOne({ 'local.email' :  email }, function(err, user) {
+  			if (err)
+  				return done(err);
+  			if (user) {
+  				return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+  			} else {
+  				var newUser = new User();
+  				newUser.local.email = email;
+  				newUser.local.password = newUser.generateHash(password);
 
-				var newUser = new User();
-				// newUser.linkedin.id           	= profile.id;
-				newUser.linkedin.access_token 	= token;
-				// newUser.name   									= profile.displayName;
-				// newUser.avatar   								= profile.pictureUrl;
-				newUser.local.email    = profile.emails[0].value;
-        console.log(profile.emails[0])
-				newUser.save(function(err) {
-          console.log('saved!')
-					if (err) throw (err);
-					return done(null, newUser);
-				});
-			}
+  				newUser.save(function(err) {
+  					if (err)
+  						throw err;
+  					return done(null, newUser);
+  				});
+  			}
+  		});    
+  	});
+  }));
+
+
+// ============ LOCAL LOGIN 
+
+passport.use('local-login', new LocalStrategy({
+	usernameField : 'email',
+	passwordField : 'password',
+	passReqToCallback : true
+}, function(req, email, password, callback) {
+	process.nextTick(function() {
+
+		User.findOne({ 'local.email' :  email }, function(err, user){
+			if (err) 
+				return callback(err);
+			if (!user) {
+				return callback(null, false, req.flash('loginMessage', 'No user found.'));
+			}             if (!user.validPassword(password))
+			return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
+			return done(null, user);
 		});
-	}));
-  
-  passport.use('local-signup', new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password',
-    passReqToCallback : true
-  }, function(req, email, password, callback) {
-    process.nextTick(function() {
+	})
+})
+)};
 
-      // Find a user with this e-mail
-      User.findOne({ 'local.email' :  email }, function(err, user) {
-        if (err) return callback(err);
+  // ============ LINKEDIN LOGIN 
 
-        // If there already is a user with this email 
-        if (user) {
-          return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
-        } else {
-        // There is no email registered with this email
+  passport.use('linkedin', new LinkedInStrategy({
+  	consumerKey: process.env.LINKEDIN_API_KEY,
+  	consumerSecret: process.env.LINKEDIN_SECRET_KEY,
+  	callbackURL: "/api/users/auth/linkedin/callback",
+  	scope: ['r_emailaddress', 'r_basicprofile'],
+  	profileFields   : ['name', 'location', 'industry', 'avatar']
+  }, 
 
-          // Create a new user
-          var newUser            = new User();
-          newUser.local.email    = email;
-          newUser.local.password = newUser.encrypt(password);
+  function(token, tokenSecret, profile, done) {
+  	console.log(profile)
+  	process.nextTick(function() {
+  	}), 
 
-          newUser.save(function(err) {
-            if (err) throw err;
-            return callback(null, newUser);
-          });
-        }
-      });
-    });
+  	User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
+  		if (err) return done(err);
+  		if (user) {
+  			return done(null, user);
+  		} else {
+
+  			var newUser = new User();
+  			newUser.linkedin.id           	= profile.id;
+  			newUser.linkedin.access_token 	= token;
+  			newUser.linkedin.name   				= profile.name.first-name + ' ' + profile.name.last-name;
+  			newUser.linkedin.location				= profile.location;
+  			newUser.linkedin.industry				= profile.industry;
+  			newUser.linkedin.avatar 				= profile._json.picture.data.url;
+  			newUser.local.email 						= profile.email;
+  			newUser.local.password 					= newUser.encrypt(password);
+
+  			newUser.save(function(err) {
+  				console.log('saved!')
+  				if (err) throw err;
+  				return done(null, newUser);
+  			});
+  		}
+  	});
   }));
 
-  passport.use('local-login', new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password',
-    passReqToCallback : true
-  }, function(req, email, password, callback) {
-    // Search for a user with this email
-    User.findOne({ 'local.email' :  email }, function(err, user) {
-      if (err) return callback(err);
-     
-     // If no user is found
-      if (!user) return callback(null, false, req.flash('loginMessage', 'No user found.'));
+exports.isAuthenticated = function(req, res, next) {
+	if (req.isAuthenticated()) return next();
+	res.redirect('/login');
+};
 
-      // Wrong password
-      if (!user.validPassword(password))           return callback(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
-      return callback(null, user);
-    });
-  }));
- }
