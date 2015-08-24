@@ -21,5 +21,29 @@ router.get('/', function (req, res) {
   } )
 })
 
+router.get('/', function(req, res) {
+  Event.find({}, function(err, events) {
+    if (err)
+      res.send(err);
 
-//need to add othwr error messages
+    res.json(events);
+  });
+});
+
+// CREATE
+
+router.post(function(req, res) {
+ Event.create(req.body, function (err,event) {
+  if (err) res.send(err);
+  res.json({ message: 'Event has been successfuly saved', event: event})
+}) 
+});
+
+
+// UPDATE
+router.put('/:id', function(req, res){
+  Event.findByIdAndUpdate(req.params.id,req.body, function (err, event) {
+    res.json({ message: "Event has been successfuly updated", event: event})
+  });
+});
+
