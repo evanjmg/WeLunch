@@ -21,10 +21,16 @@ div.overlay {
 }
 .orbit-slides-container {
   background-color: $navy;
-  z-index: -1;
   width: 100%;
   height: 100% !important;
 
+}
+
+.btn-linkedin {
+  width:200px;
+}
+.fa-linkedin {
+  width:100px;
 }
 .orbit-container .orbit-slides-container>* .orbit-caption {
   background-color:  rgba(5, 28, 43, 0.55);
@@ -34,7 +40,6 @@ div.title {
   color:white;
 }
   li {
-    z-index: -1;
     text-align: center;
     width: 100%;
     height: 100%;
