@@ -90,12 +90,15 @@ passport.use('local-login', new LocalStrategy({
   	process.nextTick(function() {
   	}), 
 
-  	User.findOne({ 'local.email' : profile.emails[0].value }, function(err, user) {
+  	User.findOne({ 'local.email' : profile.emails[0].value }, 
+      function(err, user) {
   		if (err) return done(err);
+      console.log('error' + profile)
   		if (user) {
   			return done(null, user);
+        console.log('user' + profile)
   		} else {
-        console.log(profile);
+        console.log('new user saved' + profile);
   			var newUser = new User();
   			newUser.linkedin.access_token 	= token;
 
