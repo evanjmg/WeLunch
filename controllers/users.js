@@ -5,14 +5,14 @@ var User = require('../models/user');
 var Event = require('../models/event');
 
 authenticatedUser = function (req,res,next) {
-      if (req.isAuthenticated()) return next();
-      res.redirect('/users/login');
+  if (req.isAuthenticated()) return next();
+  res.redirect('/api/users/login');
 }
 
 
 //** GET - ALL USERS ************************
 
-router.get('/users', authenticatedUser, function (req, res) {
+router.get('/', authenticatedUser, function (req, res) {
   User.find(function(err, users) {
     if (err) console.log(err);
     res.json (users)
@@ -22,23 +22,23 @@ router.get('/users', authenticatedUser, function (req, res) {
 
 //** GET - USER SHOW ************************
 
-router.get('/users/:id', function (req, res) {
+router.get('/:id', function (req, res) {
   User.findById(req.params.id, function (err, user) {
-    if (err){} console.log(err);
-  }else if(user){
-    return res.json(user);
-  }else{
-  res.json({ message: 'User was not found' });
-        }
-      });
-    },
+    if (err) console.log(err)
+      if(user){
+        return res.json(user);
+      } else{
+        res.json({ message: 'User was not found' });
+      }
+    });
+});
 
 
-//** POST - USER SHOW ************************
+//** PUT - USER SHOW ************************
 
-router.post('/:id', authenticatedUser, function (req,res) {
+router.put('/:id', authenticatedUser, function (req,res) {
   User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
-    res.redirect('/users/'+ user.id);
+    res.redirect('/api/users/'+ user.id);
   })
 }); 
 
@@ -66,19 +66,19 @@ router.post('/', function (req, res) {
 //** GET - LOGIN USER - LOCAL ************************
 
 router.get('/login', function (req, res){
-  res.render('./users/login'), res.json({ message: 'Success! You are now logged in'});
+  res.render('./users/login');
 });
 
 router.get('/auth/linkedin',
   passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] })
-);
+  );
 
 router.get('/auth/linkedin/callback', 
   passport.authenticate('linkedin', { failureRedirect: '/api/users/signup', successRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
-});
+  });
 
 
 //** POST - LOGIN USER - LOCAL ************************
@@ -86,7 +86,7 @@ router.get('/auth/linkedin/callback',
 router.post('/login', function (req, res){
   var loginStrategy = passport.authenticate('local-login', {
     successRedirect : '/',
-    failureRedirect : '/users/login',
+    failureRedirect : '/api/users/login',
     failureFlash    : true
   });
   return loginStrategy(req, res);
