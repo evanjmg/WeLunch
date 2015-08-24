@@ -27,6 +27,7 @@ var userSchema = new mongoose.Schema({
     id: String,
     lastName: String,
     pictureUrl: String,
+    location: String
 },
 })
 
@@ -42,7 +43,6 @@ var eventSchema = new mongoose.Schema({
   created_at: {type: Date, default: Date.now},
   updated_at: {type: Date, default: Date.now}
 });
-
 var userSchema = new mongoose.Schema({
   owned_events: [Event.schema],
   invitations: [Invitation.schema],
