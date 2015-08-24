@@ -20,6 +20,12 @@ router.get('/', authenticatedUser, function (req, res) {
 });
 
 
+//** GET - NEW USER - SIGN UP ************************
+
+router.get('/signup', function (req, res){
+  res.render('./users/signup.ejs')
+});
+
 //** GET - USER SHOW ************************
 
 router.get('/:id', function (req, res) {
@@ -43,12 +49,6 @@ router.put('/:id', authenticatedUser, function (req,res) {
 }); 
 
 
-//** GET - NEW USER - SIGN UP ************************
-
-router.get('/signup', function (req, res){
-  res.json({ message: 'Welcome to WeLunch'});
-});
-
 
 //** POST - NEW USER - SIGN UP ************************
 
@@ -69,6 +69,8 @@ router.get('/login', function (req, res){
   res.render('./users/login');
 });
 
+
+// LOGIN LINKEDIN
 router.get('/auth/linkedin',
   passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] })
   );
