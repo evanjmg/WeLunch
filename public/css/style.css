@@ -20,12 +20,26 @@ div.overlay {
   height: 100% !important;
 }
 
-.btn-linkedin {
-  width: 200px;
+.orbit-timer {
+  left: -10000px;
+  top: auto;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.link-to-local-sign-up {
+  display: block;
+  color: white;
+  background-color: #1dc39f;
+  padding: 10px;
+  width: 210px;
+  margin: auto;
 }
 
 .fa-linkedin {
-  width: 100px;
+  padding-top: 7px;
 }
 
 .orbit-container .orbit-slides-container > * .orbit-caption {

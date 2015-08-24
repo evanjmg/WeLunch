@@ -20,8 +20,8 @@ router.get('/',  function (req, res) {
 });
 //** GET - NEW USER - SIGN UP ************************
 
-router.get('/signup', function (req, res){
-  res.render('./users/signup.ejs');
+router.get('/login', function (req, res){
+  res.render('./users/login.ejs');
 });
 
 
@@ -42,7 +42,7 @@ router.get('/:id', function (req, res) {
 
 //** PUT - USER SHOW ************************
 
-router.put('/:id', authenticatedUser, function (req,res) {
+router.put('/:id', function (req,res) {
   User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
     res.redirect('/api/users/'+ user.id);
   })
@@ -64,11 +64,7 @@ router.post('/', function (req, res) {
 });
 
 
-//** GET - LOGIN USER - LOCAL ************************
 
-router.get('/login', function (req, res){
-  res.render('./users/login');
-});
 
 router.get('/auth/linkedin',
   passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] })
@@ -104,7 +100,7 @@ router.get('/logout', function (req,res){
 
 //** EDIT USERS ************************
 
-router.get('/:id/edit', authenticatedUser, function(req, res){
+router.get('/:id/edit', function(req, res){
   User.findById(req.params.id, function (err, user) {
     res.render('./users/edit', { user: user})
   });
@@ -112,7 +108,7 @@ router.get('/:id/edit', authenticatedUser, function(req, res){
 
 
 // USER DELETE
-router.delete('/:id', authenticatedUser, function (req, res) {
+router.delete('/:id', function (req, res) {
   User.findById(req.params.id, function (err, user) {
     if (err) console.log(err);
     user.remove();
