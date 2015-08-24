@@ -17,12 +17,5 @@ var eventSchema = new mongoose.Schema({
 var Event = mongoose.model('Event', eventSchema);
 module.exports = Event;
 
-  
 
-
-
-
-/*module.exports = {
-Event1 = Event.create({ title: "Teaparty", location: 'Frankies Awesome house', message: 'Linch at mine?', location: 'Supergardens' });
-}*/
 
