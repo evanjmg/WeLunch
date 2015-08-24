@@ -1,10 +1,12 @@
 mongoose = require('mongoose');
-/* var Event = mongoose.model('event');*/
+
+// var Invite = mongoose.model('Invite');
 
 var eventSchema = new mongoose.Schema({
   title: String,
   users: String,
   start_time: Date,
+  // invites: [Invite.schema],
   end_time: Date,
   location: String,
   message: String,
