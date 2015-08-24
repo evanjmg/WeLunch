@@ -24,6 +24,7 @@ router.get('/', function(req, res) {
   });
 });
 
+// CREATE
 
 router.post(function(req, res) {
  Event.create(req.body, function (err,event) {
@@ -33,5 +34,10 @@ router.post(function(req, res) {
 });
 
 
+// UPDATE
+router.put('/:id', function(req, res){
+  Event.findByIdAndUpdate(req.params.id,req.body, function (err, event) {
+    res.json({ message: "Event has been successfuly updated", event: event})
+  });
+});
 
-//need to add othwr error messages
