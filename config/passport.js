@@ -102,6 +102,7 @@ passport.use('local-login', new LocalStrategy({
   			var newUser = new User();
   			newUser.linkedin.id           	= profile.id;
   			newUser.linkedin.access_token 	= token;
+
   			// newUser.linkedin.name   				= profile.name.first-name + ' ' + profile.name.last-name;
   			// newUser.linkedin.location				= profile.location;
   			// newUser.linkedin.industry				= profile.industry;

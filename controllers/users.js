@@ -9,7 +9,7 @@ var Event = require('../models/event');
 
 // GET - NEW USER - SIGN UP 
 router.get('/signup', function (req, res){
-	res.render('./users/new.ejs');
+	res.render('./users/signup.ejs');
 });
 
 // POST - NEW USER - SIGN UP
@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
 	var signupStrategy = passport.authenticate('local-signup', {
    // invokes req.login method -we don't write it because we have a separate strategy
    successRedirect : '/',
-   failureRedirect : '/signup',
+   failureRedirect : '/users/signup',
    failureFlash    : true
  });
 	return signupStrategy(req,res);
