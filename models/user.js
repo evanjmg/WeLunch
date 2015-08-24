@@ -5,10 +5,11 @@ var userSchema = new mongoose.Schema({
   local: {
     name: String,
     email: String,
-    password: String
+    password: String,
+    headline: String
   },
   linkedin: {
-    id: String,
+    url: String,
     name: String, 
     location: String,
     industry: String,

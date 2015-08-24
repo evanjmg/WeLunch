@@ -15,7 +15,22 @@ router.post('/', function (req, res){
 });
 
 
+router.get('/', function(req, res) {
+  Event.find({}, function(err, events) {
+    if (err)
+      res.send(err);
 
+    res.json(events);
+  });
+});
+
+
+router.post(function(req, res) {
+ Event.create(req.body, function (err,event) {
+  if (err) res.send(err);
+  res.json({ message: 'Event has been successfuly saved', event: event})
+}) 
+});
 
 
 

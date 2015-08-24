@@ -11,9 +11,6 @@ var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
 module.exports = function(passport){
 
 	passport.serializeUser(function(user, done) {
-
-		console.log(user.id);
-    console.log('cool************')
 		done(null, user);
 	});
 
@@ -82,33 +79,33 @@ passport.use('local-login', new LocalStrategy({
   passport.use('linkedin', new LinkedInStrategy({
   	clientID: process.env.LINKEDIN_API_KEY,
   	clientSecret: process.env.LINKEDIN_SECRET_KEY,
-  	callbackURL: "http://127.0.0.1:8000/api/users/auth/linkedin/callback",
+  	callbackURL: "http://localhost:8000/api/users/auth/linkedin/callback",
     scope: ['r_emailaddress', 'r_basicprofile'],
     state: true
   	// profileFields   : ['id','emails', 'location', 'industry']
   }, 
 
   function(token, tokenSecret, profile, done) {
-  	console.log(profile)
+  	console.log(profile);
   	process.nextTick(function() {
   	}), 
 
-  	User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
+  	User.findOne({ 'local.email' : profile.emails[0].value }, function(err, user) {
   		if (err) return done(err);
   		if (user) {
   			return done(null, user);
   		} else {
-
+        console.log(profile);
   			var newUser = new User();
-  			newUser.linkedin.id           	= profile.id;
   			newUser.linkedin.access_token 	= token;
 
-  			// newUser.linkedin.name   				= profile.name.first-name + ' ' + profile.name.last-name;
-  			// newUser.linkedin.location				= profile.location;
-  			// newUser.linkedin.industry				= profile.industry;
-  			// newUser.linkedin.avatar 				= profile._json.picture.data.url;
-  			newUser.local.email 						= profile.email;
-  			// newUser.local.password 					= newUser.encrypt(password);
+  			newUser.local.name   				    = profile.displayName
+        newUser.linkedin.location       = profile._json.location.name;
+  			newUser.linkedin.url		        = profile._json.publicProfileUrl;
+  			newUser.linkedin.industry				= profile._json.industry;
+  			newUser.linkedin.avatar 				= profile._json.pictureUrl;
+  			newUser.local.email 						= profile.emails[0].value;
+
 
   			newUser.save(function(err) {
   				console.log('saved!')
