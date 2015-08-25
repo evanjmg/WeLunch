@@ -1,0 +1,32 @@
+
+
+<!-- LOGIN  -->
+
+<div id='login_modal' class="modal">
+	<h1>Sign up</h1></br>
+	<strong><a href='/api/users/login' id='link-to-log-in'>Already have an account? Login</a></strong>
+	</br>	<strong><a href='/api/users/auth/linkedin'>Login with Linkedin</a></strong></br>
+
+  <form action='#' method='post' class='user_form'>
+    <input type="text" placeholder="Username" name='username'><br>
+    <input type="password" placeholder="Password"  name='password'><br>
+    <input type="submit" class='btn btn-default' value="Log In!">
+  </form>
+</div>
+
+
+<!-- SIGNUP  -->
+
+<div id='signup_modal' class="modal">
+	<h1>Login</h1></br>
+	<strong><a href='/api/users/auth/linkedin'>Login with Linkedin</a></strong></br>
+	<strong><a href='/api/users/signup' id='link-to-sign-up'>No Account? Sign up here</a></strong></br>
+
+  <form action='#' method='post' class='signup_form'>
+    <input type="text" placeholder="Username" name="user[username]">
+    <input type="password" placeholder="Password" name="user[password]">
+    <input type="submit" class='btn btn-default' value="Signup">
+  </form>
+</div>
+
+
