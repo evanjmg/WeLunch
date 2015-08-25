@@ -36,7 +36,7 @@ router.get('/', function(req, res) {
 router.get('/showpage', function (req,res) {
 res.render('show_event.ejs')
 })
-// GET - EVENT SHOW
+/*// GET - EVENT SHOW
 router.get('/:id', function (req, res) {
   Event.findById(req.params.id, function (err, user) {
     if (err) res.send(err);
@@ -47,7 +47,7 @@ router.get('/:id', function (req, res) {
       }
     });
 });
-
+*/
 
 // POST - EVENT CREATE
 router.post(function(req, res) {
