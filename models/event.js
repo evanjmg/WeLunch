@@ -4,7 +4,7 @@ mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
   title: String,
-  // users: String,
+   // users: String,
   // start_time: Date,
   // invites: [Invite.schema],
   // end_time: Date,
