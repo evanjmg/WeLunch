@@ -32,7 +32,8 @@ module.exports = function(req, res, next) {
 
 
   } else {
-    return res.send(401, { success: false, message : 'authentication failed' });
+    return res.status(401).send({ success: false, message : 'authentication failed' });
+    // return res.send(401, { success: false, message : 'authentication failed' });
   }
 
   // if (token) {
