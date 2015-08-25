@@ -1,4 +1,5 @@
 var express        = require('express');
+var jwt = require('jwt-simple');
 var app            = express();
 var bodyParser     = require('body-parser');
 var mongoose       = require('mongoose');
@@ -8,6 +9,7 @@ var layouts        = require('express-ejs-layouts');
 var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
 var ejs            = require('ejs');
+var moment         = require('moment');
 
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
@@ -39,6 +41,8 @@ app.use(morgan('dev'));
 
 
 // SESSIONS
+
+app.set('jwtTokenSecret', 'welunchallday');
 require('./config/passport')(passport);
 app.use(session({
 	secret:'secret',
@@ -52,6 +56,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req,res, next) {
+  global.current_user = req.user;
+  next();
+});
 
 // SASS Middleware
 var srcPath = './scss';

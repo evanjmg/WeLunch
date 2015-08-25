@@ -15,7 +15,7 @@ var toggleForm = function() {
 }
 
 var generateLogIn = function () {
-	$('#login-container').html("<div id='local-login'><h2>Login</h2><a href='/api/users/auth/linkedin'>Linkedin</a><a href='#' id='link-to-sign-up'>No Account? Sign up here</a><form method='post' action='/api/users/login'><div class='form-group'><div class='form-group'><label for='email'>Email</label><input class='form-control' type='text' name='email' id='email'></div><div class='form-group'><label for='password'>Password</label><input class='form-control' type='password' name='password' id='password'></div><input class='btn btn-default' type='submit'></form></div>");
+	$('#login-container').html("<div id='local-login'><h2>Login</h2><a href='#' id='link-to-sign-up'>No Account? Sign up here</a><form method='post' action='/api/users/login'><div class='form-group'><div class='form-group'><label for='email'>Email</label><input class='form-control' type='text' name='email' id='email'></div><div class='form-group'><label for='password'>Password</label><input class='form-control' type='password' name='password' id='password'></div><input class='btn btn-default' type='submit'></form></div>");
 }
 
 //toggle between local sign up - fade in fade out. 

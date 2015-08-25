@@ -23,33 +23,35 @@ module.exports = function(passport){
 // ============ LOCAL SIGNUP
 
 passport.use('local-signup', new LocalStrategy({
-    // by default, local strategy uses username and password, we will override with email
-    usernameField : 'email',
-    passwordField : 'password',
-    passReqToCallback : true
-  },
-  function(req, email, password, done) {
-  	process.nextTick(function() {
+  usernameField : 'email',
+  passwordField : 'password',
+  passReqToCallback : true
+}, function(req, email, password, callback) {
+  process.nextTick(function() {
 
-  		User.findOne({ 'local.email' :  email }, function(err, user) {
-  			if (err)
-  				return done(err);
-  			if (user) {
-  				return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-  			} else {
-  				var newUser = new User();
-  				newUser.local.email = email;
-  				newUser.local.password = newUser.generateHash(password);
+    // Find a user with this e-mail
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+      if (err) return callback(err);
 
-  				newUser.save(function(err) {
-  					if (err)
-  						throw err;
-  					return done(null, newUser);
-  				});
-  			}
-  		});    
-  	});
-  }));
+      // If there already is a user with this email 
+      if (user) {
+        return callback(null, false);
+      } else {
+      // There is no email registered with this email
+
+        // Create a new user
+        var newUser            = new User();
+        newUser.local.email    = email;
+        newUser.local.password = newUser.encrypt(password);
+
+        newUser.save(function(err) {
+          if (err) throw err;
+          return callback(null, newUser);
+        });
+      }
+    });
+  });
+}));
 
 
 // ============ LOCAL LOGIN 
@@ -65,11 +67,12 @@ passport.use('local-login', new LocalStrategy({
 			if (err) 
 				return callback(err);
 			if (!user) {
-				return callback(null, false, req.flash('loginMessage', 'No user found.'));
-			}             if (!user.validPassword(password))
-			return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
-			return done(null, user);
+				return callback(null, false);
+			}       
+    if (!user.validPassword(password)) return callback(null, false); 
+    return callback(null, user);
 		});
+
 	})
 })
 );

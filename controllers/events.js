@@ -1,7 +1,7 @@
 var passport = require("passport");
 var express = require('express');
 var router = express.Router();
-
+var jwtauth = require('../config/jwtauth.js');
 var User = require('../models/user');
 var Event = require('../models/event');
 module.exports = router;
@@ -24,10 +24,9 @@ router.get('/', function (req, res) {
 })
 
 
-router.get('/', function(req, res) {
-  Event.find({}, function(err, events) {
-    if (err)
-      res.send(err);
+router.get('/',jwtauth, function(req, res) {
+  Event.find(function(err, events) {
+    if (err) res.send(err);
 
     res.json(events);
   });
@@ -37,8 +36,8 @@ router.get('/showpage', function (req,res) {
 res.render('show_event.ejs')
 })
 // GET - EVENT SHOW
-router.get('/:id', function (req, res) {
-  Event.findById(req.params.id, function (err, user) {
+router.get('/:id', jwtauth, function (req, res) {
+  Event.findById(req.params.id, function (err, event) {
     if (err) res.send(err);
       if(event){
         return res.json(event);
