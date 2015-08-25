@@ -27,6 +27,19 @@ var generateLogIn = function() {
 $(document).ready(function() {
 	toggleForm();
 	generateLogIn();
+	$('#login').on('submit', function () {
+		event.preventDefault()
+	$.post('/api/users/login', $(this).serialize(), function(data){
+			console.log(data);
+			if(data.error){
+				$('#message').text(data.error)
+			}
+			if(data.success){
+				$('body').append(data);
+				$('#message').text(data.success)
+			}
+	}); 
+});
 	$("#signup").on("submit", function(event){
 		event.preventDefault()
 		//make a post request to our /signup endpoint
