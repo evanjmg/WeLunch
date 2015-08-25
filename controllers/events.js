@@ -4,7 +4,7 @@ var router = express.Router();
 var jwtauth = require('../config/jwtauth.js');
 var User = require('../models/user');
 var Event = require('../models/event');
-router.all('*', jwtauth);
+
 module.exports = router;
 
 
@@ -43,6 +43,7 @@ router.get('/', function(req, res) {
 router.get('/showpage', function (req,res) {
   res.render('show_event.ejs')
 })
+
 
 // GET - EVENT SHOW
 router.get('/:id', jwtauth, function (req, res) {

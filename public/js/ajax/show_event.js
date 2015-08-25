@@ -1,17 +1,22 @@
+
 $(function () {
-  getEvent("55d9e7d7514778bfcd79ff04");
-});
+  getEvent('55d9e7d7514778bfcd79ff04');
+})
 
 function getEvent (id) {
-  $.ajax('/api/events/'+ id, {
-    success: function(data) {
-          // console.log(data)
-    }
-  });
-  // $.get('http://localhost:8000/api/events/'+ id, function (data) {
-  //   console.log(data)
-  // })
+
+   $.ajax({
+     type: "get",
+     url: "/api/events/" + id,
+     contentType: "json",
+     dataType: "json"
+   }).done(function(data, response){
+     $('body').prepend("<h2>"+data.location+"</h2>", data.title, data.message);
+   });
 }
+
+
+
 
 
 //** SOCIAL SHARE ********************
