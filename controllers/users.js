@@ -19,11 +19,6 @@ router.get('/', jwtauth, function (req, res) {
   })
 });
 
-//** GET - NEW USER - SIGN UP ************************
-router.get('/login', function (req, res){
-  res.render('./users/login.ejs');
-});
-
 router.get('/logout', function (req, res){
   // ISSUE http://stackoverflow.com/questions/13758207/why-is-passportjs-in-node-not-removing-session-on-logout
   // req.logout();
@@ -33,11 +28,6 @@ router.get('/logout', function (req, res){
   });
 });
 
-
-//** GET - NEW USER - SIGN UP ************************
-router.get('/signup', function (req, res){
-  res.render('./users/signup.ejs')
-});
 
 //** GET - USER SHOW ************************
 
@@ -73,14 +63,6 @@ router.post('', function (req, res) {
  return signupStrategy(req,res);
 });
 
-
-// LOGIN LINKEDIN
-router.get('/auth/linkedin',
-  passport.authenticate('linkedin', { 
-    session: false, 
-    scope: ['r_basicprofile', 'r_emailaddress'] 
-  })
-);
 
 router.get('/auth/linkedin/callback', 
   passport.authenticate('linkedin'), function(req, res, next){
@@ -119,12 +101,6 @@ router.post('/login', function(req, res, next) {
 
 
 
-//** GET - LOGOUT USER ************************
-
-router.get('/logout', function (req,res){
-  req.logout();
-  res.redirect('/');
-});
 
 
 //** EDIT USERS ************************

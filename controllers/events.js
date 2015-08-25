@@ -4,18 +4,28 @@ var router = express.Router();
 var jwtauth = require('../config/jwtauth.js');
 var User = require('../models/user');
 var Event = require('../models/event');
+router.all('*', jwtauth);
 module.exports = router;
 
 
 // POST - NEW EVENT 
 router.post('/', function (req, res){
-  Event.create(req.body, function (err){
-    if (err) res.send(err)
-    res.send({status: 201 });
+  User.findById(req.user.id, function (err, user) {
+
+    if (err) res.send(err);
+
+    Event.create(req.body, function (err, event){
+      if (err) res.send(err);
+      event._owner = user.id;
+      event.save();
+      // res.send({status: 201 });
+      res.json({ event: event})
+    })
   })
+  
 });
 
-// INDEX - EVENTs
+// INDEX of USER'S EVENTs
 router.get('/', function (req, res) {
   Event.find(function (err,events) {
     if(err) res.send(err);
@@ -23,7 +33,7 @@ router.get('/', function (req, res) {
   })
 })
 
-router.get('/',jwtauth, function(req, res) {
+router.get('/', function(req, res) {
   Event.find(function(err, events) {
     if (err) res.send(err);
     res.json(events);

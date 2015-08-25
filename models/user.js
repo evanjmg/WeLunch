@@ -5,8 +5,6 @@ var Event = mongoose.model('Event');
 // var Invite = mongoose.model('Invite');
 
 var userSchema = new mongoose.Schema({
-  hosted_event: [Event.schema],
-  // invites: [Invite.schema],
   local: {
     name: String,
     email: String,

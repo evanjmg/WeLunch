@@ -78,3 +78,12 @@ app.use(require('./controllers'));
 app.listen(process.env.PORT || 8000, function () {
 	console.log('listening on port 8000 - WeLunch')
 });
+
+// User.find(function(err,user) {
+//   a = new Event()
+//   a.title = 'your event'
+//   a._owner = user.id
+//   a.invites.push({ _invitee: user.id, accepted: null});
+//   a.save(); 
+// });
+
