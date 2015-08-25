@@ -38,7 +38,7 @@ app.use(morgan('dev'));
 
 
 // SESSIONS
-app.set('jwtTokenSecret', 'welunchallday');
+app.set('jwtTokenSecret', process.env.WELUNCH_JWT_SECRET);
 
 require('./config/passport')(passport, app);
 // app.use(session({

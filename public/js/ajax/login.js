@@ -1,29 +1,33 @@
 
-//** LOGIN *****************************
+
+//** RENDER HTML *****************************
+
 
 var toggleForm = function() { 
-	$("#link-to-sign-up").on('click', function () {
+	$("#link-to-sign-up").on('click', function() {
 		event.preventDefault();
 		$('#local-login').fadeOut('slow');
 		$('#login-container').html("<div id='local-sign-up'><strong>Sign up:</strong><a id='link-to-log-in'>Login</a><form><input type='text' id='name' name='name' value='' /><input type='text' id='email' name='email' value='' /><input type='text' id='password' name='password' value='' /><input type='text' id='headline' name='headline' value='' /><input id='callAjax' type='button' value='Call Ajax' /></form><div>");
 	}); 
 
-	$('#link-to-log-in').on('click', function () {
+	$('#link-to-log-in').on('click', function() {
 		$('#local-sign-up').fadeOut('slow');
 		generateLogIn();
 	})
 }
 
+<<<<<<< HEAD
 var generateLogIn = function () {
 	$('#login-container').html("<div id='local-login'><h2>Login</h2><a href='#' id='link-to-sign-up'>No Account? Sign up here</a><form method='post' action='/api/users/login' id='login'><div class='form-group'><div class='form-group'><label for='email'>Email</label><input class='form-control' type='text' name='email' id='email'></div><div class='form-group'><label for='password'>Password</label><input class='form-control' type='password' name='password' id='password'></div><input class='btn btn-default' type='submit'></form></div>");
+=======
+var generateLogIn = function() {
+	$('#login-container').html("<div id='local-login'><h2>Login</h2><a href='/api/users/auth/linkedin'>Linkedin</a><a href='#' id='link-to-sign-up'>No Account? Sign up here</a><form method='post' action='/api/users/login'><div class='form-group'><div class='form-group'><label for='email'>Email</label><input class='form-control' type='text' name='email' id='email'></div><div class='form-group'><label for='password'>Password</label><input class='form-control' type='password' name='password' id='password'></div><input class='btn btn-default' type='submit'></form></div>");
+>>>>>>> e1851dc51fecd81f33af842305a67b2b5813b676
 }
 
-//toggle between local sign up - fade in fade out. 
-//fade in
 
+//** AJAX REQUEST *****************************
 
-
-//option 1
 
 $(document).ready(function() {
 	toggleForm();
@@ -58,7 +62,8 @@ $(document).ready(function() {
 	});
 });
 
-// //option 2
+
+//** OPTION 2 *****************************
 
 // $(document).ready(function() {
 
@@ -90,4 +95,22 @@ $(document).ready(function() {
 
 //** SIGN UP *****************************
 
+// function getName(personid) {
+//   var dynamicData = {};
+//   dynamicData["id"] = personID;
+//   return $.ajax({
+//     url: "getName.php",
+//     type: "get",
+//     data: dynamicData
+//   });
+// }
+
+// getName("2342342").done(function(data) {
+//   // Updates the UI based the ajax result
+//   $(".person-name").text(data.name); 
+// });
+
+//** ANCHOR SCROLL DOWN *****************************
+
+//http://arbitrary-anchor.briangonzalez.org/#.how-to-use
 
