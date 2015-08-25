@@ -1,21 +1,18 @@
 
 <h2>Add a New Event</h2>
   <form action="/api/events" method="post">
+
   <label for="title">Event Description: </label>
-  <input type="text" title="events" autofocus>
+  <input type="text" name="title">
+
   <label for="time">Time:</label>
   <div id="time-range">
       <p>Time Range: <span class="slider-time"></span> - <span class="slider-time2"></span>
       </p>
-      
       <div class="sliders_step1">
           <div id="slider-range"></div>
       </div>
   </div>
-<!--   <input type="time" name="start_time">
-  <input type="time" name="end_time"> -->
-<!--   <input type="time" name="start_time" id="start-time">
-  <input type="time" name="end_time" id="end-time"> -->
 
   <label for="location">Lunch Location:</label>
   <input type="text" name="location">
@@ -25,3 +22,9 @@
   
   <input type="submit" value="Add Product" class="button">
 </form>
+
+
+<!--   <input type="time" name="start_time">
+  <input type="time" name="end_time"> -->
+<!--   <input type="time" name="start_time" id="start-time">
+  <input type="time" name="end_time" id="end-time"> -->

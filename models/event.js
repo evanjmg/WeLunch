@@ -4,10 +4,10 @@ mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
   title: String,
-  users: String,
-  start_time: Date,
+  // users: String,
+  // start_time: Date,
   // invites: [Invite.schema],
-  end_time: Date,
+  // end_time: Date,
   location: String,
   message: String,
   created_at: {type: Date, default: Date.now},
