@@ -36,17 +36,17 @@ router.get('/', function(req, res) {
 router.get('/showpage', function (req,res) {
 res.render('show_event.ejs')
 })
-// GET - EVENT SHOW
-router.get('/:id', function (req, res) {
-  Event.findById(req.params.id, function (err, user) {
-    if (err) res.send(err);
-      if(event){
-        return res.json(event);
-      } else{
-        res.json({ message: 'Event not found' });
-      }
-    });
-});
+// // GET - EVENT SHOW
+// router.get('/:id', function (req, res) {
+//   Event.findById(req.params.id, function (err, user) {
+//     if (err) res.send(err);
+//       if(event){
+//         return res.json(event);
+//       } else{
+//         res.json({ message: 'Event not found' });
+//       }
+//     });
+// });
 
 
 // POST - EVENT CREATE
