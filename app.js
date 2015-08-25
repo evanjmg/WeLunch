@@ -10,6 +10,7 @@ var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
 var ejs            = require('ejs');
 var moment         = require('moment');
+var paginate = require('express-paginate'); //paginator for jtinder
 
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
