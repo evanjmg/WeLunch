@@ -2,16 +2,17 @@
 var User = require('../models/user');
 
 // List of controller methods
+
 function usersIndex(req, res) {
   User.find(function(err, users) {
-    if (err) console.log(err);
+    if (err) res.status(403).send({ message: "An error occurred could not show users."});
     res.status(200).send({ users: users });
   })
 };
 
 function usersShow(req, res) {
   User.findById(req.params.id, function (err, user) {
-    if (err) console.log(err);
+    if (err) res.status(403).send({ message: "An error occurred could not show user."});
     if(user){
       return res.json(user);
     } else{
