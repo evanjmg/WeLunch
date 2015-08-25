@@ -13,6 +13,10 @@ router.get('/', function (req, res) {
   res.render('index.ejs');
 });
 
+router.get('/francesca/mobile', function (req, res) {  
+  res.render('francesca_mobile.ejs');
+});
+
 module.exports = router;
 
 

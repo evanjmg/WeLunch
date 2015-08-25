@@ -1,10 +1,155 @@
+//**COLOURS**********************
+
 $navy: #051C2B;
 $light-green: #20D9B1; 
 $blue:#00AAE6;
 $green:#1dc39f;
+$white: #F1F1F1;
+
+//**MAIN**********************
+
 body {
   font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0px 60px 60px 60px;
+  color: #FFFFFF;
+  background-color: #051C2B;
 }
+
+main {
+  width: 960px;
+  margin: 0 auto;
+  // padding: 20px;
+  max-width: 800px;
+}
+
+.section {
+  // padding: 60px 0;
+}
+
+footer {
+  * {
+    margin: 0;
+  }
+  html, body {
+    height: 100%;
+  }
+  .wrapper {
+    min-height: 100%;
+    height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
+    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+  }
+  .footer, .push {
+    height: 155px; /* .push must be the same height as .footer */
+  }
+
+  /*
+
+  Sticky Footer by Ryan Fait
+  http://ryanfait.com/
+
+  */
+}
+
+//**TYPOGRAPHY**********************
+
+h1 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+p.small {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+//**BUTTONS**********************
+
+
+//**FORM**********************
+
+input[type=text] {
+  height: 25px;
+  width: 240px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  padding: 0px 10px;
+  border: 1px solid #707070;
+}
+
+input[type=password] {
+  height: 25px;
+  width: 240px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  padding: 0px 10px;
+  border: 1px solid #707070;
+}
+
+input[type=submit] {
+  height: 42px;
+  background-color: dodgerblue;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid dodgerblue;
+  border-bottom: 3px solid #1C73C7;
+  padding: 5px 10px 5px 10px;
+  position: relative;
+  top: -1px;
+}
+
+label {
+  line-height: 2;
+}
+
+.field {
+  margin: 10px 0;
+}
+
+textarea {
+  width: 255px;
+  height: 100px;
+}
+
+//**ORBIT SLIDER**********************
+
 .orbit-container {
   // opacity: 0.8;
   width: 100%;
@@ -60,6 +205,54 @@ div.title {
 
   }
 
+//**PARALLEX**********************
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+section.module.parallax {
+  height: 300px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+}
+
+section.module.parallax-1 {
+  background-image: url("homepage_banner.jpg");
+}
+
+.parallax-background {
+  background-color: #0078A0;
+  height: 620px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+}
+
+.intro-text {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  margin-top: 15%;
+}
+.parallax-content {
+  max-width: 100%;
+  position: relative;
+  top: 500px;
+  padding: 50px;
+  font-size: 20px;
+  background-color: #fff;
+}
+
+//**MEDIA QUERIES**********************
 
 @media (max-width: 600px) {
   div.title {
