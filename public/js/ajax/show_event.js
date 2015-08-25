@@ -1,19 +1,25 @@
 
 $(function () {
-  getEvent('55d9e7d7514778bfcd79ff04');
+  getEvents();
 })
 
-function getEvent (id) {
+function getEvents () {
 
    $.ajax({
      type: "get",
-     url: "/api/events/" + id,
+     url: "/api/events/",
      contentType: "json",
      dataType: "json"
    }).done(function(data, response){
-     $('body').prepend("<h2>"+data.location+"</h2>", data.title, data.message);
+    var html, i=0;
+    for(i;i<data.length;i++) {
+      html += "<li>"+data[i].title+"<p>"+data[i].location + "</p></li>"
+    }
+     $('body').prepend(html);
+    
    });
 }
+
 
 
 
