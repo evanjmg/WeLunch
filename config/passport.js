@@ -10,12 +10,12 @@ var moment         = require('moment');
 // ============ PASSPORT SESSION SETUP
 module.exports = function(passport, app){
 
-	passport.serializeUser(function(user, done) {
-    done(null, user);
+	passport.serializeUser(function(token, done) {
+    done(null, token);
 	});
 
-	passport.deserializeUser(function(user, done) {
-    done(null, user);
+	passport.deserializeUser(function(token, done) {
+    done(null, token);
 	});
 
   // ============ LOCAL SIGNUP
@@ -106,7 +106,7 @@ module.exports = function(passport, app){
     				// console.log('saved!')
     				if (err) throw err;
 
-    				return done(null, createJwt(newUser));
+    				return done(null, createJwt(newUser).token);
     			});
     		}
     	});

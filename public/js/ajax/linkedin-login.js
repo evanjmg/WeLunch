@@ -1,12 +1,5 @@
 $(function () {
 
-  var cookies = document.cookie.split(";")
-  $.ajaxSetup({
-    headers: {
-      'x-access-token': cookies["connect.sid"]
-    }
-  });
-
   $(".test").on("click", function(){
     event.preventDefault();
     $.ajax({

@@ -41,16 +41,11 @@ app.use(morgan('dev'));
 app.set('jwtTokenSecret', process.env.WELUNCH_JWT_SECRET);
 
 require('./config/passport')(passport, app);
-// app.use(session({
-// 	secret:'secret',
-// 	maxAge: new Date(Date.now() + 3600000),
-// 	store: new MongoStore({mongooseConnection:mongoose.connection})
-// }));
+
 app.use(session({
   secret: "secret",
   saveUninitialized: false,
-  resave: false,
-  cookie: {httpOnly: false}
+  resave: false
 }));
 
 // AUTHENTICATION

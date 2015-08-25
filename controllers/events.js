@@ -23,18 +23,9 @@ router.get('/', function (req, res) {
   })
 })
 
-<<<<<<< HEAD
-
 router.get('/',jwtauth, function(req, res) {
   Event.find(function(err, events) {
     if (err) res.send(err);
-=======
-router.get('/', function(req, res) {
-  Event.find({}, function(err, events) {
-    if (err)
-      res.send(err);
->>>>>>> e1851dc51fecd81f33af842305a67b2b5813b676
-
     res.json(events);
   });
 });
@@ -42,15 +33,10 @@ router.get('/', function(req, res) {
 router.get('/showpage', function (req,res) {
   res.render('show_event.ejs')
 })
-<<<<<<< HEAD
+
 // GET - EVENT SHOW
 router.get('/:id', jwtauth, function (req, res) {
   Event.findById(req.params.id, function (err, event) {
-=======
-/*// GET - EVENT SHOW
-router.get('/:id', function (req, res) {
-  Event.findById(req.params.id, function (err, user) {
->>>>>>> e1851dc51fecd81f33af842305a67b2b5813b676
     if (err) res.send(err);
       if(event){
         return res.json(event);
@@ -59,7 +45,6 @@ router.get('/:id', function (req, res) {
       }
     });
 });
-*/
 
 // POST - EVENT CREATE
 router.post(function(req, res) {

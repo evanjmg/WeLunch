@@ -76,7 +76,10 @@ router.post('', function (req, res) {
 
 // LOGIN LINKEDIN
 router.get('/auth/linkedin',
-  passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] })
+  passport.authenticate('linkedin', { 
+    session: false, 
+    scope: ['r_basicprofile', 'r_emailaddress'] 
+  })
 );
 
 router.get('/auth/linkedin/callback', 
@@ -106,8 +109,6 @@ router.post('/login', function(req, res, next) {
 
    res.json({
      token : token,
-     expires: expires,
-     user: current_user
    });
 
   })(req, res, next);

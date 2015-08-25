@@ -20,7 +20,7 @@ module.exports = function(req, res, next) {
     console.log(token);
 
     var decoded = jwt.decode(token, app.get('jwtTokenSecret'));
-    // if (decoded.exp <= Date.now()) res.end('Access token has expired', 400);
+    if (decoded.exp <= Date.now()) res.status(400).send({ success: false, message : 'Access token has expired' });
     
     User.findOne({ _id: decoded.iss }, function(err, user) {
       if (err) return err;
@@ -32,8 +32,7 @@ module.exports = function(req, res, next) {
 
 
   } else {
-    return res.status(401).send({ success: false, message : 'authentication failed' });
-    // return res.send(401, { success: false, message : 'authentication failed' });
+    return res.status(401).send({ success: false, message : 'Authentication failed' });
   }
 
   // if (token) {
