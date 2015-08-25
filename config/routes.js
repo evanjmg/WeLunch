@@ -13,6 +13,8 @@ var usersController = require('../controllers/users');
 // var eventsController = require('../controllers/events');
 var homeController = require('../controllers/home');
 
+var eventsController = require('../controllers/events');
+
 // STATIC controller 
 router.route('/login')
   .get(homeController.login);
@@ -43,5 +45,16 @@ router.route('/api/users/:id')
 
 
 // EVENTS controller
+
+router.route('/api/events/')
+  .post(jwtauth, eventsController.eventsCreate)
+  .get(jwtauth, eventsController.eventsIndex);
+  
+router.route('/api/events/:id')
+  .put(jwtauth, eventsController.eventsUpdate) 
+  .delete(jwtauth, eventsController.eventsDelete) 
+  .get(jwtauth, eventsController.eventsShow); 
+
+
 
 module.exports = router;
