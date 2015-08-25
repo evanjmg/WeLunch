@@ -62,7 +62,7 @@ function eventsShow (req, res) {
   })
 }
 function eventsCurrent (req, res) {
-  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1}).populate('_owner').populate('invites._invitees').exec( function (err, event) {
+  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }).populate('_owner').populate('invites._invitees').exec( function (err, event) {
     res.json(event);
   })
 }

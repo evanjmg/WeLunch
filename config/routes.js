@@ -59,9 +59,9 @@ router.route('/api/events/current')
 
 // INVITES controller
 router.route('/api/invites/')
-  .get(jwtauth, invitesController.invitesIndex),
-  .post(jwtauth,invitesController.invitesCreate),
-  .put(jwtauth, invitesController.invitesApprove),
+  .get(jwtauth, invitesController.invitesIndex)
+  .post(jwtauth,invitesController.invitesCreate)
+  .put(jwtauth, invitesController.invitesApprove)
   .delete(jwtauth, invitesController.invitesDelete);
 
 module.exports = router;

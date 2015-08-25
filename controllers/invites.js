@@ -19,14 +19,14 @@ function invitesIndex(req, res) {
     }
     if (myInvitations) { res.json(myInvitations) }
       else { 
-        res.json({ message: "Could not find any invitations"}, myInvitations: myInvitations)}
+        res.json({ message: "Could not find any invitations", myInvitations: myInvitations })}
       }); 
 }
 
 function invitesCreate (req, res) {
-  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1}, function (err, event) {
+  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }, function (err, event) {
 
-    if (err) res.status(403).send( { "Could not invite user. An error occurred"})
+    if (err) res.status(403).send( { message: "Could not invite user. An error occurred"})
     // go through the event to see if the user was already invited.
   event.invites.push({ _invitee: req.body.id });
   event.save();
