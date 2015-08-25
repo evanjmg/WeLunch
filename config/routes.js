@@ -14,9 +14,6 @@ var usersController = require('../controllers/users');
 var homeController = require('../controllers/home');
 
 // STATIC controller 
-router.route('/')
-  .get(homeController.home);
-
 router.route('/login')
   .get(homeController.login);
 
@@ -26,6 +23,9 @@ router.route('/auth/linkedin')
     scope: ['r_basicprofile', 'r_emailaddress'] 
   })
 );
+
+router.route('/')
+  .get(jwtauth, homeController.home);
 
 // USER controller
 router.route('/api/users')

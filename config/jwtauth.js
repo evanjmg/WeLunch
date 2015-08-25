@@ -17,39 +17,18 @@ module.exports = function(req, res, next) {
               req.headers['x-access-token'];
 
   if (token) {
-    console.log(token);
-
     var decoded = jwt.decode(token, app.get('jwtTokenSecret'));
     if (decoded.exp <= Date.now()) res.status(400).send({ success: false, message : 'Access token has expired' });
     
     User.findOne({ _id: decoded.iss }, function(err, user) {
       if (err) return err;
-
-      console.log("********************************", user);
       req.user = user;
       next();
     });
-
-
   } else {
-    return res.status(401).send({ success: false, message : 'Authentication failed' });
+    if (req.xhr) {
+      return res.status(401).send({ success: false, message : 'Authentication failed' });
+    }
+    res.redirect("/login");
   }
-
-  // if (token) {
-  //   try {
-  //     var decoded = jwt.decode(token, app.get('jwtTokenSecret'));
-  //     // if (decoded.exp <= Date.now()) res.end('Access token has expired', 400);
-    
-  //     User.findOne({ _id: decoded.iss }, function(err, user) {
-  //       console.log("HHHHERRRRRRREEEEEEE!")
-  //       console.log(user);
-
-  //       req.user = user;
-  //     });
-  //   } catch (err) {
-  //     return next();
-  //   }
-  // } else {
-  //   next();
-  // }
 };
