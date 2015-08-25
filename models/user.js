@@ -1,12 +1,7 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
-
-var Event = mongoose.model('Event');
-// var Invite = mongoose.model('Invite');
+var bcrypt   = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
-  hosted_event: [Event.schema],
-  // invites: [Invite.schema],
   local: {
     name: String,
     email: String,
@@ -24,15 +19,13 @@ var userSchema = new mongoose.Schema({
   created_at: {type: Date, default: Date.now},
   updated_at: {type: Date, default: Date.now},
 })
+
 userSchema.methods.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(9), null);
 }
-userSchema.methods.validPassword =
-function(password) {
+
+userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.local.password)
 }
 
-var User = mongoose.model('User', userSchema);
-module.exports = User;
-
-
+module.exports = mongoose.model('User', userSchema);

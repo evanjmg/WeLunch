@@ -1,10 +1,9 @@
 var express        = require('express');
-var jwt = require('jwt-simple');
+var jwt            = require('jwt-simple');
 var app            = express();
 var bodyParser     = require('body-parser');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
-var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
 var layouts        = require('express-ejs-layouts');
 var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
@@ -15,12 +14,6 @@ var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
 // var MongoStore     = require('connect-mongo')(session);
 
-
-// MODELS 
-// var Invite = require('./models/invite');
-var Event = require('./models/event');
-var User  = require('./models/user');
-
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);
 
@@ -29,13 +22,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(layouts);
+app.use(morgan('dev'));
 app.set('views', __dirname + '/views')
 app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
-
-
-app.use(morgan('dev'));
-
 
 // SESSIONS
 app.set('jwtTokenSecret', process.env.WELUNCH_JWT_SECRET);
@@ -71,8 +61,8 @@ app.use('/css', sassMiddleware({
 
 app.use(express.static(__dirname + '/public'));
 
-// CONTROLLERS
-app.use(require('./controllers'));
+// Routes
+app.use(require('./config/routes'));
 
 // PORT
 app.listen(process.env.PORT || 8000, function () {

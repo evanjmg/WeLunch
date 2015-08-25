@@ -1,13 +1,10 @@
 <h1>HOME - LOGGED IN</h1>
 
 <% if (current_user) { %>
-  <%= JSON.stringify(current_user) %>
+  <% JSON.stringify(current_user) %>
 <% } %>
 
 <a href="/api/users" class="test">Test</a>
 
-<a href="/api/users/auth/linkedin" class="btn btn-block btn-social btn-linkedin button">
-  <i class="fa fa-linkedin"></i> Login with Linkedin
-</a>
-
 <a href="/api/users/logout">Logout</a>
+
