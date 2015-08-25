@@ -13,6 +13,9 @@ var usersController = require('../controllers/users');
 // var eventsController = require('../controllers/events');
 var homeController = require('../controllers/home');
 
+var eventsController = require('../controllers/events');
+var invitesController = require('../controllers/invites');
+
 // STATIC controller 
 router.route('/login')
   .get(homeController.login);
@@ -43,5 +46,22 @@ router.route('/api/users/:id')
 
 
 // EVENTS controller
+router.route('/api/events/')
+  .post(jwtauth, eventsController.eventsCreate)
+  .get(jwtauth, eventsController.eventsIndex);
+  
+router.route('/api/events/:id')
+  .put(jwtauth, eventsController.eventsUpdate) 
+  .delete(jwtauth, eventsController.eventsDelete) 
+  .get(jwtauth, eventsController.eventsShow);
+router.route('/api/events/current')
+  .get(jwtauth, eventsController.eventsCurrent);
+
+// INVITES controller
+router.route('/api/invites/')
+  .get(jwtauth, invitesController.invitesIndex),
+  .post(jwtauth,invitesController.invitesCreate),
+  .put(jwtauth, invitesController.invitesApprove),
+  .delete(jwtauth, invitesController.invitesDelete);
 
 module.exports = router;
