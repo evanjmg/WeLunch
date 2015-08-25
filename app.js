@@ -13,7 +13,7 @@ var moment         = require('moment');
 
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
-var MongoStore     = require('connect-mongo')(session);
+// var MongoStore     = require('connect-mongo')(session);
 
 
 // MODELS 
@@ -21,11 +21,8 @@ var MongoStore     = require('connect-mongo')(session);
 var Event = require('./models/event');
 var User  = require('./models/user');
 
-
-
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);
-
 
 //  VIEWS
 app.use(cookieParser());
@@ -41,21 +38,26 @@ app.use(morgan('dev'));
 
 
 // SESSIONS
-
 app.set('jwtTokenSecret', 'welunchallday');
-require('./config/passport')(passport);
+
+require('./config/passport')(passport, app);
+// app.use(session({
+// 	secret:'secret',
+// 	maxAge: new Date(Date.now() + 3600000),
+// 	store: new MongoStore({mongooseConnection:mongoose.connection})
+// }));
 app.use(session({
-	secret:'secret',
-	maxAge: new Date(Date.now() + 3600000),
-	store: new MongoStore({mongooseConnection:mongoose.connection})
+  secret: "secret",
+  saveUninitialized: false,
+  resave: false,
+  cookie: {httpOnly: false}
 }));
-
-
 
 // AUTHENTICATION
 app.use(passport.initialize());
 app.use(passport.session());
 
+// ACCESS CURRENT_USER IN VIEWS
 app.use(function(req,res, next) {
   global.current_user = req.user;
   next();
@@ -64,7 +66,6 @@ app.use(function(req,res, next) {
 // SASS Middleware
 var srcPath = './scss';
 var destPath = './public/css';
-
 
 app.use('/css', sassMiddleware({
   src: srcPath,
@@ -77,7 +78,6 @@ app.use(express.static(__dirname + '/public'));
 
 // CONTROLLERS
 app.use(require('./controllers'));
-
 
 // PORT
 app.listen(process.env.PORT || 8000, function () {

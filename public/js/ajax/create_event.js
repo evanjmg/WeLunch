@@ -5,7 +5,7 @@ addTimesToInputs();
 });
 
 var addTimesToInputs = function () {
-  console.log($('.slider-time').html())
+  // console.log($('.slider-time').html())
   $('#start-time').val($('.slider-time').html());
   $('#end-time').val($('.slider-time2').html());
 }

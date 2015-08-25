@@ -19,38 +19,46 @@ app.set('jwtTokenSecret', 'welunchallday');
 // }
 
 // AUTHENTICATED
-router.get('/authenticated', function (req,res) {
-  console.log(current_user);
-  var expires = moment().add('days', 7).valueOf();
-  var token = jwt.encode({
-    iss: current_user.id,
-    exp: expires
-  }, app.get('jwtTokenSecret'));
+// router.get('/authenticated', function (req,res) {
+//   console.log(current_user);
+//   var expires = moment().add('days', 7).valueOf();
+//   var token = jwt.encode({
+//     iss: current_user.id,
+//     exp: expires
+//   }, app.get('jwtTokenSecret'));
 
-  res.json({
-    token : token,
-    expires: expires,
-    user: current_user
-  }); 
-})
+//   res.json({
+//     token : token,
+//     expires: expires,
+//     user: current_user
+//   }); 
+// })
+
 //** GET - ALL USERS ************************
 
-router.get('/',  function (req, res) {
+router.get('/', jwtauth, function (req, res) {
   User.find(function(err, users) {
     if (err) console.log(err);
-    res.json (users)
+    res.json(users)
   })
 });
-//** GET - NEW USER - SIGN UP ************************
 
+//** GET - NEW USER - SIGN UP ************************
 router.get('/login', function (req, res){
   res.render('./users/login.ejs');
 });
 
+router.get('/logout', function (req, res){
+  // ISSUE http://stackoverflow.com/questions/13758207/why-is-passportjs-in-node-not-removing-session-on-logout
+  // req.logout();
+  req.session.destroy(function (err) {
+    console.log("HERE");
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
+});
 
 
 //** GET - NEW USER - SIGN UP ************************
-
 router.get('/signup', function (req, res){
   res.render('./users/signup.ejs')
 });
@@ -90,27 +98,25 @@ router.post('', function (req, res) {
 });
 
 
-
-
-
 // LOGIN LINKEDIN
 router.get('/auth/linkedin',
   passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] })
-  );
+);
 
 router.get('/auth/linkedin/callback', 
-  passport.authenticate('linkedin'),
-  function(req, res) {
-    // Successful authentication, redirect home.
-   
-   res.redirect('/')
+  passport.authenticate('linkedin'), function(req, res, next){
+    // if (err) return next(err);
+    if (!req.user) return res.json(401, { error: "No user found" });
+    console.log(req.user)
+    res.redirect("/");
   });
 
 
 //** POST - LOGIN USER - LOCAL ************************
 router.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
-    if (err) { return next(err) }
+    if (err) return next(err);
+
     if (!user) {
       return res.json(401, { error: "No user found" });
     }

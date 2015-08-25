@@ -1,21 +1,23 @@
 $(function () {
-  
-  //   $.get('/api/users/authenticated', function (data) {
-  //       console.log(data);
-  //     window.localStorage.setItem('token', data.token); 
-  //       var token = window.localStorage.getItem('token');
 
-  //       if (token) {
-  //         $.ajaxSetup({
-  //           headers: {
-  //             'x-access-token': token
-  //           }
-  //         });
-  //       }
-   
-  // });
-    $.get('/api/events', function(data){
-      console.log(data)
-    })
+  var cookies = document.cookie.split(";")
+  $.ajaxSetup({
+    headers: {
+      'x-access-token': cookies["connect.sid"]
+    }
+  });
+
+  $(".test").on("click", function(){
+    event.preventDefault();
+    $.ajax({
+      type: "get",
+      url: $(this).attr("href"),
+      contentType: "json",
+      dataType: "json"
+    }).done(function(data, response){
+      console.log(data, response);
+    });
+  });
+
 }); 
 
