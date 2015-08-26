@@ -5,18 +5,34 @@ var bodyParser     = require('body-parser');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
 var layouts        = require('express-ejs-layouts');
-var sassMiddleware = require('node-sass-middleware');
 var morgan         = require('morgan');
 var ejs            = require('ejs');
 var moment         = require('moment');
-var paginate = require('express-paginate'); //paginator for jtinder
-
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
 // var MongoStore     = require('connect-mongo')(session);
 
+// Adding the sass middleware
+var sassMiddleware = require('node-sass-middleware');
+var path           = require('path');
+app.use(
+  sassMiddleware({
+    src: __dirname + '/sass', 
+    dest: __dirname + '/public/stylesheets', 
+    debug: true, 
+    outputStyle: 'compressed' 
+  }),
+  // The static middleware must come after the sass middleware
+  express.static(path.join(__dirname, 'public'))
+)
+
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);
+
+var User = require('./models/user');
+var Event = require('./models/event');
+
+// User.create({'linkedin.name': 'Evan'});
 
 //  VIEWS
 app.use(cookieParser());
@@ -48,19 +64,6 @@ app.use(function(req,res, next) {
   global.current_user = req.user;
   next();
 });
-
-// SASS Middleware
-var srcPath = './scss';
-var destPath = './public/css';
-
-app.use('/css', sassMiddleware({
-  src: srcPath,
-  dest: destPath,
-  debug: true,
-  outputStyle: 'expanded'
-}));
-
-app.use(express.static(__dirname + '/public'));
 
 // Routes
 app.use(require('./config/routes'));

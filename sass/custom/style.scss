@@ -1,5 +1,4 @@
 //**COLOURS **********************
-
 $navy: #051C2B;
 $light-green: #20D9B1; 
 $blue:#00AAE6;
@@ -7,17 +6,9 @@ $green:#1dc39f;
 $white: #F1F1F1;
 
 //**MAIN **********************
-
-//Foundation Gems - http://foundation.zurb.com/docs/v/3.2.5/javascripts.php
-//Navigation - http://foundation.zurb.com/docs/components/offcanvas.html
-//https://github.com/jaeming/off-canvas-responsive-nav
-
-//
-
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  padding: 0px 60px 60px 60px;
   color: #FFFFFF;
   background-color: $navy;
 }
@@ -49,13 +40,6 @@ footer {
   .footer, .push {
     height: 155px; /* .push must be the same height as .footer */
   }
-
-  /*
-
-  Sticky Footer by Ryan Fait
-  http://ryanfait.com/
-
-  */
 }
 
 //**TYPOGRAPHY **********************

@@ -30,15 +30,15 @@ function invitesCreate (req, res) {
     // go through the event to see if the user was already invited.
     if(event) {
     var i=0; for(i;i < event.invites.length;i++) {
-      if (event.invites[i]._invitee == req.user.id) {
-        res.json( { message: "You already invited this user to an event"});
-      } else {
-        event.invites.push({ _invitee: req.body.id });
-        event.save();
-        res.json(event);
+      if (event.invites[i]._invitee == req.body.userId) {
+        res.json( { message: "This user is already invited to this event"});
+        } 
       }
+      event.invites.push({ _invitee: req.body.id });
+      event.invites.save();
+      event.save();
+      res.json(event);
     }
-  }
   else {
     res.json( { message: "There is no current event"})
   }
