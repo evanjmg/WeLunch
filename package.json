@@ -31,7 +31,6 @@
     "ejs": "^2.3.3",
     "express": "^4.13.3",
     "express-ejs-layouts": "^1.1.0",
-    "express-paginate": "0.0.8",
     "express-session": "^1.11.3",
     "jwt-simple": "^0.3.0",
     "moment": "^2.10.6",
