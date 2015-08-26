@@ -18,6 +18,11 @@ var session        = require('express-session');
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);
 
+var User = require('./models/user');
+var Event = require('./models/event');
+
+// User.create({'linkedin.name': 'Evan'});
+
 //  VIEWS
 app.use(cookieParser());
 app.use(bodyParser.json());
