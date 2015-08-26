@@ -21,7 +21,7 @@ function getEvents() {
   console.log("Getting events...")
   $.ajax({
     type: "get",
-    url: "/api/events/",
+    url: "/api/invites/pending",
     contentType: "json",
     dataType: "json"
   }).done(function(data, response){
@@ -38,10 +38,10 @@ function getEvents() {
     // Make the Tinderslide work for the ul
     $("#tinderslide").jTinder({
       onDislike: function(item) {
-        $('#status').html('Dislike image ' + (item.index()+1));
+        $('#status').html('Invitation Declined ' + (item.index()+1));
       },
       onLike: function (item) {
-        $('#status').html('Like image ' + (item.index()+1));
+        $('#status').html('Invitation Accepted ' + (item.index()+1));
       },  
         animationRevertSpeed: 200,
         animationSpeed: 400,
