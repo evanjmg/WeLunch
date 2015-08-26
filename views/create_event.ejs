@@ -2,8 +2,9 @@
 label, #time-range p{
   color:white;
 }
-input[type="text"] {
-  background: transparent;
+input[type="text"], input[type="text"]:focus {
+  color:white;
+  background-color: #051C2B;
   border:1px solid white;
   margin:auto;
   width:60%;
@@ -21,6 +22,7 @@ label {
   font-weight: 200;
 }
 input[type="submit"] {
+
   text-align: center;
   margin:auto;
   margin-top: 10px;
@@ -133,14 +135,16 @@ input[type="submit"] {
 </style>
 
 <div class="create-event-form-container">
-<h2>Setup a Lunch</h2>
-<form action="/api/events" method="post">
+<h2>Plan a Lunch</h2>
+<form action="/api/events" method="post" id=
+"createEventForm">
   <label for="title">Title: </label>
-  <input type="text" name="title" class="expand">
+  <input type="text" name="title" class="expand"
+   id="title">
   <label for="description">Event Description: </label>
-  <input type="text" name="description" class="expand">
+  <input type="text" name="description" class="expand" id="description">
   <label for="time">Set Time:</label>
-  <div id="time-range"><span class="slider-time"></span> - <span class="slider-time2"></span>
+  <div id="time-range"><span class="slider-time" id="start_time"></span> - <span class="slider-time2" id="end_time"></span>
     
     <div class="sliders_step1">
       <div id="slider-range"></div>
@@ -148,11 +152,11 @@ input[type="submit"] {
   </div>
 
   <label for="location">Lunch Location:</label>
-  <input type="text" name="location">
+  <input type="text" name="location" id="location">
   <label for="message">Add Message:</label>
-  <input type="text" name="message">
+  <input type="text" name="message" id="message">
   <div class="row text-center">
-  <input type="submit"value="Create Event" class="button">
+  <input type="submit"value="Create Event" class="button eventsCreateButton">
   </div>
 </form>
 </div>

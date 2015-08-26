@@ -1,17 +1,29 @@
 $(function () {
   timeSlider();
   addTimesToInputs();
+  createButton();
 });
-
-
+var eventFields = ['title', 'description', 'location', 'message' ]
+function createButton () {
+  $('.eventsCreateButton').on('click', function () {
+    event.preventDefault();
+    var Event = {}
+    $.each(eventFields, function (i, field) {
+      Event[field] = $('#createEventForm').children('#' + field).val()
+    });
+    postEvent(Event)
+  })
+}
+// 'start_time', 'end-time'
 function postEvent (Event) {
+  console.log(Event);
   $.ajax({
       type: "post",
       url: "/api/events",
       data: Event,
       contentType: "json",
       dataType: "json"
-  })
+  }).done
 }
 
 
