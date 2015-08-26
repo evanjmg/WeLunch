@@ -10,7 +10,7 @@ var ejs            = require('ejs');
 var moment         = require('moment');
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
-// var MongoStore     = require('connect-mongo')(session);
+var MongoStore     = require('connect-mongo')(session);
 
 // Adding the sass middleware
 var sassMiddleware = require('node-sass-middleware');
@@ -50,7 +50,7 @@ app.set('views', __dirname + '/views')
 app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
 
-// SESSIONS
+// SESSIONSs
 app.set('jwtTokenSecret', process.env.WELUNCH_JWT_SECRET);
 
 require('./config/passport')(passport, app);
@@ -58,7 +58,8 @@ require('./config/passport')(passport, app);
 app.use(session({
   secret: "secret",
   saveUninitialized: false,
-  resave: false
+  resave: false,
+   store: new MongoStore({mongooseConnection:mongoose.connection})
 }));
 
 // AUTHENTICATION

@@ -6,6 +6,7 @@ input[type="text"] {
   background: transparent;
   border:1px solid white;
   margin:auto;
+  width:60%;
 }
 h2 {
   text-align: center;
@@ -134,7 +135,7 @@ input[type="submit"] {
 <div class="create-event-form-container">
 <h2>Setup a Lunch</h2>
 <form action="/api/events" method="post">
-  <label for="title">Event Description: </label>
+  <label for="title">Title: </label>
   <input type="text" name="title" class="expand">
   <label for="description">Event Description: </label>
   <input type="text" name="description" class="expand">

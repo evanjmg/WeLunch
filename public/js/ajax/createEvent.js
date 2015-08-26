@@ -3,6 +3,18 @@ $(function () {
   addTimesToInputs();
 });
 
+
+function postEvent (Event) {
+  $.ajax({
+      type: "post",
+      url: "/api/events",
+      data: Event,
+      contentType: "json",
+      dataType: "json"
+  })
+}
+
+
 function addTimesToInputs() {
   $('#start-time').val($('.slider-time').html());
   $('#end-time').val($('.slider-time2').html());
