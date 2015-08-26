@@ -29,14 +29,14 @@ function eventsUpdate (req, res) {
     if (err) res.json( { message: "Event not found or you don't own the event"});
     Event.findByIdAndUpdate(event._id, req.body, function (error, eventUpdated) {
       if (err) res.json( {message:"Event not found or you don't own the event" })
-        res.status(203).send({ message: "Successfully updated event"})
+        res.json({ message: "Successfully updated event"})
     })
   });
 }
 function eventsDelete (req,res) {
   Event.remove( {_owner: req.user.id, _id: req.params.id }, function (err) {
-    if (err) res.status(403).send({ message: "An error occurred."})
-      res.status(204).send({ message: "Event Successfully Deleted"})
+    if (err) res.json({ message: "An error occurred."})
+      res.json({ message: "Event Successfully Deleted"})
   })
 }
 function eventsShow (req, res) {
@@ -48,7 +48,7 @@ function eventsShow (req, res) {
 }
 function eventsCurrent (req, res) {
   Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }).populate('_owner').populate('invites._invitees').exec( function (err, event) {
-    if(err) res.json({message: "An error occurred"})
+    if(err) res.json({ message: "An error occurred"})
     if (event) res.json(event);
     res.json({message: "You have no active events"});
   })
