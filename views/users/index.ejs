@@ -1,13 +1,14 @@
 <style>
 body {  overflow:scroll !important;}
 </style>
+
 <h1>INVITE PEOPLE</h1>
 
-<a href="/api/users" class="test">Test</a>
 <a href="/api/users/logout">Logout</a>
 <% if (current_user) { %>
 <input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
 <% } %>
 <div id="usersInvite">
   
-</div>
+</div> 
+
