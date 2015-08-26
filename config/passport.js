@@ -81,14 +81,14 @@ module.exports = function(passport, app){
     state: true
   	// profileFields   : ['id','emails', 'location', 'industry']
   }, function(token, tokenSecret, profile, done) {
-  	// console.log(profile);
+  	console.log(profile);
   	process.nextTick(function() {
     	User.findOne({ 'local.email' : profile.emails[0].value }, function(err, user) {
     		if (err) return done(err);
         // console.log('error' + profile)
     		if (user) {
     			return done(null, createJwt(user));
-          // console.log('user' + profile)
+          console.log('user' + profile)
     		} else {
           // console.log('new user saved' + profile);
     			var newUser = new User();
@@ -98,12 +98,12 @@ module.exports = function(passport, app){
           newUser.linkedin.location       = profile._json.location.name;
     			newUser.linkedin.url		        = profile._json.publicProfileUrl;
     			newUser.linkedin.industry				= profile._json.industry;
-    			newUser.linkedin.avatar 				= profile._json.pictureUrl;
+    			newUser.linkedin.avatar 				= profile.photos[0];
     			newUser.local.email 						= profile.emails[0].value;
 
 
     			newUser.save(function(err) {
-    				// console.log('saved!')
+    				console.log(response)
     				if (err) throw err;
 
     				return done(null, createJwt(newUser).token);

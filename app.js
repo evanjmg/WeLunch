@@ -32,7 +32,7 @@ mongoose.connect(databaseURL);
 var User = require('./models/user');
 var Event = require('./models/event');
 
-//Francesca - seeding users for User Invite/Index page
+// Francesca - seeding users for User Invite/Index page
 var Evan = User.create({'local.name': 'Evan', 'linkedin.location': 'London', 'linkedin.industry': 'Technology', 'linkedin.avatar': 'https://avatars3.githubusercontent.com/u/9342155?v=3&s=460'});
 var Francesca = User.create({'local.name': 'Francesca Tabor', 'linkedin.location': 'Haggerston, London', 'linkedin.industry': 'UX & Development', 'linkedin.avatar': 'https://avatars3.githubusercontent.com/u/12237892?v=3&s=460'});
 var Anvar = User.create({'local.name': 'Anvar', 'linkedin.location': 'Victoria, London', 'linkedin.industry': 'Technology', 'linkedin.avatar': 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/005/0b7/263/33a3052.jpg'});

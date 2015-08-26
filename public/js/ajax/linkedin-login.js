@@ -5,7 +5,6 @@ $(function () {
     $.ajax({
       type: "get",
       url: $(this).attr("href"),
-      contentType: "json",
       dataType: "json"
     }).done(function(data, response){
       console.log(data, response);
