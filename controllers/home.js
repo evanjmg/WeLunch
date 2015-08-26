@@ -5,8 +5,11 @@ function login(req, res){
 function home(req, res){
   res.render('index');
 }
-
+function usersIndex(req,res) {
+	res.render('francesca_mobile')
+}
 module.exports = {
   login: login,
-  home: home
+  home: home,
+  usersIndex: usersIndex
 }

@@ -16,9 +16,12 @@ var homeController = require('../controllers/home');
 var eventsController = require('../controllers/events');
 var invitesController = require('../controllers/invites');
 
-// STATIC controller 
+// HOME controller 
 router.route('/login')
   .get(homeController.login);
+  //User index - francesca css
+router.route('/users')
+.get(homeController.usersIndex);
 
 router.route('/auth/linkedin')
   .get(passport.authenticate('linkedin', { 
@@ -26,6 +29,7 @@ router.route('/auth/linkedin')
     scope: ['r_basicprofile', 'r_emailaddress'] 
   })
 );
+
 
 router.route('/')
   .get(jwtauth, homeController.home);
