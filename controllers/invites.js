@@ -22,6 +22,26 @@ function invitesIndex(req, res) {
         res.json({ message: "Could not find any invitations", myInvitations: myInvitations })}
       }); 
 }
+function invitesPending(req, res) {
+  Event.find({}).populate('_owner').populate('invites._invitees').exec( function (err, events) {
+
+    if (err) res.status(403).send({ message: "An error occurred - Couldn't retreive invites"})
+
+      var i=0; j=0; myInvitations=[];
+
+    for(i;i< events.length;i++){
+      for (j;j< events[i].invites.length; j++) {
+        if (events[i].invites[j]._invitee == req.user.id) {
+          if (events[i].invites[j].accepted == null) myInvitations.push(events[i]);
+          break;
+        }
+      }
+    }
+    if (myInvitations) { res.json(myInvitations) }
+      else { 
+        res.json({ message: "Could not find any invitations", myInvitations: myInvitations })}
+      }); 
+}
 
 function invitesCreate (req, res) {
   Event.findOne({ _owner: req.user.userId }, {}, { sort: { created_at: -1} }, function (err, event) {
@@ -83,6 +103,7 @@ function invitesDelete (req,res) {
 }
 
 module.exports = {
+  invitesPending: invitesPending,
   invitesIndex: invitesIndex,
   invitesAccept: invitesAccept,
   invitesCreate: invitesCreate,
