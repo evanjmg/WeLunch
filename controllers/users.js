@@ -20,7 +20,12 @@ function usersShow(req, res) {
     }
   });
 };
+function usersDelete(req,res) {
+  User.findByIdAndRemove(req.params.id,function (err) { if(err) res.json({ message: "an error occurred."});
+    res.json({ message: "Deleted User"})
+  });
 
+}
 function usersUpdate(req,res) {
   User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
     res.json(user, { message: "updated user"});
@@ -46,6 +51,7 @@ module.exports = {
   usersUpdate: usersUpdate,
   linkedinLogout: linkedinLogout,
   linkedinLogin: linkedinLogin,
+  usersDelete: usersDelete
 };
 
 
