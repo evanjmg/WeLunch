@@ -5,11 +5,18 @@ function login(req, res){
 function home(req, res){
   res.render('index');
 }
-function event(req,res) {
-  res.render('show_event');
+
+function eventShow(req,res) {
+  res.render('events/show');
 }
+
+function usersIndex(req,res) {
+  res.render('users/index')
+}
+
 module.exports = {
   login: login,
   home: home,
-  event: event
+  eventShow: eventShow
+  usersIndex: usersIndex
 }
