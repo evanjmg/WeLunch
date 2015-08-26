@@ -26,7 +26,8 @@ router.route('/users')
 
 router.route('/event')
   .get(homeController.eventShow);
-
+router.route('/events/create')
+  .get(homeController.eventsCreate)
 router.route('/auth/linkedin')
   .get(passport.authenticate('linkedin', { 
     session: false, 
