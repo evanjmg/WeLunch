@@ -1,7 +1,19 @@
 $(function () {
   timeSlider();
-  // addTimesToInputs();
+  addTimesToInputs();
 });
+
+
+function postEvent (Event) {
+  $.ajax({
+      type: "post",
+      url: "/api/events",
+      data: Event,
+      contentType: "json",
+      dataType: "json"
+  })
+}
+
 
 function addTimesToInputs() {
   $('#start-time').val($('.slider-time').html());
@@ -29,10 +41,9 @@ Date.prototype.addHours= function(h){
   return this;
 }
 
-// messy thing we tried doing
 function timeSlider () {
-  var dt_from = "2014-11-01 " + String((parseInt(getDateTime().substring(0,2)))-1) + ":" + getDateTime().substring(3,8); 
-  var dt_to = "2014-11-01 " + getDateTime();
+  var dt_from ="2014-11-01 " + getDateTime();
+  var dt_to = "2014-11-01 " + String((parseInt(getDateTime().substring(0,2)))+4) + ":" + getDateTime().substring(3,8); 
 
   $('.slider-time').html(dt_from.substring(11,16));
   $('.slider-time2').html(dt_to.substring(11,16));
@@ -68,5 +79,5 @@ function formatDT(__dt) {
   var hours = zeroPad(__dt.getHours(), 2);
   var minutes = zeroPad(__dt.getMinutes(), 2);
   var seconds = zeroPad(__dt.getSeconds(), 2);
-  return  hours + ':' + minutes + ':' + seconds;
+  return  hours + ':' + minutes
 };

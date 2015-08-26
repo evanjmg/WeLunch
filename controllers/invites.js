@@ -61,32 +61,23 @@ function invitesAccept (req, res) {
         });
       } 
     }
-    for (i;i < event.invites.length;i++) {
-      console.log(event.invites[i]._invitee)
-      if (!(event.invites[i]._invitee == req.user.id)) {
-        res.json({ message: "You aren't invited to this event"});
-      } 
-    }
   });
 }
 
 function invitesDelete (req,res) {
   Event.findById(req.body.eventId, function (err, event) { 
-    if (err) res.json({ message: "an error occoured"})
+    if (err) res.json({ message: "an error occurred"})
+    
     var i=0; for(i;i < event.invites.length;i++) { 
       if (event.invites[i]._invitee == req.body.userId) {
         console.log(event.invites[i])
         event.invites[i].remove();
         event.save(function (error) {
           if (error) res.json({message: "could not delete"})
-          res.json({ message: "Invite deleted"})
         });
-        
+        res.json({ message: "Invite deleted"});
       }
-
     }  
-
-
   res.json({ message: "Could not find event"})
   });
 }
