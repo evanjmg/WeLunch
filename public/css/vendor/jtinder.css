@@ -152,11 +152,11 @@ body {
 }
 
 .actions a.dislike i {
-    background: url("../images/jtinder_images/dislike_button.png") no-repeat scroll center center;
+    background: url("../../images/jtinder_images/dislike_button.png") no-repeat scroll center center;
 }
 
 .actions a.like i {
-    background: url("../images/jtinder_images/like_button.png") no-repeat scroll center center;
+    background: url("../../images/jtinder_images/like_button.png") no-repeat scroll center center;
 }
 
 .actions a {
@@ -187,7 +187,7 @@ body {
 }
 
 /* jTinder images */
-#tinderslide .pane5 .img {
+/*#tinderslide .pane5 .img {
     background: url("../img/pane/pane5.jpg") no-repeat scroll center center;
     background-size: cover;
 }
@@ -206,7 +206,7 @@ body {
 #tinderslide .pane1 .img {
     background: url("../img/pane/pane1.jpg") no-repeat scroll center center;
     background-size: cover;
-}
+}*/
 
 /* jTinder status text */
 #status {

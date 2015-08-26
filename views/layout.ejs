@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- META TAGS -->
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="./js/foundation.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css"> -->
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.9.1/bootstrap-social.min.css"> -->
+  <title>WeLunch</title>
+
+  <!-- VENDOR STYLESHEETS -->
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,300,100' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./css/vendor/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./css/vendor/bootstrap-social.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/vendor/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/vendor/jtinder.css">
+
+  <!-- CUSTOM STYLESHEETS -->
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/events.css">
-  <link rel="stylesheet" type="text/css" href="/css/jtinder.css"> <!--  jTinder  -->
-  <script src="/js/ajax/login.js"></script>
-  <script src="/js/ajax/linkedin-login.js"></script>
-  <title>WeLunch</title>
+  
+  <!-- VENDOR JAVASCRIPT -->
+  <script type="text/javascript" src="./js/vendor/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="./js/vendor/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./js/vendor/foundation.min.js"></script>
+  <script type="text/javascript" src="./js/vendor/jquery.transform2d.js"></script>  
+  <script type="text/javascript" src="./js/vendor/jquery.jTinder.js"></script>  
+  <script type="text/javascript" src="./js/vendor/foundation.orbit.min.js"></script>
+
+  <!-- CUSTOM JAVASCRIPT -->
+  <script src="./js/ajax/login.js"></script>
+  <script src="./js/ajax/linkedin-login.js"></script>
+  <script src="./js/app.js"></script>
 </head>
 <body>
-
   <% include partials/nav %>
-
   <%- body%>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js">
-  </script>
-  <script>
-    $(document).foundation({orbit: {animation: 'fade',
-      timer_speed: 3000,
-      animation_speed: 400,
-      stack_on_small: false,
-      navigation_arrows: false,
-      slide_number: false,
-      pause_on_hover: false,
-      resume_on_mouseout: false,
-      bullets: false,
-      variable_height: false,}});
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation/foundation.orbit.min.js">
-  </script>
-  <script type="text/javascript" src="/js/jquery.jTinder.js"></script> <!-- JTinder -->
-  <script type="text/javascript" src="/js/jquery.transform2d.js"></script>  
-  <script src="/js/ajax/create_event.js"></script>
 </body>
 </html>
