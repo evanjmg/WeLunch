@@ -1,16 +1,35 @@
 $(function () {
   timeSlider();
   addTimesToInputs();
+  createButton();
 });
 
+var eventFields = ["title", "location", "message" ]
+function createButton () {
+  $('.eventsCreateButton').on('click', function () {
+    event.preventDefault();
+    var Event = {}
+    $.each(eventFields, function (i, field) {
+      Event[field] = $('#createEventForm').children('#' + field).val()
+    });
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
 
+    newdate = year + "/" + month + "/" + day;
+    Event['start_time'] = newdate +" "+ $('#start_time').html() + ":00";
+    Event['end_time'] = newdate +" "+ $('#end_time').html() + ":00";
+    postEvent(Event)
+  })
+}
+// 'start_time', 'end-time'
 function postEvent (Event) {
+  console.log(Event);
   $.ajax({
       type: "post",
       url: "/api/events",
-      data: Event,
-      contentType: "json",
-      dataType: "json"
+      data: Event
   })
 }
 
@@ -43,7 +62,7 @@ Date.prototype.addHours= function(h){
 
 function timeSlider () {
   var dt_from ="2014-11-01 " + getDateTime();
-  var dt_to = "2014-11-01 " + String((parseInt(getDateTime().substring(0,2)))+4) + ":" + getDateTime().substring(3,8); 
+  var dt_to = "2014-11-01 " + String(23) + ":" + getDateTime().substring(3,8); 
 
   $('.slider-time').html(dt_from.substring(11,16));
   $('.slider-time2').html(dt_to.substring(11,16));
