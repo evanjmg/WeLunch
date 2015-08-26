@@ -1,92 +1,13 @@
-<link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+<style>
+body {  overflow:scroll !important;}
+</style>
+<h1>INVITE PEOPLE</h1>
 
-<div class="fixed_event">
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name">
-        <h1>
-          <a href="#">
-            We Lunch
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li><a href="#">Logout</a></li>
-      </ul>
-    </section>
-  </nav>
+<a href="/api/users" class="test">Test</a>
+<a href="/api/users/logout">Logout</a>
+<% if (current_user) { %>
+<input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
+<% } %>
+<div id="usersInvite">
+  
 </div>
-</div>
-
-<div class="row">
-  <div class="large-12 columns">
-    <div class="row">
-      <div class="large-12 columns">
-        <div class="large-8 columns">
-          <div class="row">
-            <div class="large-4 small-6 columns">
-              <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/005/0b7/263/33a3052.jpg">
-              <div class="industry"><strong>Anvar</strong>Industry: Technology</div>
-              <div class="alert-box success">
-                 <a href="#" class="close"><strong>Invite</strong>+</a>
-              </div>
-            </div>
-
-
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars3.githubusercontent.com/u/9342155?v=3&s=460">
-              <div class="alert-box alert">
-                  <strong>Invite</strong> Evan
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars3.githubusercontent.com/u/12237892?v=3&s=460">
-              <div class="alert-box info">
-                  <strong>Invite</strong> Francesca
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars2.githubusercontent.com/u/40461?v=3&s=460">
-              <div class="alert-box warning">
-                  <strong>Invite</strong> Alex Chin
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars0.githubusercontent.com/u/11295626?v=3&s=460">
-              <div class="alert-box large">
-                  <strong>Invite</strong> Hassan Mir
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://pbs.twimg.com/profile_images/608937787153330176/WQ62ZBKe.jpg">
-              <div class="alert-box small">
-                  <strong>Invite</strong> Emily Isacke
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<div class="footer">
-  <div class="row">
-   HTML -  <div class="small-4 large-4 columns nav-button">
-   <p>hello</p></div>
-   <div class="small-4 large-4 columns">
-    <p>no way</p></div><div class="small-4 large-4 columns nav-button">
-    <p>dfgsdf</p></div>
-    <span>&copy; 2015 Evan Gillogley</span>
-  </div>
-  <script src="/js/ajax/userIndex.js"></script>
