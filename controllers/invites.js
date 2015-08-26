@@ -64,9 +64,8 @@ function invitesAccept (req, res) {
 function invitesDelete (req,res) {
   Event.findById(req.body.event_id, function (err, event) { 
     var i=0; for (i;i < event.invites.length;i++) { 
-      if (event.invites[i]._invitee == req.user.id) {
+      if (event.invites[i]._invitee == req.body.user_id) {
         event.invites[i].remove();
-        event.invites.save();
         event.save();
         res.json({ message: "Invite deleted"})
       }
