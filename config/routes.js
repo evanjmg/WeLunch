@@ -44,7 +44,8 @@ router.route('/api/users/auth/linkedin/callback')
 
 router.route('/api/users/:id')
   .get(jwtauth, usersController.usersShow)
-  .put(jwtauth, usersController.usersUpdate);
+  .put(jwtauth, usersController.usersUpdate)
+  .delete(jwtauth, usersController.usersDelete);
 
 
 // EVENTS controller
