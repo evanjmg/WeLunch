@@ -24,21 +24,24 @@ function invitesIndex(req, res) {
 }
 
 function invitesCreate (req, res) {
-  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }, function (err, event) {
+  Event.findOne({ _owner: req.user.userId }, {}, { sort: { created_at: -1} }, function (err, event) {
 
     if (err) res.json( { message: "Could not invite user. An error occurred"})
     // go through the event to see if the user was already invited.
-    if(event) {
+  if(event) {
     var i=0; for(i;i < event.invites.length;i++) {
       if (event.invites[i]._invitee == req.body.userId) {
         res.json( { message: "This user is already invited to this event"});
-        } 
-      }
-      event.invites.push({ _invitee: req.body.id });
-      event.invites.save();
-      event.save();
-      res.json(event);
+      } 
     }
+    event.invites.push({ _invitee: req.body.userId });
+    event.save(function (err) {
+      if (err) res.json({ message: "could not create invite"});
+      res.json({ message: "invited user to event", event: event})
+    });
+    event.save();
+    res.json(event);
+  }
   else {
     res.json( { message: "There is no current event"})
   }
@@ -49,25 +52,38 @@ function invitesAccept (req, res) {
   Event.findById(req.body.event_id, function (err, event) {
     if (err) res.json({ message: "An error occurred. Please check your request"})
       var i=0;
+    console.log(event.invites);
     for (i;i < event.invites.length;i++) {
-     if (event.invites[i]._invitee == req.user.id) {
-      event.invites[i].accepted = true;
-      event.invites[i].save();
-      event.save();
-      res.json( { message: "Invite accepted for event!"})
-    } 
-  }
-  res.json({ message: "You aren't invited to any events"})
-});
+      console.log(event.invites[i]._invitee)
+      if (event.invites[i]._invitee == req.user.id) {
+        event.invites[i].accepted = true;
+        event.save( function (err) {
+          res.json( { message: "Invite accepted for event!", event: event})
+        });
+      } 
+    }
+    for (i;i < event.invites.length;i++) {
+      console.log(event.invites[i]._invitee)
+      if (!(event.invites[i]._invitee == req.user.id)) {
+        res.json({ message: "You aren't invited to this event"});
+      } 
+    }
+  });
 }
 
 function invitesDelete (req,res) {
   Event.findById(req.body.event_id, function (err, event) { 
-    var i=0; for (i;i < event.invites.length;i++) { 
+    var i=0; 
+    for(i;i < event.invites.length;i++) { 
+      console.log(event.invites[i]._invitee);
+      console.log(req.body.user_id);
       if (event.invites[i]._invitee == req.body.user_id) {
         event.invites[i].remove();
-        event.save();
-        res.json({ message: "Invite deleted"})
+        event.save(function (error) {
+          if (error) res.json({message: "could not delete"})
+            res.json({ message: "Invite deleted"})
+        });
+        
       }
 
     }  
