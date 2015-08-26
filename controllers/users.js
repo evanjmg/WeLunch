@@ -23,7 +23,7 @@ function usersShow(req, res) {
 
 function usersUpdate(req,res) {
   User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
-    res.redirect('/api/users/'+ user.id);
+    res.json(user, { message: "updated user"});
   })
 }; 
 
@@ -75,17 +75,4 @@ module.exports = {
 //   })(req, res, next);
 // });
 
-// router.get('/:id/edit', function(req, res){
-//   User.findById(req.params.id, function (err, user) {
-//     res.render('./users/edit', { user: user})
-//   });
-// })
 
-// USER DELETE
-// router.delete('/:id', function (req, res) {
-//   User.findById(req.params.id, function (err, user) {
-//     if (err) console.log(err);
-//     user.remove();
-//     res.redirect('/');
-//   });
-// });

@@ -18,57 +18,42 @@ function eventsCreate (req, res){
 
 // ALL OF OWNERS EVENTS
 function eventsIndex (req, res) {
-    Event.find({}).populate('_owner').populate('invites._invitees').exec(function (err,events) {
-      if(err) res.status(401).send({ message: "There was a problem with your request"});
-
-      var i=0,myEvents=[];
-      for(i;i< events.length;i++){
-        if(events[i]._owner == req.user.id) myEvents.push(events[i]);
-      }
-      res.json(myEvents);
-    })
+  Event.find({ _owner: req.user.id }).populate('_owner').populate('invites._invitees').exec(function (err,events) {
+    if(err) res.json({ message: "There was a problem with your request"});
+    res.json(events);
+  })
 }
 
-
 function eventsUpdate (req, res) {
-  Event.findById(req.params.id,function(err, event) {
-    if (err) res.status(403).send( { message: "Event not found or you don't own the event"});
-
-    if (event._owner == req.user.id) {
-      Event.findByIdAndUpdate(req.body, function (err, eventUpdated){
-        if (err) res.status(403).send( {message:"Error occurred while updating your event" })
+  Event.find( { _owner: req.user.id} ,{_id: req.params.id },function(err, event) {
+    if (err) res.json( { message: "Event not found or you don't own the event"});
+    Event.findByIdAndUpdate(event._id, req.body, function (error, eventUpdated) {
+      if (err) res.json( {message:"Event not found or you don't own the event" })
         res.status(203).send({ message: "Successfully updated event"})
-      })
-    } else {
-      res.status(403).send({ mesage: "You don't own the event"});
-    }
-
+    })
   });
 }
 function eventsDelete (req,res) {
-  Event.findById(req.params.id, function (err,event) {
-      if (event._owner == req.user.id) {
-        res.status(204).send({ message: "Event Successfully Deleted"})
-      } else {
-        res.status(403).send({ message: " You don't own the event or event not found"})
-      }
+  Event.remove( {_owner: req.user.id, _id: req.params.id }, function (err) {
+    if (err) res.status(403).send({ message: "An error occurred."})
+      res.status(204).send({ message: "Event Successfully Deleted"})
   })
 }
 function eventsShow (req, res) {
   Event.findById(req.params.id).populate('_owner').populate('invites._invitees').exec( function (err, event){
-    if (err) res.status(400).send({ message: "An error occurred"})
-    if (event) { return res.json(event); } 
+    if (err) res.json({ message: "An error occurred"})
+      if (event) { return res.json(event); } 
     else { res.json({ message: 'Event not found'})}
   })
 }
 function eventsCurrent (req, res) {
-  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1}).populate('_owner').populate('invites._invitees').exec( function (err, event) {
-    res.json(event);
+  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }).populate('_owner').populate('invites._invitees').exec( function (err, event) {
+    if(err) res.json({message: "An error occurred"})
+    if (event) res.json(event);
+    res.json({message: "You have no active events"});
   })
 }
-// Tweet.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, post) {
-//   console.log( post );
-// });
+
 
 module.exports = {
  eventsCreate: eventsCreate,

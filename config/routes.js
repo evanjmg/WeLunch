@@ -49,19 +49,20 @@ router.route('/api/users/:id')
 router.route('/api/events/')
   .post(jwtauth, eventsController.eventsCreate)
   .get(jwtauth, eventsController.eventsIndex);
-  
+router.route('/api/events/current')
+    .get(jwtauth, eventsController.eventsCurrent);  
 router.route('/api/events/:id')
   .put(jwtauth, eventsController.eventsUpdate) 
   .delete(jwtauth, eventsController.eventsDelete) 
   .get(jwtauth, eventsController.eventsShow);
-router.route('/api/events/current')
-  .get(jwtauth, eventsController.eventsCurrent);
+
 
 // INVITES controller
 router.route('/api/invites/')
-  .get(jwtauth, invitesController.invitesIndex),
-  .post(jwtauth,invitesController.invitesCreate),
-  .put(jwtauth, invitesController.invitesApprove),
+  .get(jwtauth, invitesController.invitesIndex)
+  .post(jwtauth,invitesController.invitesCreate)
   .delete(jwtauth, invitesController.invitesDelete);
+router.route('/api/invites/accept')
+  .post(jwtauth, invitesController.invitesAccept)
 
 module.exports = router;
