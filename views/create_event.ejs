@@ -8,6 +8,8 @@ input[type="text"], input[type="text"]:focus {
   border:1px solid white;
   margin:auto;
   width:60%;
+  height:30px;
+  margin-bottom: 15px;
 }
 h2 {
   text-align: center;
@@ -22,7 +24,8 @@ label {
   font-weight: 200;
 }
 input[type="submit"] {
-
+  font-weight: 200;
+  font-size: 20px;
   text-align: center;
   margin:auto;
   margin-top: 10px;
@@ -141,8 +144,6 @@ input[type="submit"] {
   <label for="title">Title: </label>
   <input type="text" name="title" class="expand"
    id="title">
-  <label for="description">Event Description: </label>
-  <input type="text" name="description" class="expand" id="description">
   <label for="time">Set Time:</label>
   <div id="time-range"><span class="slider-time" id="start_time"></span> - <span class="slider-time2" id="end_time"></span>
     
@@ -151,9 +152,9 @@ input[type="submit"] {
     </div>
   </div>
 
-  <label for="location">Lunch Location:</label>
+  <label for="location"> Location:</label>
   <input type="text" name="location" id="location">
-  <label for="message">Add Message:</label>
+  <label for="message">Message:</label>
   <input type="text" name="message" id="message">
   <div class="row text-center">
   <input type="submit"value="Create Event" class="button eventsCreateButton">

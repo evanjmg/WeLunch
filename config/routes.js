@@ -72,7 +72,7 @@ router.route('/api/invites/')
   .post(jwtauth,invitesController.invitesCreate)
   .delete(jwtauth, invitesController.invitesDelete);
 router.route('/api/invites/pending')
-  .get(jwtauth, invitesController.invitesPending)
+  .get(jwtauth, invitesController.invitesPending);
 router.route('/api/invites/accept')
   .post(jwtauth, invitesController.invitesAccept)
 
