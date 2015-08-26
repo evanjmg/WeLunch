@@ -1,6 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  padding: 0px 60px 60px 60px;
   color: #FFFFFF;
   background-color: #051C2B;
 }
@@ -11,7 +12,16 @@ main {
   max-width: 800px;
 }
 
-* {
+footer {
+  /*
+
+  Sticky Footer by Ryan Fait
+  http://ryanfait.com/
+
+  */
+}
+
+footer * {
   margin: 0;
 }
 

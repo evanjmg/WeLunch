@@ -10,56 +10,50 @@ $(function(){
     bullets: false,
     variable_height: false,}
   });
-})
 
-
-$(function () {
-  getEvents();
+  // Setup jTinder only on the tinderslide page
+  if ($("#tinderslide").length > 0) { 
+    getEvents();
+  }
 });
 
 function getEvents() {
   console.log("Getting events...")
-  // $.ajax({
-  //   type: "get",
-  //   url: "/api/events/",
-  //   contentType: "json",
-  //   dataType: "json"
-  // }).done(function(data, response){
-  //   var html='',i=1;
-  //   for(i;i<data.length;i++) {
-  //     html += "<li class='pane"+ String(i)+"'><div class='img'></div><div>"+data[i].title+"</div><div>"+data[i].location+"</div><div>"+data[i].message+"</div><div class='like'></div><div class='dislike'></div></li>"
-  //   }
-  //   $('ul').append(html);
-  //   $("#tinderslide").jTinder({
-  //     // dislike callback
-  //     onDislike: function (item) {
-  //       // set the status text
-  //       $('#status').html('Dislike image ' + (item.index()+1));
-  //     },
-  //     // like callback
-  //     onLike: function (item) {
-  //       // set the status text
-  //       $('#status').html('Like image ' + (item.index()+1));
-  //     },  
-  //       animationRevertSpeed: 200,
-  //       animationSpeed: 400,
-  //       threshold: 1,
-  //       likeSelector: '.like',
-  //       dislikeSelector: '.dislike'
-  //     });
-  //     $('.actions .like, .actions .dislike').click(function(e){
-  //       e.preventDefault();
-  //     $("#tinderslide").jTinder($(this).attr('class'));
-  //   });
-  // });
-}
+  $.ajax({
+    type: "get",
+    url: "/api/events/",
+    contentType: "json",
+    dataType: "json"
+  }).done(function(data, response){
 
-//   /**
-//    * Set button action to trigger jTinder like & dislike.
-//    */
-//   $('.actions .like, .actions .dislike').click(function(e){
-//     e.preventDefault();
-//     $("#tinderslide").jTinder($(this).attr('class'));
-//   });
-// })
+    // Loop through the events received and create an HTML string
+    var html = "";
+    $.each(data, function(index, meeting){
+      html += "<li class='pane"+index+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
+    });
 
+    // Append the HTML string
+    $('#tinderslide ul').append(html);
+
+    // Make the Tinderslide work for the ul
+    $("#tinderslide").jTinder({
+      onDislike: function(item) {
+        $('#status').html('Dislike image ' + (item.index()+1));
+      },
+      onLike: function (item) {
+        $('#status').html('Like image ' + (item.index()+1));
+      },  
+        animationRevertSpeed: 200,
+        animationSpeed: 400,
+        threshold: 1,
+        likeSelector: '.like',
+        dislikeSelector: '.dislike'
+      });
+
+    // Setup LIKE/DISLIKE buttons
+    $('.actions .like, .actions .dislike').click(function(e){
+      e.preventDefault();
+      $("#tinderslide").jTinder($(this).attr('class'));
+    });
+  });
+};
