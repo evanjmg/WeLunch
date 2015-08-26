@@ -22,7 +22,10 @@ router.route('/login')
   .get(homeController.login);
 
 router.route('/users')
-.get(homeController.usersIndex);
+  .get(homeController.usersIndex);
+
+router.route('/event')
+  .get(homeController.eventShow);
 
 router.route('/auth/linkedin')
   .get(passport.authenticate('linkedin', { 
@@ -30,7 +33,6 @@ router.route('/auth/linkedin')
     scope: ['r_basicprofile', 'r_emailaddress'] 
   })
 );
-
 
 router.route('/')
   .get(jwtauth, homeController.home);
@@ -50,24 +52,25 @@ router.route('/api/users/:id')
   .put(jwtauth, usersController.usersUpdate)
   .delete(jwtauth, usersController.usersDelete);
 
-
 // EVENTS controller
 router.route('/api/events/')
   .post(jwtauth, eventsController.eventsCreate)
   .get(jwtauth, eventsController.eventsIndex);
+
 router.route('/api/events/current')
-    .get(jwtauth, eventsController.eventsCurrent);  
+    .get(jwtauth, eventsController.eventsCurrent); 
+
 router.route('/api/events/:id')
   .put(jwtauth, eventsController.eventsUpdate) 
   .delete(jwtauth, eventsController.eventsDelete) 
   .get(jwtauth, eventsController.eventsShow);
-
 
 // INVITES controller
 router.route('/api/invites/')
   .get(jwtauth, invitesController.invitesIndex)
   .post(jwtauth,invitesController.invitesCreate)
   .delete(jwtauth, invitesController.invitesDelete);
+
 router.route('/api/invites/accept')
   .post(jwtauth, invitesController.invitesAccept)
 

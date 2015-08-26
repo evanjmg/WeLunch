@@ -17,6 +17,6 @@ function usersIndex(req,res) {
 module.exports = {
   login: login,
   home: home,
-  eventShow: eventShow
+  eventShow: eventShow,
   usersIndex: usersIndex
 }
