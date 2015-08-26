@@ -16,7 +16,9 @@ var homeController = require('../controllers/home');
 var eventsController = require('../controllers/events');
 var invitesController = require('../controllers/invites');
 
-// STATIC controller 
+// STATIC controller \
+router.route('/event')
+  .get(homeController.event)
 router.route('/login')
   .get(homeController.login);
 
