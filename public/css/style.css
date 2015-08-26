@@ -47,6 +47,7 @@ h1 {
   font-weight: bold;
   font-size: 18px;
   line-height: 1.5;
+  color: #F1F1F1;
 }
 
 h2 {
@@ -78,8 +79,8 @@ p.small {
 }
 
 a {
-  color: black;
-  text-decoration: none;
+  color: white;
+  text-decoration: underline;
 }
 
 .bold {
@@ -103,12 +104,6 @@ div.dialog > div {
   background-color: white;
   padding: 7px 12% 0;
   box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-}
-
-h1 {
-  font-size: 100%;
-  color: #730E15;
-  line-height: 1.5em;
 }
 
 div.dialog > p {

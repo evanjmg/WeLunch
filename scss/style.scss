@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0px 60px 60px 60px;
   color: #FFFFFF;
-  background-color: #051C2B;
+  background-color: $navy;
 }
 
 main {
@@ -64,6 +64,7 @@ h1 {
   font-weight: bold;
   font-size: 18px;
   line-height: 1.5;
+  color:$white;
 }
 
 h2 {
@@ -96,8 +97,8 @@ p.small {
 }
 
 a {
-  color: black;
-  text-decoration: none;
+  color: white;
+  text-decoration: underline;
 }
 
 .bold {
@@ -124,9 +125,9 @@ div.dialog > div {
   box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
 }
 h1 {
-  font-size: 100%;
-  color: #730E15;
-  line-height: 1.5em;
+  // font-size: 100%;
+  // color: $white;
+  // line-height: 1.5em;
 }
 div.dialog > p {
   margin: 0 0 1em;
