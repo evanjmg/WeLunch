@@ -49,10 +49,9 @@ function invitesCreate (req, res) {
 }
 
 function invitesAccept (req, res) {
-  Event.findById(req.body.event_id, function (err, event) {
+  Event.findById(req.body.eventId, function (err, event) {
     if (err) res.json({ message: "An error occurred. Please check your request"})
       var i=0;
-    console.log(event.invites);
     for (i;i < event.invites.length;i++) {
       console.log(event.invites[i]._invitee)
       if (event.invites[i]._invitee == req.user.id) {
@@ -72,24 +71,24 @@ function invitesAccept (req, res) {
 }
 
 function invitesDelete (req,res) {
-  Event.findById(req.body.event_id, function (err, event) { 
-    var i=0; 
-    for(i;i < event.invites.length;i++) { 
-      console.log(event.invites[i]._invitee);
-      console.log(req.body.user_id);
-      if (event.invites[i]._invitee == req.body.user_id) {
+  Event.findById(req.body.eventId, function (err, event) { 
+    if (err) res.json({ message: "an error occoured"})
+    var i=0; for(i;i < event.invites.length;i++) { 
+      if (event.invites[i]._invitee == req.body.userId) {
+        console.log(event.invites[i])
         event.invites[i].remove();
         event.save(function (error) {
           if (error) res.json({message: "could not delete"})
-            res.json({ message: "Invite deleted"})
+          res.json({ message: "Invite deleted"})
         });
         
       }
 
     }  
-    res.json({ message: "Could not find user"});
-  }
-  );
+
+
+  res.json({ message: "Could not find event"})
+  });
 }
 
 module.exports = {
