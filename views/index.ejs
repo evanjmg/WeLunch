@@ -1,10 +1,12 @@
 <h1>HOME - LOGGED IN</h1>
 
-<% if (current_user) { %>
-  <% JSON.stringify(current_user) %>
-<% } %>
-
 <a href="/api/users" class="test">Test</a>
-
 <a href="/api/users/logout">Logout</a>
+<% if (current_user) { %>
+<input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
+<% } %>
+<script>
 
+console.log($('#token').val())
+$('#token').val("")
+</script>
