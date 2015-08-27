@@ -5,15 +5,19 @@ function login(req, res){
 function home(req, res){
   res.render('index');
 }
-function menu(req,res) {
-  res.render('menu')
-}
+
+// function menu(req,res) {
+//   res.render('menu')
+// }
+
 function invitations (req, res) {
   res.render('events/invitations')
 }
+
 function eventShow(req,res) {
   res.render('events/show');
 }
+
 function eventsCreate(req,res) {
   res.render('create_event');
 }
@@ -29,5 +33,5 @@ module.exports = {
   usersIndex: usersIndex,
   eventsCreate: eventsCreate,
   invitations: invitations,
-  menu: menu
+  // menu: menu
 }

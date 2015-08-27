@@ -1,0 +1,19 @@
+#tinderslide li {
+  color: #fff;
+  border-radius: 10px;
+  background: url(../../images/jtinder_images/slider-background.jpg) no-repeat center center;
+  border: 1px solid #FFF;
+  height: 290px;
+}
+
+#tinderslide li img {
+  border-radius: 100px;
+  border: 2px solid #FFF; 
+}
+
+.actions a {
+  background: none;
+  border: 0px;
+  box-shadow: none;
+}
+
