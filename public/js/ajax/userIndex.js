@@ -1,7 +1,4 @@
-$(function (){
-	getUsers();
-	inviteClick();
-}) 
+
 
 function getUsers (){
 	console.log("Getting users...");
@@ -13,37 +10,37 @@ function getUsers (){
 	}).done(function(data, response){
 		console.log(data);
 		//Loop through the users and create an HTML string
-		var html='',i=0;
+		i=0;
 		for(i;i< data.users.length;i++) {
-			html += "<div class='row'><div class='large-12 columns'><div class='row'><div class='large-4 small-12 columns'><h4>Invite People</h4></div><div class='row'><div class='large-12 columns'><div class='panel'><div class='row'><div class='large-2 small-6 columns'><img src='"+ data.users[i].linkedin.avatar+ "'></div><div class='large-10 small-6 columns'><div class='alert-box'><button href='#' class='close inviteButton'><input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'><strong>Invite</strong> "+ data.users[i].local.name+ "</button></div></div></div></div></div></div></div></div></div>"
+
+			var html = "<div class='row parent text-center'><div class='large-12 columns'><div class='row'><div><div class='small-3 columns'><img src='"+ data.users[i].linkedin.avatar+ "'></div><div class='small-6 columns' style='text-align:left;'>"+ data.users[i].local.name+ "<br/><span class='industry' style='font-style:italic;text-align:left;font-weight:100'>"+data.users[i].linkedin.industry+"</div><div class='small-3 columns input-parent'><input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'><input type='submit' value='+' class='close inviteButton' style='font-size:25px'></div></div></div></div></div>"
+			var animatedHTML = $(html).hide().fadeIn('slow');
+			$('#usersInvite').append(animatedHTML)
 		}
 
-		$('#usersInvite').append(html)
-
-	}); 
+		// $('#usersInvite').hide().append(html).slideToggle();
+		$('#invite-users-page').fadeIn();
+		// $('#usersInvite').slideDown();
+		console.log('')
+		inviteClick();
+	});
 }
 function postInvite (userid) {
-	$.post("/api/invite", { "userId" : userid }).done(function (data) {
+	$.ajax({
+	  type: "POST",
+	  url: "/api/invites",
+	  data: { "userId" : userid } }).done(function (data) {
 		console.log(data);
 	});
-	// $.ajax({
-	// 		type: "POST",
-	// 		url: "/api/invites/",
-// 			data: { "userId": userid },
-// 			success: function 
-// 			contentType: "json",
-// 			dataType: "json"
-// 		}).done(function(data, response){
-// 			console.log(response, data)
-// });
-	}
+}
 // Setup INVITE buttons
 function inviteClick() {
 	$('.inviteButton').on('click', function(e){
-		console.log('clicked')
+		console.log('clicked');
 		e.preventDefault();
-		var inviteeId = $(this).children('.invitee-id').val()
+		var inviteeId = $(this).parents('.input-parent').children('.invitee-id').val()
+		console.log(inviteeId);
 		postInvite(inviteeId);
-		$(this).removeClass('alert-box');
+		$(this).closest('.parent').slideToggle("slow", "swing");
 	});
 }

@@ -2,10 +2,172 @@
 body {  overflow:scroll !important;}
 </style>
 
-<h1>HOME - LOGGED IN</h1>
 
-<a href="/api/users" class="test">Test</a>
+<!-- <a href="/api/users" class="test">Test</a> -->
 <a href="/api/users/logout">Logout</a>
+<style>
+label, #time-range p{
+  color:white;
+}
+input[type="text"], input[type="text"]:focus {
+  color:white;
+  background-color: #051C2B;
+  border:1px solid white;
+  margin:auto;
+  width:60%;
+  height:30px;
+  margin-bottom: 15px;
+}
+h2 {
+  text-align: center;
+  margin:auto;
+  color:white;
+  font-size:35px;
+  font-weight: 100;
+}
+label {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 200;
+}
+input[type="submit"] {
+  font-weight: 200;
+  font-size: 20px;
+  text-align: center;
+  margin:auto;
+  margin-top: 10px;
+  width:60%;
+}
+.create-event-form-container {
+  margin:40px;
+}
+
+#time-range {
+    font-size:30px;
+    font-weight: 100;
+    text-align: center;
+    color:white;
+}
+.ui-slider-horizontal {
+    height: 8px;
+    background: #D7D7D7;
+    border: 1px solid #BABABA;
+    box-shadow: 0 1px 0 #FFF, 0 1px 0 #CFCFCF inset;
+    clear: both;
+    margin: 8px 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+.ui-slider {
+    position: relative;
+    text-align: left;
+}
+.ui-slider-horizontal .ui-slider-range {
+    top: -1px;
+    height: 100%;
+}
+.ui-slider .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    height: 8px;
+    font-size: .7em;
+    display: block;
+    border: 1px solid #5BA8E1;
+    box-shadow: 0 1px 0 #AAD6F6 inset;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    border-radius: 6px;
+    background: #81B8F3;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #A0D4F5), color-stop(100%, #81B8F3));
+    background-image: -webkit-linear-gradient(top, #A0D4F5, #81B8F3);
+    background-image: -moz-linear-gradient(top, #A0D4F5, #81B8F3);
+    background-image: -o-linear-gradient(top, #A0D4F5, #81B8F3);
+    background-image: linear-gradient(top, #A0D4F5, #81B8F3);
+}
+.ui-slider .ui-slider-handle {
+    border-radius: 50%;
+    background: #F9FBFA;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #C7CED6), color-stop(100%, #F9FBFA));
+    background-image: -webkit-linear-gradient(top, #C7CED6, #F9FBFA);
+    background-image: -moz-linear-gradient(top, #C7CED6, #F9FBFA);
+    background-image: -o-linear-gradient(top, #C7CED6, #F9FBFA);
+    background-image: linear-gradient(top, #C7CED6, #F9FBFA);
+    width: 22px;
+    height: 22px;
+    -webkit-box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6), 0 -1px 0 1px rgba(0, 0, 0, 0.15) inset, 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+    -moz-box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6), 0 -1px 0 1px rgba(0, 0, 0, 0.15) inset, 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6), 0 -1px 0 1px rgba(0, 0, 0, 0.15) inset, 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+    -webkit-transition: box-shadow .3s;
+    -moz-transition: box-shadow .3s;
+    -o-transition: box-shadow .3s;
+    transition: box-shadow .3s;
+}
+.ui-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    cursor: default;
+    border: none;
+    cursor: pointer;
+}
+.ui-slider .ui-slider-handle:after {
+    content:"";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -4px;
+    left: 50%;
+    margin-left: -4px;
+    background: #30A2D2;
+    -webkit-box-shadow: 0 1px 1px 1px rgba(22, 73, 163, 0.7) inset, 0 1px 0 0 #FFF;
+    -moz-box-shadow: 0 1px 1px 1px rgba(22, 73, 163, 0.7) inset, 0 1px 0 0 white;
+    box-shadow: 0 1px 1px 1px rgba(22, 73, 163, 0.7) inset, 0 1px 0 0 #FFF;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -.5em;
+    margin-left: -.3em;
+    margin-right:-10px;
+}
+.ui-slider a:focus {
+    outline:none;
+}
+</style>
+
+<div class="create-event-form-container">
+<h2>Plan a Lunch</h2>
+<form action="/api/events" method="post" id=
+"createEventForm">
+  <label for="title">Place: </label>
+  <input type="text" name="title" class="expand"
+   id="title">
+  <label for="time">Set Time:</label>
+  <div id="time-range"><span class="slider-time" id="start_time"></span> - <span class="slider-time2" id="end_time"></span>
+    
+    <div class="sliders_step1">
+      <div id="slider-range"></div>
+    </div>
+  </div>
+  
+  <label for="location"> Address:</label>
+  <input type="text" name="location" id="location">
+  <label for="message">Message:</label>
+  <input type="text" name="message" id="message">
+  <div class="row text-center">
+  <input type="submit"value="Create Event" class="button eventsCreateButton">
+  </div>
+</form><script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+</div>
 <% if (current_user) { %>
 <input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
 <% } %>
@@ -14,3 +176,19 @@ body {  overflow:scroll !important;}
 console.log($('#token').val())
 $('#token').val("")
 </script>
+
+
+<div class="row invite-users-page">
+<style>
+body {  overflow:scroll !important;}
+</style>
+<div class="small-8 columns">
+<h2 style="text-align:left;color:white;font-weight:200;font-size:30px;display:inline-block">Invite People</h2></div>
+<div class="small-3 columns" ><input type="submit" href="#" class="close" value="Done" style="background-color:#1dc39f;border: 1px #1dc39f; margin-top:15px;"></div>
+</div>
+<% if (current_user) { %>
+<input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
+<% } %>
+<div id="usersInvite">
+  
+</div> 

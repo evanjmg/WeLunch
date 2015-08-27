@@ -12,6 +12,7 @@ var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
 var MongoStore     = require('connect-mongo')(session);
 
+
 // Adding the sass middleware
 var sassMiddleware = require('node-sass-middleware');
 var path           = require('path');
@@ -20,7 +21,7 @@ app.use(
     src: __dirname + '/sass', 
     dest: __dirname + '/public/stylesheets', 
     debug: true, 
-    outputStyle: 'compressed' 
+    outputStyle: 'expanded' 
   }),
   // The static middleware must come after the sass middleware
   express.static(path.join(__dirname, 'public'))
@@ -32,7 +33,9 @@ mongoose.connect(databaseURL);
 var User = require('./models/user');
 var Event = require('./models/event');
 
+
 // // Francesca - seeding users for User Invite/Index page
+
 // var Evan = User.create({'local.name': 'Evan', 'linkedin.location': 'London', 'linkedin.industry': 'Technology', 'linkedin.avatar': 'https://avatars3.githubusercontent.com/u/9342155?v=3&s=460'});
 // var Francesca = User.create({'local.name': 'Francesca Tabor', 'linkedin.location': 'Haggerston, London', 'linkedin.industry': 'UX & Development', 'linkedin.avatar': 'https://avatars3.githubusercontent.com/u/12237892?v=3&s=460'});
 // var Anvar = User.create({'local.name': 'Anvar', 'linkedin.location': 'Victoria, London', 'linkedin.industry': 'Technology', 'linkedin.avatar': 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/005/0b7/263/33a3052.jpg'});
@@ -50,7 +53,7 @@ app.set('views', __dirname + '/views')
 app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
 
-// SESSIONSs
+// SESSIONS
 app.set('jwtTokenSecret', process.env.WELUNCH_JWT_SECRET);
 
 require('./config/passport')(passport, app);
