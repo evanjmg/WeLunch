@@ -1,79 +1,26 @@
 
-<style>
-body {  overflow:scroll !important;}
-</style>
 
-<link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
 
-<div class="fixed_event">
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name">
-        <h1>
-          <a href="#">
-            We Lunch 
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li><a href="#">Logout</a></li>
-      </ul>
-    </section>
-  </nav>
-</div>
-</div>
-
-<div class="row">
-  <div class="large-12 columns">
-    <div class="row">
-      <div class="large-12 columns">
-        <div class="large-8 columns">
-          <div class="row">
-            
-            <div class="large-4 small-6 columns">
-              <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/005/0b7/263/33a3052.jpg">
-              <div class="alert-box">
-                  <strong>Invite</strong> Anvar
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars3.githubusercontent.com/u/9342155?v=3&s=460">
-              <div class="alert-box">
-                  <strong>Invite</strong> Evan
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars3.githubusercontent.com/u/12237892?v=3&s=460">
-              <div class="alert-box">
-                  <strong>Invite</strong> Francesca
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars2.githubusercontent.com/u/40461?v=3&s=460">
-              <div class="alert-box">
-                  <strong>Invite</strong> Alex Chin
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://avatars0.githubusercontent.com/u/11295626?v=3&s=460">
-              <div class="alert-box">
-                  <strong>Invite</strong> Hassan Mir
-                <a href="#" class="close">+</a>
-              </div>
-            </div>
-            <div class="large-4 small-6 columns">
-              <img src="https://pbs.twimg.com/profile_images/608937787153330176/WQ62ZBKe.jpg">
-              <div class="alert-box">
-                  <strong>Invite</strong> Emily Isacke
-                <a href="#" class="close">+</a>
+  <div class='row'>
+    <div class='large-12 columns'>
+      <div class='row'>
+        <div class='large-4 small-12 columns'>
+          <h4>Invite People</h4>
+        </div>
+        <div class='row'>
+         <div class='large-12 columns'>
+           <div class='panel'>
+             <div class='row'>
+               <div class='large-2 small-6 columns'>
+                 <img src='"+ data.users[i].linkedin.avatar+ "'>
+               </div>
+               <div class='large-10 small-6 columns'>
+                 <div class='alert-box'>
+                  <button href='#' class='close inviteButton'>
+                    <input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'>
+                    <strong>Invite</strong> '"+ data.users[i].local.name+ "'+
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -81,6 +28,5 @@ body {  overflow:scroll !important;}
       </div>
     </div>
   </div>
-</div>
+  </div>
 
-  <script src="/js/ajax/userIndex.js"></script>
