@@ -20,27 +20,7 @@
   <link rel="stylesheet" href="/stylesheets/app.css">
 
   
-  <!-- VENDOR JAVASCRIPT -->
-  <script type="text/javascript" src="/js/vendor/jquery-2.1.4.js"></script>
-  <script src="http://maps.googleapis.com/maps/api/js"></script>
-  <script type="text/javascript" src="/js/vendor/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="/js/vendor/jquery.countdown.min.js"></script>
-  <script type="text/javascript" src="/js/vendor/foundation.min.js"></script>
-  <script src="/js/vendor/flipclock.min.js"></script>
-  <script type="text/javascript" src="/js/vendor/jquery.transform2d.js"></script>  
-  <script type="text/javascript" src="/js/vendor/jquery.jTinder.js"></script>  
-  <script type="text/javascript" src="/js/vendor/foundation.orbit.min.js"></script>
-  <script src="http://momentjs.com/downloads/moment.min.js"></script>
- 
-  <!-- CUSTOM JAVASCRIPT -->
-  <script src="/js/app.js"></script>
-  <script src="/js/navbar.js"></script>
-  <script src="/js/ajax/login.js"></script>
-  <script src="/js/ajax/currentEvent.js"></script>
-  <script src="/js/ajax/invitation-index.js"></script>
-  <script src="/js/ajax/linkedin-login.js"></script>
-  <script src="/js/ajax/createEvent.js"></script>
-  <script src="/js/ajax/userIndex.js"></script>
+
 
 
   <!-- CSS -->
@@ -50,9 +30,48 @@
 
 </head>
 <body>
+
+
   <% include partials/nav %>
   <div class="main-container">
   <%- body%>
   </div>
+  <!-- VENDOR JAVASCRIPT -->
+  <script type="text/javascript" src="/js/vendor/jquery-2.1.4.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui.min.js"></script>
+
+  <script src="/js/vendor/flipclock.min.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery.transform2d.js"></script>  
+  <script type="text/javascript" src="/js/vendor/jquery.jTinder.js"></script>  
+  <script type="text/javascript" src="/js/vendor/foundation.min.js"></script>
+  <script type="text/javascript" src="/js/vendor/foundation.orbit.min.js"></script>
+
+  <script src="http://momentjs.com/downloads/moment.min.js"></script>
+  
+  <!-- CUSTOM JAVASCRIPT -->
+  <script src="/js/app.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/ajax/login.js"></script>
+  <script src="/js/ajax/currentEvent.js"></script>
+  <script src="/js/ajax/invitation-index.js"></script>
+  <script src="/js/ajax/linkedin-login.js"></script>
+  <script src="/js/ajax/createEvent.js"></script>
+  <script src="/js/ajax/userIndex.js"></script>
+  <script>
+    $(document).foundation('section').foundation('orbit', {
+        animation: 'fade',
+        timer_speed: 3000,
+        animation_speed: 400,
+        stack_on_small: false,
+        navigation_arrows: false,
+        slide_number: false,
+        pause_on_hover: false,
+        resume_on_mouseout: false,
+        bullets: false,
+        timer: true,
+        variable_height: false,
+      });
+  </script>
 </body>
 </html>

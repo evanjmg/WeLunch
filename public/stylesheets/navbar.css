@@ -137,8 +137,7 @@ input[type="submit"] {
 .ui-slider a:focus {
     outline:none;
 }
-</style>
-<style>
+
 
   body {  overflow:scroll !important;}
 
@@ -164,8 +163,7 @@ input[type="submit"] {
     font-weight: 100;
     color:white;
   }
-</style>
-<style>
+
   body {  overflow:scroll }
   .menu_container{
     background: #34495E;
