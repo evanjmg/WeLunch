@@ -56,12 +56,13 @@ function invitesPending(req, res) {
 }
 
 function invitesCreate (req, res) {
-  Event.findOne({ _owner: req.user.userId }, {}, { sort: { created_at: -1} }, function (err, event) {
+  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }, function (err, event) {
     if (err) res.json({ message: "Could not invite user. An error occurred"})
     
     // go through the event to see if the user was already invited.
     if (event) {
-      var i=0; for(i;i < event.invites.length;i++) {
+      var i=0; 
+      for(i;i < event.invites.length;i++) {
         if (event.invites[i]._invitee == req.body.userId) {
           return res.status(403).send({ message: "This user is already invited to this event"});
         } 
@@ -72,6 +73,7 @@ function invitesCreate (req, res) {
         if (err) res.status(403).send({ message: "Could not create invite."});
         res.status(200).send({ message: "Invited user to event", event: event})
       });
+
     } else {
       res.status(404).send({ message: "There is no current event."})
     }; 

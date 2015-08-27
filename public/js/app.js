@@ -30,7 +30,7 @@ function getEvents() {
     // Loop through the events received and create an HTML string
     var html = "";
     $.each(data.invites, function(index, meeting){
-      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
+      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div>"+meeting.title+"</div><div>"+meeting.avatar+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
     });
 
     // Append the HTML string
