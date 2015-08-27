@@ -29,13 +29,12 @@ app.use(sassMiddleware({
     debug: true,
     force: true,
     prefix: '/stylesheets',
-    // outputStyle: 'compressed'
+    outputStyle: 'compressed',
     outputStyle: 'expanded' 
   }),
   // The static middleware must come after the sass middleware
   express.static(path.join(__dirname, 'public'))
 )
-
 
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);

@@ -11073,6 +11073,7 @@ body {
   font-weight: bold;
 }
 
+/* CUSTOM */
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -11248,12 +11249,6 @@ textarea {
   position: relative;
 }
 
-div.overlay {
-  background: rgba(5, 28, 43, 0.55);
-  width: 50%;
-  margin: 0 auto;
-}
-
 .orbit-slides-container {
   background-color: #051C2B;
   width: 100%;
@@ -11288,7 +11283,6 @@ div.overlay {
 
 div.title {
   font-size: 6em;
-  color: #1dc39f;
 }
 
 li {
