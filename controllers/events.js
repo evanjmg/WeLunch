@@ -55,7 +55,6 @@ function eventsCurrent (req, res) {
   })
 }
 
-
 module.exports = {
  eventsCreate: eventsCreate,
  eventsDelete: eventsDelete,

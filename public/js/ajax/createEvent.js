@@ -3,6 +3,30 @@ $(function () {
   addTimesToInputs();
   createButton();
 });
+// Geolocation
+ function GeoL(position) {
+   latitude = position.coords.latitude;
+   longitude = position.coords.longitude;
+ }
+  var columnleft, latitude, longitude, type, bounds, boundsObject, counter=0;
+  
+  function geoCodeLocation (query, Event){
+    geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': $('#location').val(), 'componentRestrictions':{'country':'GB'}}, 
+function(results, status){
+                if (status == google.maps.GeocoderStatus.OK) {
+     var latitude = results[0].geometry.location.lat();
+     var longitude = results[0].geometry.location.lng();
+     console.log(results, status);
+  var latlon = [latitude, longitude]
+     Event['longitude'] = latlon[1]
+     Event['latitude'] = latlon[0];
+     console.log(Event);
+     postEvent(Event);
+     $('.create-event-form-container').slideUp();
+     getUsers();
+        }});
+      }
 
 var eventFields = ["title", "location", "message" ]
 function createButton () {
@@ -20,7 +44,7 @@ function createButton () {
     newdate = year + "/" + month + "/" + day;
     Event['start_time'] = newdate +" "+ $('#start_time').html() + ":00";
     Event['end_time'] = newdate +" "+ $('#end_time').html() + ":00";
-    postEvent(Event)
+    geoCodeLocation($('#location').val(), Event);
   })
 }
 // 'start_time', 'end-time'
@@ -32,6 +56,14 @@ function postEvent (Event) {
       data: Event
   })
 }
+// function putUserLocation(Event) {
+//   console.log(Event);
+//   $.ajax({
+//       type: "put",
+//       url: "/api/users/id..",
+//       data: { latitude: , longitude: }
+//   })
+// }
 
 
 function addTimesToInputs() {
@@ -100,3 +132,8 @@ function formatDT(__dt) {
   var seconds = zeroPad(__dt.getSeconds(), 2);
   return  hours + ':' + minutes
 };
+
+
+       
+
+

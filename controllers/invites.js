@@ -59,7 +59,6 @@ function invitesCreate (req, res) {
       if (err) res.json({ message: "could not create invite"});
       res.json({ message: "invited user to event", event: event})
     });
-    event.save();
     res.json(event);
   }
   else {

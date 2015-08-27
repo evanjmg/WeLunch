@@ -141,7 +141,7 @@ input[type="submit"] {
 <h2>Plan a Lunch</h2>
 <form action="/api/events" method="post" id=
 "createEventForm">
-  <label for="title">Title: </label>
+  <label for="title">Place: </label>
   <input type="text" name="title" class="expand"
    id="title">
   <label for="time">Set Time:</label>
@@ -151,18 +151,18 @@ input[type="submit"] {
       <div id="slider-range"></div>
     </div>
   </div>
-
-  <label for="location"> Location:</label>
+  
+  <label for="location"> Address:</label>
   <input type="text" name="location" id="location">
   <label for="message">Message:</label>
   <input type="text" name="message" id="message">
   <div class="row text-center">
   <input type="submit"value="Create Event" class="button eventsCreateButton">
   </div>
-</form>
+</form><script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 </div>
 
-<!--   <input type="time" name="start_time">
+
   <input type="time" name="end_time"> -->
 <!--   <input type="time" name="start_time" id="start-time">
   <input type="time" name="end_time" id="end-time"> -->
