@@ -1,8 +1,30 @@
 $(function () {
-  showCurrentEvent();
+  showCurrentEvent() 
 })
 
+
+function countDown(startTime) {
+      var date = new Date(startTime);
+      var today = new Date();
+
+      var dif = date.getTime() - today.getTime();
+
+      var timeLeft = Math.abs(dif/1000)/60;
+
+
+      var clock = $('.clock').FlipClock({
+          autoStart: false,
+          clockFace: 'DailyCounter',
+          countdown: true
+      });
+
+      clock.setTime(timeLeft);
+      clock.start();   
+  
+}
+
 function showCurrentEvent () {
+
   console.log('running');
   $.ajax({
    type: "get",
@@ -11,7 +33,10 @@ function showCurrentEvent () {
    dataType: "json"
  }).done(function(data, response){
    console.log(data,response)
-   var html = "<h2>"+data.event.title+"</h2></br><h3 style='font-style:italic'>"+data.event.message+"</h3></br><h3>"+ moment(data.event.start_time).format('MMMM Do, h:mm -')+moment(data.event.end_time).format('h:mm')+"</h3><h4>coutdown</h4></br><h3>"+data.event.place+"</h3><h4 class='event-location'>"+data.event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host</h3><div class='row'><div class='small-6'><h3></div></div></br><h2>Who's Invited?</h2></br></div>"
+   var html = "<h2>"+data.event.title+"</h2></br><h3 style='font-style:italic'>"+data.event.message+"</h3></br><h3>"+moment(data.event.start_time).format('MMMM Do, h:mm -')+moment(data.event.end_time).format('h:mm')+"</h3><h4><div class='.clock'></div></h4></br><h3>"+data.event.place+"</h3><h4 class='event-location'>"+data.event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host:</h3><div class='row' style='width:50%;'><div class='small-6 columns'><img src='"+data.event._owner.linkedin.avatar+"' style='display:inline-block'></div><div class='small-6 columns'><h3>"+data.event._owner.local.name+"</h3></div></div></br><h2>Who's Invited?</h2></br></div>"
+   
+   countDown(data.event.start_time)
+
    var animatedHTML = $(html).hide().fadeIn();
    $('.current-event-container').append(animatedHTML);
    var i=0;
