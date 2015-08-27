@@ -33,7 +33,8 @@ function doneButton () {
 		console.log('listening')
 		event.preventDefault();
 		$(".invite-users-page").fadeOut();
-		$('/redirect');
+		$('.main-container').append('<div class="current-event-container"></div>')
+		showCurrentEvent();
 	})
 }
 function postInvite (userid) {

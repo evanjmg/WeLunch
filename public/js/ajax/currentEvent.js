@@ -3,16 +3,15 @@ $(function () {
 })
 
 function showCurrentEvent () {
-  console.log('running');
+
   $.ajax({
    type: "get",
    url: "/api/events/current",
    contentType: "json", 
    dataType: "json"
  }).done(function(data, response){
-   console.log(data,response)
+    if(data.event) {
    var html = "<h2>"+data.event.title+"</h2></br><h3 style='font-style:italic'>"+data.event.message+"</h3></br><h3>"+moment(data.event.start_time).format('MMMM Do, h:mm -')+moment(data.event.end_time).format('h:mm')+"</h3><div class='clock'></div></br><h3>"+data.event.place+"</h3><h4 class='event-location'>"+data.event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host:</h3><div class='row' style='width:50%;'><div class='small-6 columns'><img src='"+data.event._owner.linkedin.avatar+"' style='display:inline-block'></div><div class='small-6 columns'><h3>"+data.event._owner.local.name+"</h3></div></div></br><div class='row text-center'><input type='submit' id='cancelButton' value='Cancel?'></div><h2>Who's Invited?</h2></br></div>"
-   console.log(data.event.start_time);
 
 
    var animatedHTML = $(html).hide().fadeIn();
@@ -25,16 +24,17 @@ function showCurrentEvent () {
     $('.current-event-container').append(animatedHTML);
   }
     
-
+  }
     //  DELETE BUTTON 
 
     $('#cancelButton').on('click', function () {
+      $('.flash-message').html();
       event.preventDefault();
       var EventId = data.event._id
       if (data.user._id == data.event._owner._id) {
       deleteEvent(EventId);
       $('.current-event-container').fadeOut();
-      $('.main-container').prepend('<h4>Succesfully Cancelled Event!</h4>');
+      $('.flash-message').prepend('<h4>Succesfully Cancelled Event!</h4>');
       $.get('/redirect');
       $('.current-event-container').fadeIn();
     } else {

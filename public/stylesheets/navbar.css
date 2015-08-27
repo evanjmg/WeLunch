@@ -187,13 +187,15 @@ input[type="submit"] {
     color:white;
   }
 
-  hr {
-    margin-bottom: 0px;
-    margin-left:-20px;
-    margin-right:0;
-    width:130%;
-    padding:0;
-  }
+
+    hr {
+      margin-bottom: 0px;
+      margin-left:-400px;
+      margin-right:0;
+      width:400%;
+      padding:0;
+    }
+  
   .menu_icons{
     margin-top:16px;
     height:25px;
@@ -205,6 +207,6 @@ input[type="submit"] {
   }
 
   .main-container {
-    padding-top:100px;
+    padding-top:130px;
   }
   
