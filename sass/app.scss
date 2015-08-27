@@ -4,12 +4,11 @@
 @import "vendor/jtinder";
 
 
-// adding css does not work
-/* CUSTOM */
+// // adding css does not work
+// /* CUSTOM */
 @import "custom/style";
 @import "custom/events";
 @import "custom/linkedin_button";
 @import "custom/tinderslide-overrides";
-@import "custom/eventCreate";
 @import "custom/userIndex";
-
+@import "inline";

@@ -1,10 +1,8 @@
 $(function () {
+  // showCurrentEvent() 
 })
 
-
-
 function showCurrentEvent () {
-
   console.log('running');
   $.ajax({
    type: "get",
