@@ -13,6 +13,7 @@ var eventSchema = new mongoose.Schema({
    _invitee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}}],
   start_time: Date,
   end_time: Date,
+  place: String,
   location: String,
   latitude:String,
   longitude:String,

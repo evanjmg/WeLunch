@@ -8,7 +8,7 @@ $(function () {
    latitude = position.coords.latitude;
    longitude = position.coords.longitude;
  }
-  var columnleft, latitude, longitude, type, bounds, boundsObject, counter=0;
+  var columnleft, latitude, longitude, type,counter=0;
   
   function geoCodeLocation (query, Event){
     geocoder = new google.maps.Geocoder();
@@ -28,7 +28,7 @@ function(results, status){
         }});
       }
 
-var eventFields = ["title", "location", "message" ]
+var eventFields = ["title", "location", "message", "place" ]
 function createButton () {
   $('.eventsCreateButton').on('click', function () {
     event.preventDefault();

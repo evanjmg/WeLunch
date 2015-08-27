@@ -148,9 +148,12 @@ input[type="submit"] {
 <h2>Plan a Lunch</h2>
 <form action="/api/events" method="post" id=
 "createEventForm">
-  <label for="title">Place: </label>
-  <input type="text" name="title" class="expand"
-   id="title">
+<label for="title">Title: </label>
+<input type="text" name="title" class="expand"
+ id="title">
+ <label for="title">Place: </label>
+ <input type="text" name="place" class="expand"
+  id="place">
   <label for="time">Set Time:</label>
   <div id="time-range"><span class="slider-time" id="start_time"></span> - <span class="slider-time2" id="end_time"></span>
     
