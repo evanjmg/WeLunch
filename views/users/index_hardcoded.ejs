@@ -1,26 +1,53 @@
 
+<style>
 
+  body {  overflow:scroll !important;}
 
-  <div class='row'>
-    <div class='large-12 columns'>
+  label, #time-range p{
+    color:white;
+  }
+  h2 {
+    text-align: center;
+    margin:auto;
+    color:white;
+    font-size:35px;
+    font-weight: 100;
+  }
+  h4 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 100;
+    color:white;
+  }
+</style>
+
+<h2>Invite People</h2>
+
+<a href="/api/users/logout"><h4>Logout</h4></a>
+<% if (current_user) { %>
+<input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
+<% } %>
+
+</br>
+
+<div class='row'>
+  <div class='large-12 columns'>
+    <div class='row'>
+      <div class='large-4 small-12 columns'>
+      </div>
       <div class='row'>
-        <div class='large-4 small-12 columns'>
-          <h4>Invite People</h4>
-        </div>
-        <div class='row'>
-         <div class='large-12 columns'>
-           <div class='panel'>
-             <div class='row'>
-               <div class='large-2 small-6 columns'>
-                 <img src='"+ data.users[i].linkedin.avatar+ "'>
-               </div>
-               <div class='large-10 small-6 columns'>
-                 <div class='alert-box'>
-                  <button href='#' class='close inviteButton'>
-                    <input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'>
-                    <strong>Invite</strong> '"+ data.users[i].local.name+ "'+
-                  </button>
-                </div>
+       <div class='large-12 columns'>
+         <div class='panel'>
+           <div class='row'>
+             <div class='large-2 small-6 columns'>
+               <img src='"+ data.users[i].linkedin.avatar+ "'>
+             </div>
+             <div class='large-10 small-6 columns'>
+               <div class='alert-box'>
+                <button href='#' class='close inviteButton'>
+                  <input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'>
+                  <strong>Invite</strong> '"+ data.users[i].local.name+ "'+
+                </button>
               </div>
             </div>
           </div>
@@ -28,5 +55,7 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
+</div>
+
 
