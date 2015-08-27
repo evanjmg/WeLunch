@@ -17,6 +17,7 @@ $(function(){
   }
 });
 
+
 function getEvents() {
   console.log("Getting events...")
   $.ajax({
