@@ -24,7 +24,7 @@ app.use(
     src: __dirname + '/sass', 
     dest: __dirname + '/public/stylesheets', 
     debug: true, 
-    outputStyle: 'expanded' 
+    outputStyle: 'compressed' 
   }),
   // The static middleware must come after the sass middleware
   express.static(path.join(__dirname, 'public'))
