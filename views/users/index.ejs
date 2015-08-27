@@ -1,19 +1,50 @@
+<<<<<<< HEAD
+=======
 
 
 <div class="row">
 
+>>>>>>> 82fc930cbd7dc23cd2993ed16ea194e2d106c6ed
 <style>
-body {  overflow:scroll !important;}
+
+  body {  overflow:scroll !important;}
+
+  label, #time-range p{
+    color:white;
+  }
+  h2 {
+    text-align: center;
+    margin:auto;
+    color:white;
+    font-size:35px;
+    font-weight: 100;
+  }
+  h4 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 100;
+    color:white;
+  }
 </style>
+<<<<<<< HEAD
+
+<h2>Invite People</h2>
+
+<a href="/api/users/logout"><h4>Logout</h4></a>
+=======
 <div class="small-8 columns">
 <h2 style="text-align:left;color:white;font-weight:200;font-size:30px;display:inline-block">Invite People</h2></div>
 <div class="small-3 columns" ><input type="submit" href="#" class="close" value="Done" style="background-color:#1dc39f;border: 1px #1dc39f; margin-top:15px;"></div>
 </div>
 <div class="border:1px solid white;"></div>
 <a href="/api/users/logout">Logout</a>
+>>>>>>> 82fc930cbd7dc23cd2993ed16ea194e2d106c6ed
 <% if (current_user) { %>
 <input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
 <% } %>
+
+</br>
 <div id="usersInvite">
   
 </div> 
+
