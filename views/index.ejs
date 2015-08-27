@@ -176,19 +176,5 @@ input[type="submit"] {
 console.log($('#token').val())
 $('#token').val("")
 </script>
+  <div class='row invite-users-page'></div>
 
-
-<div class="row invite-users-page">
-<style>
-body {  overflow:scroll !important;}
-</style>
-<div class="small-8 columns">
-<h2 style="text-align:left;color:white;font-weight:200;font-size:30px;display:inline-block">Invite People</h2></div>
-<div class="small-3 columns" ><input type="submit" href="#" class="close" value="Done" style="background-color:#1dc39f;border: 1px #1dc39f; margin-top:15px;"></div>
-</div>
-<% if (current_user) { %>
-<input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
-<% } %>
-<div id="usersInvite">
-  
-</div> 
