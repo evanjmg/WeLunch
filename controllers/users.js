@@ -1,5 +1,7 @@
 // Require the model for the function calls
+var Event = require('../models/event');
 var User = require('../models/user');
+
 
 // List of controller methods
 
@@ -20,6 +22,7 @@ function usersShow(req, res) {
     }
   });
 };
+
 function usersDelete(req,res) {
   User.findByIdAndRemove(req.params.id,function (err) { if(err) res.json({ message: "an error occurred."});
     res.json({ message: "Deleted User"})
@@ -38,12 +41,30 @@ function linkedinLogout(req, res){
   });
 };
 
-// Deprecated?
 function linkedinLogin(req, res, next){
   if (!req.user) return res.json(401, { error: "No user found" });
-  console.log(req.user)
-  res.redirect("/");
+  
+  Event.find( 
+      { "invites": { "$elemMatch": { "_invitee": req.user.id, "accepted": null  } } }
+    )
+      .populate('_owner')
+      .populate('invites._invitees')
+        .exec( function (err, events) {
+        if (events.length > 0) {
+          return res.redirect("/invitations");
+        }
+
+        Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }
+          , function (err, event) {
+            if (event) { 
+              return res.redirect("/events/show");
+            } else {
+              return res.redirect("/")
+            }
+          });
+      });
 };
+
 
 module.exports = {
   usersIndex: usersIndex,
@@ -53,32 +74,3 @@ module.exports = {
   linkedinLogin: linkedinLogin,
   usersDelete: usersDelete
 };
-
-
-// router.post('', function (req, res) {
-//   var signupStrategy = passport.authenticate('local-signup', {
-//     successRedirect : '/',
-//     failureRedirect : '/signup'
-//   });
-//   return signupStrategy(req,res);
-// });
-
-// router.post('/login', function(req, res, next) {
-//   passport.authenticate('local-login', function(err, user, info) {
-//     if (err) return next(err);
-//     if (!user) return res.json(401, { error: "No user found" });
-    
-//     //user has authenticated correctly thus we create a JWT token 
-//     var expires = moment().add('days', 7).valueOf();
-//     var token = jwt.encode({
-//       iss: current_user.id,
-//       exp: expires
-//     }, app.get('jwtTokenSecret'));
-
-//     res.json({
-//       token : token,
-//     });
-//   })(req, res, next);
-// });
-
-

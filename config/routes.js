@@ -10,9 +10,7 @@ app.set('jwtTokenSecret', process.env.WELUNCH_JWT_SECRET);
 
 // Require the controllers, using the index
 var usersController = require('../controllers/users');
-// var eventsController = require('../controllers/events');
 var homeController = require('../controllers/home');
-
 var eventsController = require('../controllers/events');
 var invitesController = require('../controllers/invites');
 
@@ -33,11 +31,12 @@ router.route('/invitations')
 router.route('/events/show')
   .get(homeController.eventShow);
 
-
 router.route('/event')
   .get(homeController.eventShow);
+
 router.route('/events/create')
   .get(homeController.eventsCreate)
+
 router.route('/auth/linkedin')
   .get(passport.authenticate('linkedin', { 
     session: false, 
@@ -81,8 +80,10 @@ router.route('/api/invites/')
   .get(jwtauth, invitesController.invitesIndex)
   .post(jwtauth,invitesController.invitesCreate)
   .delete(jwtauth, invitesController.invitesDelete);
+
 router.route('/api/invites/pending')
   .get(jwtauth, invitesController.invitesPending);
+
 router.route('/api/invites/accept')
   .post(jwtauth, invitesController.invitesAccept)
 
