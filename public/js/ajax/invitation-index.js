@@ -1,35 +1,37 @@
 $(function (){
-  acceptInvites();
+
   inviteClick();
 }) 
 
-function acceptInvites (){
-  console.log("Invite Accepted");
+function acceptInvites (eventId){
+  console.log(eventId);
   $.ajax({
-    type: "get",
-    url: "/api/invites",
-    contentType: "json",
-    dataType: "json"
+    type: "post",
+    url: "api/invites/accept",
+    data: { "eventId": eventId }
   }).done(function(data, response){
-    console.log(data);
-    
-
-    var html='',i=0;
-    for(i;i< data.events.length;i++) {
-      html += "<div class='row'><div class='large-12 columns'><div class='row'><img src='"+ data.invites[i].linkedin.avatar+ "'><button href='#' class='close inviteButton'><div class='alert-box'><input type='hidden' value='"+ data.invites[i]._id+"' class='invitee-id'><strong>Invite</strong>'"+ data.invites[i].local.name+ "'+</button></div></div></div></div>"
-    }
-
-    $('#InvitesPending').append(html)
-
+    console.log(data,response);
   });
 }
-function postInvite (userid) {
+
+/*function deleteInvites (eventId, userId){
+  console.log("Invite Deleted");
+  $.ajax({
+    type: "delete",
+    url: "api/invites",
+    data: { "eventId": eventId, "userId": userId }
+  }).done(function(data, response){
+    console.log(data,response);
+  });
+}*/
+
+/*function postInvite (userid) {
   $.post("/api/invite", { "userId" : userid }).done(function (data) {
     console.log(data);
   });
+*/
 
-
-  }
+/*  }
 // Setup INVITE buttons
 function inviteClick() {
   $('.inviteButton').on('click', function(e){
@@ -39,4 +41,4 @@ function inviteClick() {
     postInvite(inviteeId);
     $(this).removeClass('alert-box');
   });
-}
+}*/

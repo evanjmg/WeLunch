@@ -1,7 +1,8 @@
 
 
 function getUsers (){
-	console.log("Getting users...");
+	var userIndexHeader = "<style>body {  overflow:scroll!important;}</style><div class='row' style='background-color:#051C2B'><div class='small-8 columns'><h2 style='text-align:left;color:white;font-weight:200;font-size:30px;display:inline-block'>Invite People</h2></div><div class='small-4 columns' ><input type='submit' href='#' value='Done' style='background-color:#1dc39f;border: 1px #1dc39f;margin-left:40%;'></div><div id='usersInvite'></div></div></div></div>"
+	$('.invite-users-page').append(userIndexHeader).fadeIn(3000);
 	$.ajax({
 		type: "get",
 		url: "/api/users",
@@ -19,7 +20,7 @@ function getUsers (){
 		}
 
 		// $('#usersInvite').hide().append(html).slideToggle();
-		$('#invite-users-page').fadeIn();
+
 		// $('#usersInvite').slideDown();
 		console.log('')
 		inviteClick();

@@ -17,6 +17,7 @@ $(function(){
   }
 });
 
+
 function getEvents() {
   console.log("Getting events...")
   $.ajax({
@@ -29,7 +30,7 @@ function getEvents() {
     // Loop through the events received and create an HTML string
     var html = "";
     $.each(data, function(index, meeting){
-      html += "<li class='pane"+index+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
+      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
     });
 
     // Append the HTML string
@@ -38,10 +39,15 @@ function getEvents() {
     // Make the Tinderslide work for the ul
     $("#tinderslide").jTinder({
       onDislike: function(item) {
-        $('#status').html('Invitation Declined ' + (item.index()+1));
+        
+        $('#status').html('Invitation Declined ');
       },
       onLike: function (item) {
-        $('#status').html('Invitation Accepted ' + (item.index()+1));
+        var invitationsUl = ($('#tinderslide').children('ul')[0]);
+        var currentInvitation = $(invitationsUl).children().last('li')[0];
+        acceptInvites($(currentInvitation).children('input').val());
+        currentInvitation.remove();
+        $('#status').html('Invitation Accepted');
       },  
         animationRevertSpeed: 200,
         animationSpeed: 400,
@@ -49,7 +55,11 @@ function getEvents() {
         likeSelector: '.like',
         dislikeSelector: '.dislike'
       });
+    $('.like').on('click', function (){
+      e.preventDefault();
 
+     
+    })
     // Setup LIKE/DISLIKE buttons
     $('.actions .like, .actions .dislike').click(function(e){
       e.preventDefault();
