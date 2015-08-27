@@ -11,7 +11,10 @@ var moment         = require('moment');
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
 var MongoStore     = require('connect-mongo')(session);
+var methodOverride = require('method-override')
 
+// override with the X-HTTP-Method-Override header in the request
+app.use(methodOverride('X-HTTP-Method-Override'))
 
 // Adding the sass middleware
 var sassMiddleware = require('node-sass-middleware');

@@ -26,10 +26,10 @@ function getEvents() {
     contentType: "json",
     dataType: "json"
   }).done(function(data, response){
-
+    console.log("**********",data, response)
     // Loop through the events received and create an HTML string
     var html = "";
-    $.each(data, function(index, meeting){
+    $.each(data.invites, function(index, meeting){
       html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
     });
 
@@ -39,9 +39,14 @@ function getEvents() {
     // Make the Tinderslide work for the ul
     $("#tinderslide").jTinder({
       onDislike: function(item) {
-        
-        $('#status').html('Invitation Declined ');
+        var invitationsUl = ($('#tinderslide').children('ul')[0]);
+        var currentInvitation = $(invitationsUl).children().last('li')[0];
+        console.log(data.currentUserId);
+        deleteInvites($(currentInvitation).children('input').val(), data.currentUserId);
+        currentInvitation.remove();
+        $('#status').html('Invitation Declined');
       },
+
       onLike: function (item) {
         var invitationsUl = ($('#tinderslide').children('ul')[0]);
         var currentInvitation = $(invitationsUl).children().last('li')[0];
@@ -49,16 +54,18 @@ function getEvents() {
         currentInvitation.remove();
         $('#status').html('Invitation Accepted');
       },  
-        animationRevertSpeed: 200,
-        animationSpeed: 400,
-        threshold: 1,
-        likeSelector: '.like',
-        dislikeSelector: '.dislike'
-      });
+
+      animationRevertSpeed: 200,
+      animationSpeed: 400,
+      threshold: 1,
+      likeSelector: '.like',
+      dislikeSelector: '.dislike'
+    });
+
     $('.like').on('click', function (){
       e.preventDefault();
 
-     
+
     })
     // Setup LIKE/DISLIKE buttons
     $('.actions .like, .actions .dislike').click(function(e){

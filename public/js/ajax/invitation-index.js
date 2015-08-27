@@ -14,16 +14,17 @@ function acceptInvites (eventId){
   });
 }
 
-/*function deleteInvites (eventId, userId){
+function deleteInvites (eventId, userId){
+  console.log(userId, eventId)
   console.log("Invite Deleted");
   $.ajax({
     type: "delete",
-    url: "api/invites",
-    data: { "eventId": eventId, "userId": userId }
+    url: "/api/invites",
+    data: { "eventId": eventId, "userId": userId },
   }).done(function(data, response){
     console.log(data,response);
   });
-}*/
+}
 
 /*function postInvite (userid) {
   $.post("/api/invite", { "userId" : userid }).done(function (data) {
