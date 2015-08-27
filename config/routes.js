@@ -21,6 +21,9 @@ var invitesController = require('../controllers/invites');
 router.route('/login')
   .get(homeController.login);
 
+router.route('/menu')
+  .get(homeController.menu);
+
 router.route('/users')
   .get(homeController.usersIndex);
 
