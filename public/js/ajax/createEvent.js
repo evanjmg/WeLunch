@@ -3,7 +3,32 @@ $(function () {
   addTimesToInputs();
   createButton();
 });
-var eventFields = ['title', 'description', 'location', 'message' ]
+// Geolocation
+ function GeoL(position) {
+   latitude = position.coords.latitude;
+   longitude = position.coords.longitude;
+ }
+  var columnleft, latitude, longitude, type, bounds, boundsObject, counter=0;
+  
+  function geoCodeLocation (query, Event){
+    geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': $('#location').val(), 'componentRestrictions':{'country':'GB'}}, 
+function(results, status){
+                if (status == google.maps.GeocoderStatus.OK) {
+     var latitude = results[0].geometry.location.lat();
+     var longitude = results[0].geometry.location.lng();
+     console.log(results, status);
+  var latlon = [latitude, longitude]
+     Event['longitude'] = latlon[1]
+     Event['latitude'] = latlon[0];
+     console.log(Event);
+     postEvent(Event);
+     $('.create-event-form-container').slideUp();
+     getUsers();
+        }});
+      }
+
+var eventFields = ["title", "location", "message" ]
 function createButton () {
   $('.eventsCreateButton').on('click', function () {
     event.preventDefault();
@@ -11,7 +36,15 @@ function createButton () {
     $.each(eventFields, function (i, field) {
       Event[field] = $('#createEventForm').children('#' + field).val()
     });
-    postEvent(Event)
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    newdate = year + "/" + month + "/" + day;
+    Event['start_time'] = newdate +" "+ $('#start_time').html() + ":00";
+    Event['end_time'] = newdate +" "+ $('#end_time').html() + ":00";
+    geoCodeLocation($('#location').val(), Event);
   })
 }
 // 'start_time', 'end-time'
@@ -20,11 +53,17 @@ function postEvent (Event) {
   $.ajax({
       type: "post",
       url: "/api/events",
-      data: Event,
-      contentType: "json",
-      dataType: "json"
-  }).done
+      data: Event
+  })
 }
+// function putUserLocation(Event) {
+//   console.log(Event);
+//   $.ajax({
+//       type: "put",
+//       url: "/api/users/id..",
+//       data: { latitude: , longitude: }
+//   })
+// }
 
 
 function addTimesToInputs() {
@@ -55,7 +94,7 @@ Date.prototype.addHours= function(h){
 
 function timeSlider () {
   var dt_from ="2014-11-01 " + getDateTime();
-  var dt_to = "2014-11-01 " + String((parseInt(getDateTime().substring(0,2)))+4) + ":" + getDateTime().substring(3,8); 
+  var dt_to = "2014-11-01 " + String(23) + ":" + getDateTime().substring(3,8); 
 
   $('.slider-time').html(dt_from.substring(11,16));
   $('.slider-time2').html(dt_to.substring(11,16));
@@ -93,3 +132,8 @@ function formatDT(__dt) {
   var seconds = zeroPad(__dt.getSeconds(), 2);
   return  hours + ':' + minutes
 };
+
+
+       
+
+
