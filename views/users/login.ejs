@@ -1,55 +1,90 @@
 <style>
 
+.signinButton {
+  text-align: center;
+  margin:auto;
+  color:white;
+  font-size:16px;
+  font-weight: 300;
+  font-family: "Roboto";
+}
+
+.transparentBtn {
+  display:block;
+  color:white;
+  background:transparent;border:1px solid white;    padding:10px;
+  width:210px;
+  margin:auto;
+}
+
+.transparentBtn:hover {
+  color:white;
+  text-shadow: 0.5px  #051C2B;
+  background:transparent;border:1px solid #051C2B;    padding:10px;
+  background-color:dodgerblue;
+  width:210px;
+  margin:auto;
+}
 </style>
-
-<div class="login-container orbit-container">
-<div class="orbit-slides-container">
+<div class="login-container orbit-container orbit-slides-container">
   <ul data-orbit>
-  <!-- Meet Industry Professionals -->
-
-  <li style="background: url('/images/landing-slider/dining.png') no-repeat center center fixed;background-size : cover;">
+    <li style="background:linear-gradient(
+    rgba(5, 28, 43, 0.5), 
+    rgba(5, 28, 43, 0.5)
+    ), url('/images/landing-slider/drinks.jpg') no-repeat center center fixed;background-size : cover;">
     <div class="overlay">
-      <div class="title welunch">WeLunch</div></br>
-      <a href="/auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn" style="text-align:center;">
-        <i class="fa fa-linkedin" style="margin-top: -4px;"></i> Login with Linkedin
-      </a>
-    </br>
-    <a href="#local-login" class="link-to-local-sign-up button signinButton transparentBtn">Login with Email</a>
-  </div>
-  <div class="orbit-caption welunch" style="text-align:center;font-size: 1.5em;">Meet Industry Professionals</div>
-</li>
-<!-- Discover New Opportunities -->
-  <li style="background-image: url('/images/landing-slider/drinks.png') no-repeat center center fixed;background-size : cover;">
-    <div class="overlay">
-      <div class="title welunch">WeLunch</div></br>
-      <a href="/auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn" style="text-align:center;">
-        <i class="fa fa-linkedin" style="margin-top: -4px;"></i> Login with Linkedin
-      </a>
-    </br>
-    <a href="#local-login" class="link-to-local-sign-up button signinButton transparentBtn">Login with Email</a>
-  </div>
-  <div class="orbit-caption welunch" style="text-align:center;font-size: 1.5em;">Discover New Opportunities</div>
-</li>
-<!-- Join Professional Lunch Clubs -->
+      <div class="title welunch">WeLunch</div>
+      <p>
+      <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+        <i class="fa fa-linkedin"></i> Login with Linkedin
+      </a></p>
+      <a href="#local-login" class="link-to-local-sign-up button signinButton transparentBtn">Login with Email</a>
+    </div>
 
-<li style="background: url('/images/landing-slider/drinks.png') no-repeat center center fixed;background-size : cover;">
+
+  <li style="background:linear-gradient(
+      rgba(5, 28, 43, 0.5), 
+      rgba(5, 28, 43, 0.5)
+    ), url('/images/landing-slider/drinks.jpg') no-repeat center center fixed;background-size : cover;">
   <div class="overlay">
-    <div class="title welunch">WeLunch</div></br>
-    <a href="/auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn" style="text-align:center;">
-      <i class="fa fa-linkedin" style="margin-top: -4px;"></i> Login with Linkedin
-    </a>
-  </br>
+  <div class="title welunch">WeLunch</div>
+  <p>
+  <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+    <i class="fa fa-linkedin"></i> Login with Linkedin
+  </a></p>
   <a href="#local-login" class="link-to-local-sign-up button signinButton transparentBtn">Login with Email</a>
-</div>
-<div class="orbit-caption welunch" style="text-align:center;font-size: 1.5em;">Join Professional Lunch Clubs</div>
+  </div>
+    <div class="orbit-caption" style="text-align:center;font-size: 1.5em;">Discover New Opportunities</div>
+    
+  </li>
+  <li style="background: linear-gradient(
+  rgba(5, 28, 43, 0.45), 
+  rgba(5, 28, 43, 0.45)
+  ), url('/images/landing-slider/dining.png');background-size : cover;" style="text-align:center;font-size: 1.5em;">
+  <div class="overlay">
+  <div class="title welunch">WeLunch</div>
+ <p>
+ <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+   <i class="fa fa-linkedin"></i> Login with Linkedin
+ </a></p>  <a href="#local-login" class="link-to-local-sign-up button signinButton">Login with Email</a>
+  </div>
+  <div class="orbit-caption" style="text-align:center;font-size: 1.5em;">Meet Industry Professionals</div>
 </li>
+<li style="background: linear-gradient(
+  rgba(5, 28, 43, 0.45), 
+  rgba(5, 28, 43, 0.45)
+), url('/images/landing-slider/women.jpg') no-repeat center center fixed;background-size : cover;" >
 
-
+<div class="overlay">
+  <div class="title">WeLunch</div>
+  <p>
+  <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+    <i class="fa fa-linkedin"></i> Login with Linkedin
+  </a></p><a href="#local-login" class="link-to-local-sign-up button transparentBtn signinButton">Login with Email</a>
+</div>  
+<div class="orbit-caption" style="text-align:center;font-size: 1.5em;"> Join Professional Lunch Clubs</div>
+</li>
 </ul>
-</div>
-</div>
-<div id= "login-container">
-
 </div>
 
 <% if (current_user) { %>

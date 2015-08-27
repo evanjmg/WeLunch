@@ -32,8 +32,8 @@ function doneButton () {
 	$('#doneButton').on('click', function () {
 		console.log('listening')
 		event.preventDefault();
-		$(".invite-users-page").animate({width:'toggle'},1000);
-		showCurrentEvent();
+		$(".invite-users-page").fadeOut();
+		$('/redirect');
 	})
 }
 function postInvite (userid) {
