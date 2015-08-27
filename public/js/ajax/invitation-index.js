@@ -1,9 +1,10 @@
 $(function (){
-  getInvites();
-})
+  acceptInvites();
+  inviteClick();
+}) 
 
-function getInvites (){
-  console.log("your current invitations...")
+function acceptInvites (){
+  console.log("Invite Accepted");
   $.ajax({
     type: "get",
     url: "/api/invites",
@@ -11,27 +12,31 @@ function getInvites (){
     dataType: "json"
   }).done(function(data, response){
     console.log(data);
+    
+
     var html='',i=0;
-    for(i;i< data.invites.length;i++) {
-      html += "<li class='pane"+index+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
-    };console.log(html)
+    for(i;i< data.events.length;i++) {
+      html += "<div class='row'><div class='large-12 columns'><div class='row'><img src='"+ data.invites[i].linkedin.avatar+ "'><button href='#' class='close inviteButton'><div class='alert-box'><input type='hidden' value='"+ data.invites[i]._id+"' class='invitee-id'><strong>Invite</strong>'"+ data.invites[i].local.name+ "'+</button></div></div></div></div>"
+    }
 
-    $('#Invitations').append(html)
+    $('#InvitesPending').append(html)
+
   });
-};
+}
+function postInvite (userid) {
+  $.post("/api/invite", { "userId" : userid }).done(function (data) {
+    console.log(data);
+  });
 
-/*function getInvites() {
-  console.log("Getting your invitations...")
-  $.ajax({
-    type: "get",
-    url: "/api/invites/",
-    contentType: "json",
-    dataType: "json"
-  }).done(function(data, response){
 
-    // Loop through the events received and create an HTML string
-    var html = "";
-    $.each(data, function(index, meeting){
-      html += "<li class='pane"+index+"'><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
-    });
-*/
+  }
+// Setup INVITE buttons
+function inviteClick() {
+  $('.inviteButton').on('click', function(e){
+    console.log('clicked')
+    e.preventDefault();
+    var inviteeId = $(this).children('.invitee-id').val()
+    postInvite(inviteeId);
+    $(this).removeClass('alert-box');
+  });
+}
