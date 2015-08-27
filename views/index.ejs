@@ -3,8 +3,7 @@ body {  overflow:scroll !important;}
 </style>
 
 
-<!-- <a href="/api/users" class="test">Test</a> -->
-<a href="/api/users/logout">Logout</a>
+
 <style>
 label, #time-range p{
   color:white;
@@ -172,7 +171,69 @@ input[type="submit"] {
     color:white;
   }
 </style>
+<style>
+  body {  overflow:scroll !important;}
+  .menu_container{
+    background: #34495E
+  }
 
+  .menu_logo{text-align: center;
+    margin:auto;
+    color:white;
+    font-size:35px;
+    font-weight: 100;
+    margin-top:16px;
+    margin-bottom:0px;
+    text-align:left;
+  }
+  .menu_text {
+    text-align: center; 
+    font-size: 16px;
+    font-weight: 100;
+    color:white;
+  }
+  hr {
+    margin-bottom: 0px;
+    margin-left:-20px;
+    margin-right:0;
+    width:130%;
+    padding:0;
+  }
+  .menu_icons{
+    margin-top:16px;
+    height:30px;
+    width: 30px;
+  }
+
+  .nav-icons {
+    margin-right: -40px;
+  }
+  </style>
+
+
+</style>
+<div class="menu_container">
+<section class="hero">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="main-wrapper">
+
+        <div class="row">
+        <div class="small-5 columns"><h1 class="menu_logo">WeLunch</h1></div>
+          <div class="small-7 columns nav-icons">
+            <ul class="button-group even-4">
+              <li><img class="menu_icons" src="/images/icons/white_lunch.png"><a href="#"><h5 class="menu_text" id="navLunch">Lunch</h5></a></img></li>
+              <li><img class="menu_icons" src="/images/icons/white_invites.png"><a href="#"><h5 class="menu_text" id="navInvite">Invite</h5></a></img></li>
+              <li><img class="menu_icons" src="/images/icons/white_logout2.png"><a href="/api/users/logout"><h5 class="menu_text" id="navLogout">Logout</h5></a></img></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+</div>
 <div class="create-event-form-container">
 <h2>Plan a Lunch</h2>
 <form action="/api/events" method="post" id=
