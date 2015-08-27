@@ -47,9 +47,9 @@ function eventsShow (req, res) {
   })
 }
 function eventsCurrent (req, res) {
-  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }).populate('_owner').populate('invites._invitees').exec( function (err, event) {
+  Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }).populate('invites._invitee').populate('_owner').exec( function (err, event) {
     if(err) res.json({ message: "An error occurred"})
-    if (event)  { res.json(event) }
+    if (event)  { res.json({ event: event, user: req.user }) }
     else { 
     res.json({message: "You have no active events"}) }
   })

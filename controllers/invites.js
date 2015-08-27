@@ -22,6 +22,23 @@ function invitesIndex(req, res) {
         res.json({ message: "Could not find any invitations", myInvitations: myInvitations })}
       }); 
 }
+// function invitesLastAccepted () {
+//   Event.find({}).populate('_owner').populate('invites_invitees').exec(function (err, events) {
+//       var i=0; j=0; myInvitations = ; 
+//     for(i;i< events.length;i++){
+//       for (j;j< events[i].invites.length; j++) {
+//         if (events[i].invites[j]._invitee == req.user.id) {
+//           if (events[i].invites[j].accepted == accepted) myInvitations.push(events[i]);
+//           break;
+//         }
+//       }
+//     }
+
+//     // for(i;<myInvitations.length;i++) {
+//     //   myInvitations[i].created_at( so)
+//     // }
+//   })
+// }
 function invitesPending(req, res) {
   Event.find({}).populate('_owner').populate('invites._invitees').exec( function (err, events) {
 
