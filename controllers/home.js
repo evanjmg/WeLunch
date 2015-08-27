@@ -5,7 +5,9 @@ function login(req, res){
 function home(req, res){
   res.render('index');
 }
-
+function invitations (req, res) {
+  res.render('events/invitations')
+}
 function eventShow(req,res) {
   res.render('events/show');
 }
@@ -21,5 +23,6 @@ module.exports = {
   home: home,
   eventShow: eventShow,
   usersIndex: usersIndex,
-  eventsCreate: eventsCreate
+  eventsCreate: eventsCreate,
+  invitations: invitations
 }

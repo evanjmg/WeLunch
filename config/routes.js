@@ -24,6 +24,9 @@ router.route('/login')
 router.route('/users')
   .get(homeController.usersIndex);
 
+router.route('/invitations')
+  .get(homeController.invitations);
+
 router.route('/events/show')
   .get(homeController.eventShow);
 
