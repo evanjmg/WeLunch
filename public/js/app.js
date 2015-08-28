@@ -30,10 +30,13 @@ function getEvents() {
     url: "/api/invites/pending",
     error: function() {
       $('body').css('overflow', 'scroll !important');
-          $('.main-container').empty();   $('.main-container').css('margin-top', '-275px');
-          $('.main-container').load('/events/create#create-event-form-container').hide().fadeIn();
-          $('.flash-message').html('<h3>You have no pending invitations.<h3>').hide().fadeIn('slow');
-          $('.flash-message').css('margin-top','120px')
+          // $('.main-container').empty();   $('.main-container').css('margin-top', '-275px');
+          // $('.main-container').load('/events/create#create-event-form-container').hide().fadeIn();
+          // $('.flash-message').html('<h3>You have no pending invitations.<h3>').hide().fadeIn('slow');
+          location.href = '/events/create'
+          // $('.flash-message').css('margin-top','120px');
+          // window.localStorage = 'You have no pending invitations.'
+          
 
       },
     contentType: "json",

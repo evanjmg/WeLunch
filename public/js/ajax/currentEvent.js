@@ -91,7 +91,7 @@ function deleteEvent(EventId) {
   }).done( function (data,response) {
     $('.current-event-container').fadeOut();
     $('.flash-message').prepend('<h4>Succesfully Cancelled Event!</h4>');
-    showCurrentEvent();
+  
 });
 }
 
