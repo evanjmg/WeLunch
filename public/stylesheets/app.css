@@ -11043,8 +11043,8 @@ body {
 
 .actions a:hover {
   text-decoration: none;
-  color: #00AAE6;
-  background: #f5f5f5;
+  color: #555;
+  background: #00AAE6;
 }
 
 /* jTinder images */
