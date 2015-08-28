@@ -34,7 +34,7 @@ function showEvent (eventId) {
     url: "/api/events/"+ eventId
   }).done(function (event){
       if(event) {
-     var html = "<h2>"+event.title+"</h2></br><h3 style='font-style:italic'>"+event.message+"</h3></br><h3>"+moment(event.start_time).format('MMMM Do, h:mm -')+moment(event.end_time).format('h:mm')+"</h3><div class='clock'></div></br><h3>"+event.place+"</h3><h4 class='event-location'>"+event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host:</h3><div class='row' style='width:50%;'><div class='small-6 columns'><img src='"+event._owner.linkedin.avatar+"' style='display:inline-block'></div><div class='small-6 columns'><h3>"+event._owner.local.name+"</h3></div></div></br><div class='row text-center'><input type='submit' id='cancelButton' value='Cancel?'></div><h2>Who's Invited?</h2></br></div>"
+     var html = "<h2>"+event.title+"</h2></br><h3 style='font-style:italic'>"+event.message+"</h3></br><h3>"+moment(event.start_time).format('MMMM Do, h:mm -')+moment(event.end_time).format('h:mm')+"</h3><div class='clock'></div></br><h3>"+event.place+"</h3><h4 class='event-location'>"+event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host:</h3><div class='row' style='width:50%;'><div class='small-6 columns'><img src='"+event._owner.linkedin.avatar+"' style='display:inline-block'></div><div class='small-6 columns'><h3>"+event._owner.local.name+"</h3></div></div></br><div class='row text-center'><input type='submit' id='cancelButton' value='Cancel'></div><h2>Who's Invited?</h2></br></div>"
 
 
      var animatedHTML = $(html).hide().fadeIn();

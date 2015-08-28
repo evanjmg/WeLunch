@@ -37,18 +37,8 @@ function showCurrentEvent () {
       $('.flash-message').html();
       event.preventDefault();
       var EventId = data.event._id
-      if (data.user._id == data.event._owner._id) {
-      deleteEvent(EventId);
-      $('.current-event-container').fadeOut();
-      $('.flash-message').prepend('<h4>Succesfully Cancelled Event!</h4>');
-      $.get('/redirect');
-      $('.current-event-container').fadeIn();
-    } else {
-
-      deleteInvites(EventId, data.user.id);
-      $.get('/redirect');
-    }
-    })
+     deleteEvent(EventId);
+     })
     // MAP
 
   $('#map-click').insertAfter('<div id="googleMap" class="row googleMap"></div>');
@@ -93,10 +83,15 @@ function inviteMore() {
 
 function deleteEvent(EventId) {
   $.ajax({
-    type: 'delete',
-    url: '/api/events/'+EventId
-  });
+    type: 'DELETE',
+    url: '/api/events/'+ EventId
+  }).done( function (data,response) {
+    $('.current-event-container').fadeOut();
+    $('.flash-message').prepend('<h4>Succesfully Cancelled Event!</h4>');
+    showCurrentEvent();
+});
 }
+
 
 function countDown(startTime) {
   // setInterval(function time(){

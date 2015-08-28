@@ -33,9 +33,14 @@ function eventsUpdate (req, res) {
   });
 }
 function eventsDelete (req,res) {
-  Event.remove( {_owner: req.user.id, _id: req.params.id }, function (err) {
+  Event.findbyId(req.params._id, function (err, event) {
     if (err) res.json({ message: "An error occurred."})
-      res.json({ message: "Event Successfully Deleted"})
+      if(event) { event.remove();
+      res.json({ message: "Event Successfully Deleted"}); }
+      else {
+        res.json({ message: "No event found"})
+      }
+
   })
 }
 function eventsShow (req, res) {
