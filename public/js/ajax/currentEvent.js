@@ -86,7 +86,8 @@ function deleteEvent(EventId) {
   $.ajax({
     type: 'delete',
     traditional: true,
-    url: url
+    url: url, 
+    data: EventId
   }).done( function (data,response) {
     $('.current-event-container').fadeOut();
     $('.flash-message').prepend('<h4>Succesfully Cancelled Event!</h4>');
