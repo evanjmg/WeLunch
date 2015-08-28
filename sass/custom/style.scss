@@ -4,7 +4,7 @@ $light-green: #20D9B1;
 $blue:#00AAE6;
 $green:#1dc39f;
 $white: #F1F1F1;
-$gradient2: linear-gradient(45deg, #2ecc71, dodgerblue);
+// $gradient2: linear-gradient(45deg, #2ecc71, dodgerblue);
 
 
 //**MAIN **********************
@@ -18,12 +18,7 @@ body {
 main {
   width: 960px;
   margin: 0 auto;
-  // padding: 20px;
   max-width: 800px;
-}
-
-.section {
-  // padding: 60px 0;
 }
 
 footer {
@@ -96,7 +91,7 @@ p.small {
 
 a {
   color: white;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 
 .bold {
@@ -185,29 +180,38 @@ textarea {
   height: 100px;
 }
 
+.login-container, 
+.orbit-container, 
+.orbit-slides-container, 
+.main-container,
+.overlay {
+  height: 100% !important;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+
 //**ORBIT SLIDER**********************
 
-.orbit-container {
-  // opacity: 0.8;
-  width: 100%;
-  height: 100%;
-  position:relative;
-}
+// .orbit-container {
+//   // opacity: 0.8;
+//   width: 100%;
+//   height: 100%;
+//   position:relative;
+// }
 // .background-container {
   // background-color: #051C2B;
 // }
 
-div.overlay {
-  background: rgba(5,28,43,0.55);
-  width: 50%;
-  margin: 0 auto;
-}
-.orbit-slides-container {
-  background-color: $navy;
-  width: 100%;
-  height: 100% !important;
+// div.overlay {
+//   background: rgba(5,28,43,0.55);
+//   width: 50%;
+//   margin: 0 auto;
+// }
 
-}
+
 .orbit-timer {
   left: -10000px;
   top: auto;
@@ -216,6 +220,7 @@ div.overlay {
   position: absolute;
   width: 1px;
 }
+
 .link-to-local-sign-up {
   display:block;
   color:white;
@@ -224,6 +229,7 @@ div.overlay {
   width:210px;
   margin:auto;
 }
+
 .fa-linkedin {
   padding-top:7px;
 }
@@ -232,14 +238,13 @@ div.overlay {
 }
 div.title {
   font-size: 6em;
-  color: #1dc39f;
+  // color: #1dc39f;
 }
 li {
   text-align: center;
   width: 100%;
   height: 100%;
   background-size: cover;
-
 }
 .invite-users-page {
   display:none;

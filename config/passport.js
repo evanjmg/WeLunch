@@ -81,16 +81,15 @@ module.exports = function(passport, app){
     state: true
   	// profileFields   : ['id','emails', 'location', 'industry']
   }, function(token, tokenSecret, profile, done) {
-  	console.log(profile);
+
   	process.nextTick(function() {
     	User.findOne({ 'local.email' : profile.emails[0].value }, function(err, user) {
     		if (err) return done(err);
-        // console.log('error' + profile)
+
     		if (user) {
     			return done(null, createJwt(user));
-          console.log('user' + profile)
+          
     		} else {
-          // console.log('new user saved' + profile);
     			var newUser = new User();
     			newUser.linkedin.access_token 	= token;
 

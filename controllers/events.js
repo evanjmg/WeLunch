@@ -1,4 +1,3 @@
-
 var User = require('../models/user');
 var Event = require('../models/event');
 

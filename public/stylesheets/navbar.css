@@ -188,6 +188,7 @@ input[type="submit"] {
     font-weight: 100;
     color:white;
   }
+
   hr {
     margin-bottom: 0px;
     margin-left:-20px;
@@ -208,3 +209,4 @@ input[type="submit"] {
   .main-container {
     padding-top:100px;
   }
+  

@@ -14,7 +14,7 @@ function getUsers (){
 		i=0;
 		for(i;i< data.users.length;i++) {
 
-			var html = "<div class='row parent text-center'><div class='large-12 columns'><div class='row'><div><div class='small-3 columns'><img src='"+ data.users[i].linkedin.avatar+ "'></div><div class='small-6 columns' style='text-align:left;'>"+ data.users[i].local.name+ "<br/><span class='industry' style='font-style:italic;text-align:left;font-weight:100'>"+data.users[i].linkedin.industry+"</div><div class='small-3 columns input-parent'><input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'><input type='submit' value='+' class='close inviteButton' style='font-size:25px'></div></div></div></div></div>"
+			var html = "<div class='row parent text-center'><div class='large-12 columns'><div class='row'><div><div class='small-3 columns'><img class='user-avatar' src='"+ data.users[i].linkedin.avatar+ "'></div><div class='small-6 columns' style='text-align:left;'>"+ data.users[i].local.name+ "<br/><span class='industry' style='font-style:italic;text-align:left;font-weight:100'>"+data.users[i].linkedin.industry+"</div><div class='small-3 columns input-parent'><input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'><input type='submit' value='+' class='close inviteButton' style='font-size:25px'></div></div></div></div></div>"
 			var animatedHTML = $(html).hide().fadeIn('slow');
 			$('#usersInvite').append(animatedHTML)
 		}

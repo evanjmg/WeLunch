@@ -37,9 +37,7 @@ function invitesPending(req, res) {
       .exec( function (err, events) {
         if (err) res.status(403).send({ message: "Unable to retrieve invites."})
 
-        console.log(events);
-
-        if (events) { 
+        if (events.length > 0) { 
           res.status(200).send({ invites: events, currentUserId: req.user._id}); 
         } else { 
           res.status(404).send({ message: "Could not find any invitations."});

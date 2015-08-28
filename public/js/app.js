@@ -1,3 +1,38 @@
+$(function (){
+  // checkInvitations(function (invitations) {
+  //   if (invitations.length == 0) {
+      
+  // })
+  // ajax request if you have any pending invitations so 
+ 
+
+  //     // render form, upon creating event the owner will invite himself automatically to the event
+  // }
+  // else {
+  //   // if you have an invitation accepted -> go to event page and hide events  - 2 pending, 1 accepted-
+  //   if (accepted)
+
+  //   else
+
+  // }
+  // checkInvitations();
+})
+
+function inviteYourSelf() {
+
+}
+function checkInvitations (callback) {
+  $.ajax({
+    type: "get",
+    url: "/api/invites/pending",
+    contentType: "json",
+    dataType: "json"
+  }).done(function(data, response){
+
+      callback(data.invites);
+  });
+
+}
 $(function(){
   $(document).foundation({orbit: {animation: 'fade',
     timer_speed: 3000,
