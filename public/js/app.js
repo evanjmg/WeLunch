@@ -44,8 +44,17 @@ function getEvents() {
   }).done(function(data, response){
     var html = "";
     $.each(data.invites, function(index, meeting){
-      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div><img src="+meeting._owner.linkedin.avatar+"></div><div>"+meeting._owner.local.name+"</div><div>"+meeting.title+"</div><div>"+meeting.place+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
+      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div><img src="+meeting._owner.linkedin.avatar+"></div><div>"+meeting._owner.local.name+"</div><div>"+meeting.title+"</div><div>"+ moment(meeting.start_time).format('h:mm a') +"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
     });
+
+
+
+ /*   newdate = year + "/" + month + "/" + day;
+    Event['start_time'] = newdate +" "+ $('#start_time').html() + ":00";
+    Event['end_time'] = newdate +" "+ $('#end_time').html() + ":00";
+    geoCodeLocation($('#location').val(), Event);
+*/
+
 
     // Append the HTML string
     $('#tinderslide ul').append(html);
