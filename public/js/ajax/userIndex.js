@@ -32,7 +32,8 @@ function doneButton () {
 	$('#doneButton').on('click', function () {
 		console.log('listening')
 		event.preventDefault();
-		$(".invite-users-page").animate({width:'toggle'},1000);
+		$(".invite-users-page").fadeOut();
+		$('.main-container').append('<div class="current-event-container"></div>')
 		showCurrentEvent();
 	})
 }

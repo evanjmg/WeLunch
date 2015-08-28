@@ -61,7 +61,8 @@ router.route('/api/users/:id')
   .get(jwtauth, usersController.usersShow)
   .put(jwtauth, usersController.usersUpdate)
   .delete(jwtauth, usersController.usersDelete);
-
+router.route('/redirect')
+  .get(jwtauth, usersController.redirectTo);
 // EVENTS controller
 router.route('/api/events/')
   .post(jwtauth, eventsController.eventsCreate)
