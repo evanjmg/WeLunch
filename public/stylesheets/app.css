@@ -11625,6 +11625,12 @@ div.create-event-form-container {
   margin-bottom: 15px;
 }
 
+.invitee-img {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+}
+
 .btn-social {
   position: relative;
   padding-left: 44px;

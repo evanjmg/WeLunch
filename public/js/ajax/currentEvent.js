@@ -19,7 +19,7 @@ function showCurrentEvent () {
    countDown(data.event.start_time);
    var i=0;
    for (i;i< data.event.invites.length;i++) {
-    var html = "<div class='row'><div class='medium-4 large-4 columns text-center'><img src='"+data.event.invites[i]._invitee.linkedin.avatar+"'><h4>"+data.event.invites[i]._invitee.local.name+"</h4></div>"
+    var html = "<div class= 'text-center' style='display:inline-block;'><img class='invitee-img' src='"+data.event.invites[i]._invitee.linkedin.avatar+"'><h4>"+data.event.invites[i]._invitee.local.name+"</h4></div>"
     var animatedHTML = $(html).hide().slideDown('slow');
     $('.current-event-container').append(animatedHTML);
   }
