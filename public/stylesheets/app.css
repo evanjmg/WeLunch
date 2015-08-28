@@ -11282,6 +11282,11 @@ li {
   background-size: cover;
 }
 
+div.overlay {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .orbit-timer {
   left: -10000px;
   top: auto;
