@@ -32,11 +32,15 @@
 
 
   <% include partials/nav %>
-  <div class="main-container">
   <div class="flash-message">
     
   </div>
+  <div class="main-container">
+
   <%- body%>
+  <% if (current_user) { %>
+  <input type="hidden" value="<%= JSON.stringify(current_user) %>" id="token">
+  <% } %>
   </div>
   <!-- VENDOR JAVASCRIPT -->
   <script type="text/javascript" src="/js/vendor/jquery-2.1.4.js"></script>
@@ -74,6 +78,7 @@
         timer: true,
         variable_height: false,
       });
+    console.log($('#token').val());
   </script>
 </body>
 </html>
