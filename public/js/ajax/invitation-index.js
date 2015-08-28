@@ -10,8 +10,8 @@ function acceptInvites (eventId){
     url: "api/invites/accept",
     data: { "eventId": eventId }
   }).done(function(data, response){
-    $('.tinder-container').slideUp();
-    $('main-container').html();
+    $('.tinder-container').hide();
+    $('main-container').html('');
     showEvent(eventId);
   });
 }
