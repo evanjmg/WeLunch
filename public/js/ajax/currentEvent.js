@@ -17,13 +17,14 @@ function showCurrentEvent () {
    var animatedHTML = $(html).hide().fadeIn();
    $('.current-event-container').append(animatedHTML);
    countDown(data.event.start_time);
-   var i=0;
+   var i=0; 
+   // $('.current-event-container').append("<div class='row' style='width:60%;'>");
    for (i;i< data.event.invites.length;i++) {
     var html = "<div class= 'text-center' style='display:inline-block;'><img class='invitee-img' src='"+data.event.invites[i]._invitee.linkedin.avatar+"'><h4>"+data.event.invites[i]._invitee.local.name+"</h4></div>"
     var animatedHTML = $(html).hide().slideDown('slow');
     $('.current-event-container').append(animatedHTML);
   }
-    
+  $('.current-event-container').append("</div>");
   }
   if(data.event.invites.length == 0) {
     $('#whos-invited').after("<h4>You haven't invited anyone. Please Click the Button Above</h4>")
