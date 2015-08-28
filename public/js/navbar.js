@@ -1,13 +1,19 @@
 $(function () {
 	navLunch()
 	navInvite()
+
+	if ($('.welunch').html() == "WeLunch") {
+	$('.welunchnav').hide()
+		$('.main-container').css('padding-top', '0')
+	}
+
 })
 
 function navInvite() {
 	$('#navInvite').on('click', function () {
 		event.preventDefault();
 		getUsers();
-		$('.current-event-container').slideUp();
+		$('.current-event-container').slideUp()
 	});
 }
 

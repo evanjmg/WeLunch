@@ -64,9 +64,33 @@ function linkedinLogin(req, res, next){
           });
       });
 };
+function redirectTo (req,res) {
+  if (!req.user) return res.json(401, { error: "No user found" });
+  
+  Event.find( 
+      { "invites": { "$elemMatch": { "_invitee": req.user.id, "accepted": null  } } }
+    )
+      .populate('_owner')
+      .populate('invites._invitees')
+        .exec( function (err, events) {
+        if (events.length > 0) {
+          return res.redirect("/invitations");
+        }
+
+        Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }
+          , function (err, event) {
+            if (event) { 
+              return res.redirect("/events/show");
+            } else {
+              return res.redirect("/")
+            }
+          });
+      });
+}
 
 
 module.exports = {
+  redirectTo: redirectTo,
   usersIndex: usersIndex,
   usersShow: usersShow,
   usersUpdate: usersUpdate,
