@@ -45,6 +45,7 @@ function createButton () {
     Event['start_time'] = newdate +" "+ $('#start_time').html() + ":00";
     Event['end_time'] = newdate +" "+ $('#end_time').html() + ":00";
     geoCodeLocation($('#location').val(), Event);
+    $('.main-container').append("<div class='invite-users-page'></div>")
   })
 }
 // 'start_time', 'end-time'
