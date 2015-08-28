@@ -33,7 +33,7 @@ function eventsUpdate (req, res) {
   });
 }
 function eventsDelete (req,res) {
-  Event.findbyId(req.body, function (err, Event) {
+  Event.findbyId(req.params._id, function (err, Event) {
     if (err) res.json({ message: "An error occurred."})
       if(Event) {
        Event.remove();
