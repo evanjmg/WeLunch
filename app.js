@@ -11,11 +11,11 @@ var moment         = require('moment');
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
 var MongoStore     = require('connect-mongo')(session);
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 var ejs            = require('ejs');
 
 // override with the X-HTTP-Method-Override header in the request
-app.use(methodOverride('X-HTTP-Method-Override'))
+app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs');

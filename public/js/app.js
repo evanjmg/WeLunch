@@ -28,12 +28,20 @@ function getEvents() {
   $.ajax({
     type: "get",
     url: "/api/invites/pending",
+    error: function() {
+      $('body').css('overflow', 'scroll !important');
+          $('.main-container').empty();   $('.main-container').css('margin-top', '-275px');
+          $('.main-container').load('/events/create#create-event-form-container').hide().fadeIn();
+          $('.flash-message').html('<h3>You have no pending invitations.<h3>').hide().fadeIn('slow');
+          $('.flash-message').css('margin-top','120px')
+
+      },
     contentType: "json",
     dataType: "json"
   }).done(function(data, response){
     var html = "";
     $.each(data.invites, function(index, meeting){
-      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div><img src="+meeting._owner.linkedin.avatar+"></div><div>"+meeting._owner.local.name+"</div><div>"+meeting.title+"</div><div>"+meeting.location+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
+      html += "<li class='pane"+index+"'><input class='.pending-invitation-id' type='hidden' value='"+ meeting._id+"'><div><img src="+meeting._owner.linkedin.avatar+"></div><div>"+meeting._owner.local.name+"</div><div>"+meeting.title+"</div><div>"+meeting.place+"</div><div>"+meeting.location+"</div><div>"+meeting.message+"</div><div class='like'></div><div class='dislike'></div></li>"
     });
 
     // Append the HTML string
@@ -73,6 +81,10 @@ function getEvents() {
     $('.actions .like, .actions .dislike').click(function(e){
       e.preventDefault();
       $("#tinderslide").jTinder($(this).attr('class'));
+
     });
+    console.log(response.message)
+  
   });
+
 };

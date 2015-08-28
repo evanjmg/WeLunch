@@ -33,13 +33,18 @@ function eventsUpdate (req, res) {
   });
 }
 function eventsDelete (req,res) {
-  Event.remove( {_owner: req.user.id, _id: req.params.id }, function (err) {
+  Event.findbyId(req.params._id, function (err, event) {
     if (err) res.json({ message: "An error occurred."})
-      res.json({ message: "Event Successfully Deleted"})
+      if(event) { event.remove();
+      res.json({ message: "Event Successfully Deleted"}); }
+      else {
+        res.json({ message: "No event found"})
+      }
+
   })
 }
 function eventsShow (req, res) {
-  Event.findById(req.params.id).populate('_owner').populate('invites._invitees').exec( function (err, event){
+  Event.findById(req.params.id).populate('_owner').populate('invites._invitee').exec( function (err, event){
     if (err) res.json({ message: "An error occurred"})
       if (event) { return res.json(event); } 
     else { res.json({ message: 'Event not found'})}

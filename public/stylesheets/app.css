@@ -11142,7 +11142,7 @@ h2 {
 
 h2.invite-header {
   text-align: center;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 h3 {
@@ -11342,7 +11342,7 @@ html {
   text-align: center;
   margin: auto;
   font-size: 35px;
-  font-weight: 100;
+  font-weight: 200;
   font-family: "Roboto";
   letter-spacing: -.05em;
 }
@@ -11426,7 +11426,7 @@ input[type="submit"] {
 #time-range {
   width: 60%;
   font-size: 30px;
-  font-weight: 100;
+  font-weight: 200;
   text-align: center;
   color: white;
   margin: 0 auto;
@@ -11548,20 +11548,20 @@ h2 {
   margin: auto;
   color: white;
   font-size: 35px;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 h3 {
   text-align: center;
   font-size: 20px;
-  font-weight: 100;
+  font-weight: 200;
   color: white;
 }
 
 h4 {
   text-align: center;
   font-size: 20px;
-  font-weight: 100;
+  font-weight: 200;
   color: white;
 }
 
@@ -11578,7 +11578,7 @@ body {
   margin: auto;
   color: white;
   font-size: 35px;
-  font-weight: 100;
+  font-weight: 200;
   margin-top: 16px;
   margin-bottom: 0px;
   text-align: left;
@@ -11587,7 +11587,7 @@ body {
 .menu_text {
   text-align: center;
   font-size: 16px;
-  font-weight: 100;
+  font-weight: 200;
   color: white;
 }
 
@@ -11609,6 +11609,15 @@ div.create-event-form-container {
 
 #cancelButton {
   max-width: 150px;
+  margin-bottom: 15px;
+}
+
+#inviteMoreButton {
+  max-width: 150px;
+  background-color: #1dc39f;
+  margin-left: 20px;
+  border-color: #1dc39f;
+  margin-bottom: 15px;
 }
 
 .btn-social {
@@ -11767,6 +11776,10 @@ div.create-event-form-container {
 .btn-linkedin .badge {
   color: #007bb6;
   background-color: #fff;
+}
+
+.invite-users-page {
+  padding: 5px;
 }
 
 #tinderslide {
