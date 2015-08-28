@@ -82,9 +82,11 @@ function inviteMore() {
 }
 
 function deleteEvent(EventId) {
+  var url = '/api/events/'+ EventId
   $.ajax({
-    type: 'DELETE',
-    url: '/api/events/'+ EventId
+    type: 'delete',
+    traditional: true,
+    url: url
   }).done( function (data,response) {
     $('.current-event-container').fadeOut();
     $('.flash-message').prepend('<h4>Succesfully Cancelled Event!</h4>');

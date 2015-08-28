@@ -33,9 +33,10 @@ function eventsUpdate (req, res) {
   });
 }
 function eventsDelete (req,res) {
-  Event.findbyId(req.params._id, function (err, event) {
+  Event.findbyId(req.params.id, function (err, Event) {
     if (err) res.json({ message: "An error occurred."})
-      if(event) { event.remove();
+      if(Event) {
+       Event.remove();
       res.json({ message: "Event Successfully Deleted"}); }
       else {
         res.json({ message: "No event found"})

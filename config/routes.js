@@ -23,19 +23,19 @@ router.route('/login')
 //   .get(homeController.menu);
 
 router.route('/users')
-  .get(homeController.usersIndex);
+  .get(jwtauth,homeController.usersIndex);
 
 router.route('/invitations')
-  .get(homeController.invitations);
+  .get(jwtauth,homeController.invitations);
 
 router.route('/events/show')
-  .get(homeController.eventShow);
+  .get(jwtauth,homeController.eventShow);
 
 router.route('/event')
-  .get(homeController.eventShow);
+  .get(jwtauth,homeController.eventShow);
 
 router.route('/events/create')
-  .get(homeController.eventsCreate)
+  .get(jwtauth,homeController.eventsCreate)
 
 router.route('/auth/linkedin')
   .get(passport.authenticate('linkedin', { 
