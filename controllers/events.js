@@ -39,7 +39,7 @@ function eventsDelete (req,res) {
   })
 }
 function eventsShow (req, res) {
-  Event.findById(req.params.id).populate('_owner').populate('invites._invitees').exec( function (err, event){
+  Event.findById(req.params.id).populate('_owner').populate('invites._invitee').exec( function (err, event){
     if (err) res.json({ message: "An error occurred"})
       if (event) { return res.json(event); } 
     else { res.json({ message: 'Event not found'})}

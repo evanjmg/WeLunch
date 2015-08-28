@@ -11603,6 +11603,15 @@ div.create-event-form-container {
 
 #cancelButton {
   max-width: 150px;
+  margin-bottom: 15px;
+}
+
+#inviteMoreButton {
+  max-width: 150px;
+  background-color: #1dc39f;
+  margin-left: 20px;
+  border-color: #1dc39f;
+  margin-bottom: 15px;
 }
 
 .btn-social {
@@ -11761,6 +11770,10 @@ div.create-event-form-container {
 .btn-linkedin .badge {
   color: #007bb6;
   background-color: #fff;
+}
+
+.invite-users-page {
+  padding: 10px;
 }
 
 #tinderslide {
