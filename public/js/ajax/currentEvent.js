@@ -11,18 +11,18 @@ function showCurrentEvent () {
    dataType: "json"
  }).done(function(data, response){
     if(data.event) {
-   var html = "<h2>"+data.event.title+"</h2></br><h3 style='font-style:italic'>"+data.event.message+"</h3></br><h3>"+moment(data.event.start_time).format('MMMM Do, h:mm -')+moment(data.event.end_time).format('h:mm')+"</h3><div class='clock'></div></br><h3>"+data.event.place+"</h3><h4 class='event-location'>"+data.event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host:</h3><div class='row' style='width:50%;'><div class='small-6 columns'><img src='"+data.event._owner.linkedin.avatar+"' style='display:inline-block'></div><div class='small-6 columns'><h3>"+data.event._owner.local.name+"</h3></div></div></br><div class='row text-center'><input type='submit' id='cancelButton' value='Cancel'><input type='submit' id='inviteMoreButton' value='Invite More'></div><h2 id='whos-invited'>Who's Invited?</h2></br></div>"
+   var html = "<h2>"+data.event.title+"</h2></br><h3 style='font-style:italic'>"+data.event.message+"</h3></br><h3>"+moment(data.event.start_time).format('MMMM Do, h:mm -')+moment(data.event.end_time).format('h:mm')+"</h3><div class='clock'></div></br><h3>"+data.event.place+"</h3><h4 class='event-location'>"+data.event.location+"</h4><a href='#' id='map-click'><h4 style='color:#1dc39f'>click for map</h4></a></br><h3>Host:</h3><div class='row' style='width:50%;'><div class='small-6 columns'><img src='"+data.event._owner.linkedin.avatar+"' style='display:inline-block'></div><div class='small-6 columns'><h3>"+data.event._owner.local.name+"</h3></div></div></br><div class='row text-center'><input type='submit' id='cancelButton' value='Cancel'><input type='submit' id='inviteMoreButton' value='Invite More'></div><h2 id='whos-invited'>Who's Invited?</h2></br></div><div class='row invitee-blocks text-center'>"
 
 
    var animatedHTML = $(html).hide().fadeIn();
    $('.current-event-container').append(animatedHTML);
    countDown(data.event.start_time);
    var i=0; 
-   // $('.current-event-container').append("<div class='row' style='width:60%;'>");
+   $('.current-event-container').append("");
    for (i;i< data.event.invites.length;i++) {
     var html = "<div class= 'text-center' style='display:inline-block;'><img class='invitee-img' src='"+data.event.invites[i]._invitee.linkedin.avatar+"'><h4>"+data.event.invites[i]._invitee.local.name+"</h4></div>"
     var animatedHTML = $(html).hide().slideDown('slow');
-    $('.current-event-container').append(animatedHTML);
+    $('.invitee-blocks').append(animatedHTML);
   }
   $('.current-event-container').append("</div>");
   }

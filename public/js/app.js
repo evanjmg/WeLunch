@@ -3,23 +3,6 @@ $(function (){
   if ($("#tinderslide").length > 0) { 
     getEvents();
   } 
-  // checkInvitations(function (invitations) {
-  //   if (invitations.length == 0) {
-      
-  // })
-  // ajax request if you have any pending invitations so 
- 
-
-  //     // render form, upon creating event the owner will invite himself automatically to the event
-  // }
-  // else {
-  //   // if you have an invitation accepted -> go to event page and hide events  - 2 pending, 1 accepted-
-  //   if (accepted)
-
-  //   else
-
-  // }
-  // checkInvitations();
 })
 
 
@@ -30,12 +13,9 @@ function getEvents() {
     url: "/api/invites/pending",
     error: function() {
       $('body').css('overflow', 'scroll !important');
-          // $('.main-container').empty();   $('.main-container').css('margin-top', '-275px');
-          // $('.main-container').load('/events/create#create-event-form-container').hide().fadeIn();
-          // $('.flash-message').html('<h3>You have no pending invitations.<h3>').hide().fadeIn('slow');
+
           location.href = '/events/create'
-          // $('.flash-message').css('margin-top','120px');
-          // window.localStorage = 'You have no pending invitations.'
+         
           
 
       },
@@ -48,12 +28,6 @@ function getEvents() {
     });
 
 
-
- /*   newdate = year + "/" + month + "/" + day;
-    Event['start_time'] = newdate +" "+ $('#start_time').html() + ":00";
-    Event['end_time'] = newdate +" "+ $('#end_time').html() + ":00";
-    geoCodeLocation($('#location').val(), Event);
-*/
 
 
     // Append the HTML string
