@@ -18,59 +18,59 @@ module.exports = function(passport, app){
     done(null, token);
 	});
 
-  // ============ LOCAL SIGNUP
-  passport.use('local-signup', new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password',
-    passReqToCallback : true
-  }, function(req, email, password, callback) {
-    process.nextTick(function() {
+//   // ============ LOCAL SIGNUP
+//   passport.use('local-signup', new LocalStrategy({
+//     usernameField : 'email',
+//     passwordField : 'password',
+//     passReqToCallback : true
+//   }, function(req, email, password, callback) {
+//     process.nextTick(function() {
 
-      // Find a user with this e-mail
-      User.findOne({ 'local.email' :  email }, function(err, user) {
-        if (err) return callback(err);
+//       // Find a user with this e-mail
+//       User.findOne({ 'local.email' :  email }, function(err, user) {
+//         if (err) return callback(err);
 
-        // If there already is a user with this email 
-        if (user) {
-          return callback(null, false);
-        } else {
-        // There is no email registered with this email
+//         // If there already is a user with this email 
+//         if (user) {
+//           return callback(null, false);
+//         } else {
+//         // There is no email registered with this email
 
-          // Create a new user
-          var newUser            = new User();
-          newUser.local.email    = email;
-          newUser.local.password = newUser.encrypt(password);
+//           // Create a new user
+//           var newUser            = new User();
+//           newUser.local.email    = email;
+//           newUser.local.password = newUser.encrypt(password);
 
-          newUser.save(function(err) {
-            if (err) throw err;
-            return callback(null, newUser);
-          });
-        }
-      });
-    });
-  }));
+//           newUser.save(function(err) {
+//             if (err) throw err;
+//             return callback(null, newUser);
+//           });
+//         }
+//       });
+//     });
+//   }));
 
-  // ============ LOCAL LOGIN 
-  passport.use('local-login', new LocalStrategy({
-  	usernameField : 'email',
-  	passwordField : 'password',
-  	passReqToCallback : true
-  }, function(req, email, password, callback) {
-  	process.nextTick(function() {
+//   // ============ LOCAL LOGIN 
+//   passport.use('local-login', new LocalStrategy({
+//   	usernameField : 'email',
+//   	passwordField : 'password',
+//   	passReqToCallback : true
+//   }, function(req, email, password, callback) {
+//   	process.nextTick(function() {
 
-  		User.findOne({ 'local.email' :  email }, function(err, user){
-  			if (err) 
-  				return callback(err);
-  			if (!user) {
-  				return callback(null, false);
-  			}       
-      if (!user.validPassword(password)) return callback(null, false); 
-      return callback(null, user);
-  		});
+//   		User.findOne({ 'local.email' :  email }, function(err, user){
+//   			if (err) 
+//   				return callback(err);
+//   			if (!user) {
+//   				return callback(null, false);
+//   			}       
+//       if (!user.validPassword(password)) return callback(null, false); 
+//       return callback(null, user);
+//   		});
 
-  	})
-  })
-);
+//   	})
+//   })
+// );
 
   // ============ LINKEDIN LOGIN
   passport.use('linkedin', new LinkedInStrategy({
