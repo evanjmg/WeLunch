@@ -76,7 +76,7 @@ module.exports = function(passport, app){
   passport.use('linkedin', new LinkedInStrategy({
   	clientID: process.env.LINKEDIN_API_KEY,
   	clientSecret: process.env.LINKEDIN_SECRET_KEY,
-  	callbackURL: "/api/users/auth/linkedin/callback",
+  	callbackURL: "https://welunchga.herokuapp.com/api/users/auth/linkedin/callback",
     scope: ['r_emailaddress', 'r_basicprofile'],
     state: true
   	// profileFields   : ['id','emails', 'location', 'industry']
