@@ -23,18 +23,17 @@ app.set('view engine', 'ejs');
 // Setup SASS directories
 var path = require('path');
 
-app.use(sassMiddleware({
-    src: path.join(__dirname + '/sass'), 
-    dest: path.join(__dirname + '/public/stylesheets'), 
-    debug: true,
-    force: true,
-    prefix: '/stylesheets',
-    outputStyle: 'compressed',
-    outputStyle: 'expanded' 
-  }),
+// app.use(sassMiddleware({
+//     src: path.join(__dirname + '/sass'), 
+//     dest: path.join(__dirname + '/public/stylesheets'), 
+//     debug: true,
+//     force: true,
+//     prefix: '/stylesheets',
+//     outputStyle: 'compressed'
+//   }),
   // The static middleware must come after the sass middleware
-  express.static(path.join(__dirname, 'public'))
-)
+  app.use(express.static(__dirname + '/public'));
+
 
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
 mongoose.connect(databaseURL);
