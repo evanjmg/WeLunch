@@ -1,6 +1,8 @@
 branch-defaults:
   development:
     environment: null
+  master:
+    environment: welunch
 global:
   application_name: welunch
   default_ec2_keyname: null
