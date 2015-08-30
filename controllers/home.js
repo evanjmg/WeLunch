@@ -1,7 +1,7 @@
 var Event = require('../models/event');
 
 function login(req, res){
-  res.render('users/login');
+  res.render('users/login', { message: req.flash('success')});
 }
 
 function home(req, res){

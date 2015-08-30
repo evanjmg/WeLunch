@@ -50,7 +50,8 @@ router.route('/auth/linkedin')
 
   
 router.route('/signup').post(passport.authenticate('local-signup', { successRedirect : '/redirect',
-   failureRedirect : '/login' }));
+   failureRedirect : '/login', successFlash: 'You created your account. Please login.'             
+        , failureFlash: 'Sign up failed. Please try again.'    }));
 
 router.route('/')
   .get(jwtauth, homeController.home);
@@ -69,6 +70,7 @@ router.route('/api/users/:id')
   .get(jwtauth, usersController.usersShow)
   .put(jwtauth, usersController.usersUpdate)
   .delete(jwtauth, usersController.usersDelete);
+
 router.route('/redirect')
   .get(jwtauth, usersController.redirectTo);
 // EVENTS controller

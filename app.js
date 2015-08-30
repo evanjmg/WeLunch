@@ -13,7 +13,7 @@ var session        = require('express-session');
 var MongoStore     = require('connect-mongo')(session);
 var methodOverride = require('method-override');
 var ejs            = require('ejs');
-
+var flash        = require('connect-flash')
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('X-HTTP-Method-Override'));
 
@@ -66,6 +66,7 @@ app.use(session({
 // AUTHENTICATION
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // ACCESS CURRENT_USER IN VIEWS
 app.use(function(req,res, next) {

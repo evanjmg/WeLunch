@@ -41,8 +41,14 @@ body {
     rgba(5, 28, 43, 0.5), 
     rgba(5, 28, 43, 0.5)
     ), url('/images/landing-slider/women.jpg') no-repeat center center fixed;background-size : cover;">
-
+    
       <div class="title welunch">WeLunch</div>
+      <% if (message.length > 0) { %>
+      <div class="flash-message" style="margin-top:-15px;">
+        <%= message %>
+      </div>
+      <p></p>
+      <% } %>
       <div class="overlay">
 
         <p>
@@ -59,6 +65,13 @@ body {
       rgba(5, 28, 43, 0.45)
       ), url('/images/landing-slider/drinks.jpg');background-size : cover;" style="text-align:center;font-size: 1.5em;">
       <div class="title welunch">WeLunch</div>
+      <% if (message.length > 0) { %>
+
+      <div class="flash-message" style="margin-top:-15px;">
+        <%= message %>
+      </div>
+      <p></p>
+      <% } %>
       <div class="overlay">
         
         <p>
@@ -73,6 +86,12 @@ body {
      rgba(5, 28, 43, 0.45)
      ), url('/images/landing-slider/lunch.jpg') no-repeat center center fixed;background-size : cover;" >
      <div class="title welunch">WeLunch</div>
+     <% if (message.length > 0) { %>
+     <div class="flash-message" style="margin-top:-15px;">
+       <%= message %>
+     </div>
+     <p></p>
+     <% } %>
      <div class="overlay">
 
       <p>
