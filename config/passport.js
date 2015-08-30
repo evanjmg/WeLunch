@@ -39,6 +39,9 @@ module.exports = function(passport, app){
           // Create a new user
           var newUser            = new User();
           newUser.local.email    = email;
+          newUser.local.name    = req.body.name;
+          newUser.linkedin.avatar    = req.body.avatar;
+          newUser.linkedin.industry    = req.body.industry;
           newUser.local.password = newUser.encrypt(password);
 
           newUser.save(function(err) {
@@ -65,7 +68,7 @@ module.exports = function(passport, app){
   				return callback(null, false);
   			}       
       if (!user.validPassword(password)) return callback(null, false); 
-      return callback(null, createJwt(newUser));
+      return callback(null, createJwt(user));
   		});
 
   	})

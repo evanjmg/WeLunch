@@ -17,7 +17,11 @@ var invitesController = require('../controllers/invites');
 
 // HOME controller 
 router.route('/login')
-  .get(homeController.login);
+  .get(homeController.login)
+  .post(passport.authenticate('local-login', 
+    { successRedirect : '/redirect', 
+    failureRedirect : '/login' }));
+
 
 // router.route('/menu')
 //   .get(homeController.menu);
@@ -43,6 +47,10 @@ router.route('/auth/linkedin')
     scope: ['r_basicprofile', 'r_emailaddress'] 
   })
 );
+
+  
+router.route('/signup').post(passport.authenticate('local-signup', { successRedirect : '/redirect',
+   failureRedirect : '/login' }));
 
 router.route('/')
   .get(jwtauth, homeController.home);
