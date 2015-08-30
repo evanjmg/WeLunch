@@ -87,24 +87,24 @@
           if(touchStart === false) {
             touchStart = true;
             xStart = ev.originalEvent.touches[0].pageX;
-            yStart = ev.originalEvent.touches[0].pageY;
+            // yStart = ev.originalEvent.touches[0].pageY;
           }
         case 'mousedown':
           if(touchStart === false) {
             touchStart = true;
             xStart = ev.pageX;
-            yStart = ev.pageY;
+            // yStart = ev.pageY;
           }
         case 'mousemove':
         case 'touchmove':
           if(touchStart === true) {
             var pageX = typeof ev.pageX == 'undefined' ? ev.originalEvent.touches[0].pageX : ev.pageX;
-            var pageY = typeof ev.pageY == 'undefined' ? ev.originalEvent.touches[0].pageY : ev.pageY;
+            // var pageY = typeof ev.pageY == 'undefined' ? ev.originalEvent.touches[0].pageY : ev.pageY;
             var deltaX = parseInt(pageX) - parseInt(xStart);
-            var deltaY = parseInt(pageY) - parseInt(yStart);
+            // var deltaY = parseInt(pageY) - parseInt(yStart);
             var percent = ((100 / pane_width) * deltaX) / pane_count;
             posX = deltaX + lastPosX;
-            posY = deltaY + lastPosY;
+            // posY = deltaY + lastPosY;
 
             panes.eq(current_pane).css("transform", "translate(" + posX + "px," + posY + "px) rotate(" + (percent / 2) + "deg)");
 
@@ -126,12 +126,12 @@
         case 'touchend':
           touchStart = false;
           var pageX = (typeof ev.pageX == 'undefined') ? ev.originalEvent.changedTouches[0].pageX : ev.pageX;
-          var pageY = (typeof ev.pageY == 'undefined') ? ev.originalEvent.changedTouches[0].pageY : ev.pageY;
+          // var pageY = (typeof ev.pageY == 'undefined') ? ev.originalEvent.changedTouches[0].pageY : ev.pageY;
           var deltaX = parseInt(pageX) - parseInt(xStart);
-          var deltaY = parseInt(pageY) - parseInt(yStart);
+          // var deltaY = parseInt(pageY) - parseInt(yStart);
 
           posX = deltaX + lastPosX;
-          posY = deltaY + lastPosY;
+          // posY = deltaY + lastPosY;
           var opa = Math.abs((Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2);
 
           if (opa >= 1) {

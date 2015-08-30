@@ -43,7 +43,7 @@ module.exports = function(passport, app){
 
           newUser.save(function(err) {
             if (err) throw err;
-            return callback(null, newUser);
+            return callback(null, createJwt(newUser).token);
           });
         }
       });
@@ -65,7 +65,7 @@ module.exports = function(passport, app){
   				return callback(null, false);
   			}       
       if (!user.validPassword(password)) return callback(null, false); 
-      return callback(null, user);
+      return callback(null, createJwt(newUser));
   		});
 
   	})
