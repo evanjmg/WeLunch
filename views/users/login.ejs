@@ -1,6 +1,6 @@
 <style>
 
-  .signinButton {
+  .linkedinButton {
     text-align: center;
     margin:auto;
     color:white;
@@ -30,6 +30,9 @@
   margin-top: 125px;
   width:100%;
 }
+body {
+  overflow: scroll !important;
+}
 
 </style>
 <div class="login-container orbit-container orbit-slides-container">
@@ -38,20 +41,18 @@
     rgba(5, 28, 43, 0.5), 
     rgba(5, 28, 43, 0.5)
     ), url('/images/landing-slider/women.jpg') no-repeat center center fixed;background-size : cover;">
-    <div class="overlay">
+    
       <div class="title welunch">WeLunch</div>
-      <p>
-        <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
-          <i class="fa fa-linkedin"></i> Login with Linkedin
-        </a></p>
-        <a href="#local-login" class="link-to-local-sign-up button signinButton transparentBtn">Login with Email</a>
+      <% if (message.length > 0) { %>
+      <div class="flash-message" style="margin-top:-15px;">
+        <%= message %>
       </div>
-
-
+      <p></p>
+      <% } %>
       <div class="overlay">
-        <div class="title welunch">WeLunch</div>
+
         <p>
-          <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+          <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn linkedinButton">
             <i class="fa fa-linkedin"></i> Login with Linkedin
           </a></p>
           <a href="#local-login" class="link-to-local-sign-up button signinButton transparentBtn">Login with Email</a>
@@ -63,10 +64,18 @@
       rgba(5, 28, 43, 0.45), 
       rgba(5, 28, 43, 0.45)
       ), url('/images/landing-slider/drinks.jpg');background-size : cover;" style="text-align:center;font-size: 1.5em;">
+      <div class="title welunch">WeLunch</div>
+      <% if (message.length > 0) { %>
+
+      <div class="flash-message" style="margin-top:-15px;">
+        <%= message %>
+      </div>
+      <p></p>
+      <% } %>
       <div class="overlay">
-        <div class="title welunch">WeLunch</div>
+        
         <p>
-         <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+         <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn linkedinButton">
            <i class="fa fa-linkedin"></i> Login with Linkedin
          </a></p>  <a href="#local-login" class="link-to-local-sign-up button transparentBtn signinButton">Login with Email</a>
        </div>
@@ -76,17 +85,80 @@
      rgba(5, 28, 43, 0.45), 
      rgba(5, 28, 43, 0.45)
      ), url('/images/landing-slider/lunch.jpg') no-repeat center center fixed;background-size : cover;" >
-
+     <div class="title welunch">WeLunch</div>
+     <% if (message.length > 0) { %>
+     <div class="flash-message" style="margin-top:-15px;">
+       <%= message %>
+     </div>
+     <p></p>
+     <% } %>
      <div class="overlay">
-      <div class="title welunch">WeLunch</div>
+
       <p>
-        <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn signinButton">
+        <a href="auth/linkedin" class="btn btn-block btn-social btn-linkedin button transparentBtn linkedinButton">
           <i class="fa fa-linkedin"></i> Login with Linkedin
         </a></p><a href="#local-login" class="link-to-local-sign-up button transparentBtn signinButton">Login with Email</a>
       </div>  
       <div class="orbit-caption" style="text-align:center;font-size: 1.5em;"> Join Professional Lunch Clubs</div>
     </li>
   </ul>
+</div>
+<div class="local-login local-auth text-center">
+<h2>Login</h2>
+<div class="row">
+  
+<div class="small-6 columns">
+<a href="/api/users/auth/linkedin" id="local-signup-link">Sign up</a>
+</div>
+<div class='small-6 columns '><a href="/api/users/auth/linkedin" id="linkedin-sign-up-link" style="margin-left:-25px;">Login with Linkedin.</a></div>
+
+</div>
+<form method="post" action="/login" id="local-login-form">
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" name="email" id="email">
+  </div>
+
+  <div class="form-group text-center center">
+    <label for="password">Password</label>
+    <input class="form-control" class="center" type="password" name="password" id="password" style="margin-left:20%">
+  </div>
+  
+  <input class="btn btn-default" type="submit" class="submit-local-login">
+</form>
+</div>
+<div class="local-sign-up local-auth text-center">
+<h2>Sign up</h2>
+
+<a href="#" id="local-login-link">Have an Account? Login here.</a>
+
+<form method="post" action="/signup" id="local-signup-form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" type="text" name="name" id="name">
+  </div>
+  <div class="form-group">
+    <label for="industry">Industry</label>
+    <input class="form-control" type="text" name="industry" id="industry">
+  </div>
+  <div class="form-group">
+    <label for="avatar">Link to Profile Image</label>
+    <input class="form-control" type="text" name="avatar" id="avatar">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" name="email" id="email">
+  </div>
+
+  <div class="form-group text-center center">
+    <label for="password">Password</label>
+    <input class="form-control" class="center" type="password" name="password" id="password" style="margin-left:20%">
+  </div>
+  
+  <input class="btn btn-default" type="submit" class="submit-local-login">
+</form>
 </div>
 <% if (current_user) { %>
 <% console.log(JSON.stringify(current_user)) %>

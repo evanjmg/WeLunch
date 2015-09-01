@@ -42,29 +42,20 @@ function linkedinLogout(req, res){
 };
 
 function linkedinLogin(req, res, next){
-  if (!req.user) return res.json(401, { error: "No user found" });
-  
-  Event.find( 
-      { "invites": { "$elemMatch": { "_invitee": req.user.id, "accepted": null  } } }
-    )
-      .populate('_owner')
-      .populate('invites._invitees')
-        .exec( function (err, events) {
-        if (events.length > 0) {
-          return res.redirect("/invitations");
-        }
-
-        Event.findOne({ _owner: req.user.id }, {}, { sort: { created_at: -1} }
-          , function (err, event) {
-            if (event) { 
-              return res.redirect("/events/show");
-            } else {
-              return res.redirect("/")
-            }
-          });
-      });
+  redirection(req,res);
 };
 function redirectTo (req,res) {
+redirection(req,res);
+}
+
+function localsigninResponse (req,res) {
+ redirection(req,res);
+}
+function localLoginResponse (req,res) {
+redirection(req,res);
+}
+
+function redirection (req,res) {
   if (!req.user) return res.json(401, { error: "No user found" });
   
   Event.find( 
@@ -87,8 +78,6 @@ function redirectTo (req,res) {
           });
       });
 }
-
-
 module.exports = {
   redirectTo: redirectTo,
   usersIndex: usersIndex,

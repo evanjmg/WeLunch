@@ -13,7 +13,7 @@ var session        = require('express-session');
 var MongoStore     = require('connect-mongo')(session);
 var methodOverride = require('method-override');
 var ejs            = require('ejs');
-
+var flash        = require('connect-flash')
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('X-HTTP-Method-Override'));
 
@@ -23,16 +23,16 @@ app.set('view engine', 'ejs');
 // Setup SASS directories
 var path = require('path');
 
-// app.use(sassMiddleware({
-//     src: path.join(__dirname + '/sass'), 
-//     dest: path.join(__dirname + '/public/stylesheets'), 
-//     debug: true,
-//     force: true,
-//     prefix: '/stylesheets',
-//     outputStyle: 'compressed'
-//   }),
+app.use(sassMiddleware({
+    src: path.join(__dirname + '/sass'), 
+    dest: path.join(__dirname + '/public/stylesheets'), 
+    debug: true,
+    force: true,
+    prefix: '/stylesheets',
+    outputStyle: 'compressed'
+  }), express.static(__dirname + '/public'));
   // The static middleware must come after the sass middleware
-  app.use(express.static(__dirname + '/public'));
+  // app.use(express.static(__dirname + '/public'));
 
 
 var databaseURL = process.env.MONGOLAB_URI ||'mongodb://localhost/welunch';
@@ -66,6 +66,7 @@ app.use(session({
 // AUTHENTICATION
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // ACCESS CURRENT_USER IN VIEWS
 app.use(function(req,res, next) {

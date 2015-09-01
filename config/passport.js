@@ -18,65 +18,70 @@ module.exports = function(passport, app){
     done(null, token);
 	});
 
-//   // ============ LOCAL SIGNUP
-//   passport.use('local-signup', new LocalStrategy({
-//     usernameField : 'email',
-//     passwordField : 'password',
-//     passReqToCallback : true
-//   }, function(req, email, password, callback) {
-//     process.nextTick(function() {
 
-//       // Find a user with this e-mail
-//       User.findOne({ 'local.email' :  email }, function(err, user) {
-//         if (err) return callback(err);
+  // ============ LOCAL SIGNUP
+  passport.use('local-signup', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  }, function(req, email, password, callback) {
+    process.nextTick(function() {
 
-//         // If there already is a user with this email 
-//         if (user) {
-//           return callback(null, false);
-//         } else {
-//         // There is no email registered with this email
+      // Find a user with this e-mail
+      User.findOne({ 'local.email' :  email }, function(err, user) {
+        if (err) return callback(err);
 
-//           // Create a new user
-//           var newUser            = new User();
-//           newUser.local.email    = email;
-//           newUser.local.password = newUser.encrypt(password);
+        // If there already is a user with this email 
+        if (user) {
+          return callback(null, false);
+        } else {
+        // There is no email registered with this email
 
-//           newUser.save(function(err) {
-//             if (err) throw err;
-//             return callback(null, newUser);
-//           });
-//         }
-//       });
-//     });
-//   }));
+          // Create a new user
+          var newUser            = new User();
+          newUser.local.email    = email;
+          newUser.local.name    = req.body.name;
+          newUser.linkedin.avatar    = req.body.avatar;
+          newUser.linkedin.industry    = req.body.industry;
+          newUser.local.password = newUser.encrypt(password);
 
-//   // ============ LOCAL LOGIN 
-//   passport.use('local-login', new LocalStrategy({
-//   	usernameField : 'email',
-//   	passwordField : 'password',
-//   	passReqToCallback : true
-//   }, function(req, email, password, callback) {
-//   	process.nextTick(function() {
+          newUser.save(function(err) {
+            if (err) throw err;
+            return callback(null, createJwt(newUser).token);
+          });
+        }
+      });
+    });
+  }));
 
-//   		User.findOne({ 'local.email' :  email }, function(err, user){
-//   			if (err) 
-//   				return callback(err);
-//   			if (!user) {
-//   				return callback(null, false);
-//   			}       
-//       if (!user.validPassword(password)) return callback(null, false); 
-//       return callback(null, user);
-//   		});
+  // ============ LOCAL LOGIN 
+  passport.use('local-login', new LocalStrategy({
+  	usernameField : 'email',
+  	passwordField : 'password',
+  	passReqToCallback : true
+  }, function(req, email, password, callback) {
+  	process.nextTick(function() {
 
-//   	})
-//   })
-// );
+  		User.findOne({ 'local.email' :  email }, function(err, user){
+  			if (err) 
+  				return callback(err);
+  			if (!user) {
+  				return callback(null, false);
+  			}       
+      if (!user.validPassword(password)) return callback(null, false); 
+      return callback(null, createJwt(user));
+  		});
+
+  	})
+  })
+);
+
 
   // ============ LINKEDIN LOGIN
   passport.use('linkedin', new LinkedInStrategy({
   	clientID: process.env.LINKEDIN_API_KEY,
   	clientSecret: process.env.LINKEDIN_SECRET_KEY,
-  	callbackURL: "https://welunchga.herokuapp.com/api/users/auth/linkedin/callback",
+  	callbackURL: "http://welunch.uk/api/users/auth/linkedin/callback",
     scope: ['r_emailaddress', 'r_basicprofile'],
     state: true
   	// profileFields   : ['id','emails', 'location', 'industry']

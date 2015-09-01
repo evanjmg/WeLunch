@@ -1,3 +1,27 @@
+$(function(){
+  $('.signinButton').on('click', function (){
+    event.preventDefault();
+    $('.overlay').fadeOut('slow');
+    $('.local-login').fadeIn();
+  });
+  $('#local-signup-link').on('click', function () {
+    event.preventDefault();
+    $('.local-sign-up').fadeIn('slow')
+    $('.local-login').fadeOut('slow');
+  });
+  $('#local-login-link').on('click', function (){
+    event.preventDefault();
+    $('.local-sign-up').fadeOut('slow');
+    $('.local-login').fadeIn('slow');
+  })
+  $('#linkedin-sign-up-link').on('click', function (){
+    event.preventDefault();
+    $('.overlay').fadeIn('slow');
+    $('.local-login').fadeOut('slow');
+  })
+})
+
+
 // var toggleForm = function() { 
 // 	$("#link-to-sign-up").on('click', function() {
 // 		event.preventDefault();
