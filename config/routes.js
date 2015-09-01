@@ -59,6 +59,8 @@ router.route('/')
 // USER controller
 router.route('/api/users')
   .get(jwtauth, usersController.usersIndex)
+  router.route('/api/users.json')
+    .get(jwtauth, usersController.usersIndex);
 
 router.route('/api/users/logout')
   .get(jwtauth, usersController.linkedinLogout);
