@@ -1,4 +1,10 @@
 .user-avatar {
-  width:80px;
-  height:80px;
+    max-width:80px;
+    max-height:80px;
+}
+@media (max-width: 600px) {
+  .user-avatar {
+  max-width:40px;
+  max-height:40px;
+}
 }

@@ -1,7 +1,7 @@
 
 
 function getUsers (){
-	var userIndexHeader = "<style>body {  overflow:scroll!important;}</style><div class='row' style='background-color:#051C2B'><div class='small-8 columns'><h2 style='text-align:left;color:white;font-weight:200;font-size:30px;display:inline-block'>Invite People</h2></div><div class='small-4 columns' ><input type='submit' id='doneButton' href='#' value='Done' style='background-color:#1dc39f;border: 1px #1dc39f;margin-left:40%;'></div><div id='usersInvite'></div></div></div></div>"
+	var userIndexHeader = "<style>body {  overflow:scroll!important; height:100%;}</style><div class='row ' style='background-color:#051C2B'><div class='small-8 columns'><h2 style='text-align:left;color:white;font-weight:200;font-size:30px;display:inline-block'>Invite People</h2></div><div class='small-4 columns' ><input type='submit' id='doneButton' href='#' value='Done' style='background-color:#1dc39f;border: 1px #1dc39f;margin-left:40%;'></div><div id='usersInvite'></div></div></div></div>"
 	$('.invite-users-page').append(userIndexHeader).fadeIn(3000);
 	$.ajax({
 		type: "get",
@@ -14,7 +14,7 @@ function getUsers (){
 		i=0;
 		for(i;i< data.users.length;i++) {
 
-			var html = "<div class='row parent text-center'><div class='large-12 columns'><div class='row'><div><div class='small-3 columns'><img class='user-avatar' src='"+ data.users[i].linkedin.avatar+ "'></div><div class='small-6 columns' style='text-align:left;'>"+ data.users[i].local.name+ "<br/><span class='industry' style='font-style:italic;text-align:left;font-weight:100'>"+data.users[i].linkedin.industry+"</div><div class='small-3 columns input-parent'><input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'><input type='submit' value='+' class='close inviteButton' style='font-size:25px'></div></div></div></div></div>"
+			var html = "<div class='row parent text-center'><div class='large-12 columns '><div class='row'><div class='scrollify'><div class='small-3 columns'><img class='user-avatar' src='"+ data.users[i].linkedin.avatar+ "'></div><div class='small-6 columns' style='text-align:left;'>"+ data.users[i].local.name+ "<br/><span class='industry' style='font-style:italic;text-align:left;font-weight:100'>"+data.users[i].linkedin.industry+"</div><div class='small-3 columns input-parent'><input type='hidden' value='"+ data.users[i]._id+"' class='invitee-id'><input type='submit' value='+' class='close inviteButton' style='font-size:25px'></div></div></div></div></div>"
 			var animatedHTML = $(html).hide().fadeIn('slow');
 			$('#usersInvite').append(animatedHTML)
 		}

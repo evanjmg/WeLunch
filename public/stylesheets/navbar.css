@@ -180,6 +180,13 @@ input[type="submit"] {
     margin-bottom:0px;
     text-align:left;
   }
+  .navbar-button:hover {
+    background-color:dodgerblue;
+    border-radius:5px;
+  }
+  .navbar-button {
+    padding-bottom:10px;
+  }
   .menu_text {
     text-align: center; 
     font-size: 16px;

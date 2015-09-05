@@ -265,11 +265,7 @@ div.title {
   color:  -webkit-linear-gradient(45deg, #1dc39f, dodgerblue);
 }
 
-@media (max-width: 600px) {
-  div.title {
-    font-size: 3.3em;
-  }
-}
+
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -502,9 +498,18 @@ input[type="submit"] {
     height:30px;
     width: 30px;
   }
+ 
+  .scrollify {
+    overflow:scroll !important;
+    height:100%;
+  }
 //**MEDIA QUERIES **********************
 
 @media (max-width: 600px) {
+  #doneButton {
+    min-width: 40px;
+    font-size: 9px;
+  }
   div.title {
     font-size: 3.3em;
   }

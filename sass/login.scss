@@ -24,6 +24,18 @@ top: 0;margin-top:150px;
   // margin-left:42%;
   // margin-right: auto;
 }
-#linkedin-sign-up-link {
-  margin-right: 68px;
+
+@media (max-width: 600px) {
+  .local-auth {
+    margin-top:20%;
+    height:65%;
+    overflow: scroll;
+  }
+  .form-group {
+    padding:0;
+    margin-top:-12px;
+  }
+  .form-group:first-child {
+    margin-top: 0px;
+  }
 }
