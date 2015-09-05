@@ -198,14 +198,14 @@ input[type="submit"] {
   
   .menu_icons{
     margin-top:16px;
-    height:25px;
-    width: 25px;
+    max-height:25px;
+    max-width: 25px;
   }
 
   .nav-icons {
     /*margin-right: -10px;*/
   }
-
+  
   .main-container {
     padding-top:130px;
   }
