@@ -1,6 +1,7 @@
 # WeLunch
 WeLunch is an app designed to help you meet likeminded professionals for lunch.
-
+ 
+Founded by Anvar Turobov, Francesca Tabor, and Evan Gillogley
 
 Demo: 
 * WeLunch Domain : http://www.welunch.uk/login
