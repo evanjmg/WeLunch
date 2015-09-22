@@ -108,7 +108,7 @@ module.exports = function(passport, app){
 
 
     			newUser.save(function(err) {
-    				console.log(response)
+    			
     				if (err) throw err;
 
     				return done(null, createJwt(newUser).token);
