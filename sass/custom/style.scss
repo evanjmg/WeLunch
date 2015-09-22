@@ -218,7 +218,7 @@ textarea {
 
 div.overlay {
 
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -277,7 +277,7 @@ html {
  
   font-size:35px;
   font-weight: 200;
-  font-family: "Roboto";
+  font-family: "Roboto", Helvetica, sans-serif;
   letter-spacing: -.05em;
 }
 .linkedinButton {
@@ -285,8 +285,7 @@ html {
   margin:auto;
   color:white;
   font-size:16px;
-  font-weight: 300;
-  font-family: "Roboto";
+  font-family: "Roboto", Helvetica, sans-serif;
 }
 
 .transparentBtn {
@@ -295,6 +294,7 @@ html {
   background:transparent;border:1px solid white;    padding:10px;
   width:210px;
   margin:auto;
+  font-family: "Roboto", Helvetica, sans-serif;
 }
 
 .transparentBtn:hover {
@@ -512,6 +512,7 @@ input[type="submit"] {
   }
   div.title {
     font-size: 3.3em;
+    font-family: "Roboto", Helvetica, sans-serif;
   }
   .menu_logo{ display:none;}
   .menu_text{ font-size: 12px !important;}
